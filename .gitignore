@@ -1,0 +1,14 @@
+# Private - never publish these
+.env
+CLAUDE.md
+
+# dist/ IS committed on purpose: Netlify publishes it straight from GitHub
+# (see netlify.toml). Run node build.js before every commit.
+
+# Old copy and local editor settings
+index (20).html
+.claude/settings.local.json
+
+# System
+.DS_Store
+Thumbs.db

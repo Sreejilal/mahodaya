@@ -1,0 +1,5 @@
+# Netlify publishes the built site in dist/, never this folder.
+# No build command: build.js needs .env, which stays on this computer.
+# Run node build.js here, then commit and push dist/.
+[build]
+  publish = "dist"

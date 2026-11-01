@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Compare Loan Rates from 13 Banks | Mahodaya Credit Solutions</title>
+<meta name="description" content="Personal, home, car and business loan rates and processing fees from 13 Indian banks, side by side, taken from each bank's own website. Free guidance in Malayalam, Tamil, Telugu, Kannada, Hindi and English."/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="Compare loan rates | Mahodaya Credit Solutions"/>
+<meta property="og:description" content="Lowest published loan rates and fees from 13 banks, in one place. Free guidance in 6 languages."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://whimsical-monstera-3825c6.netlify.app/loans.html"/>
+<meta property="og:image" content="https://whimsical-monstera-3825c6.netlify.app/og-image.png"/>
+<meta property="og:site_name" content="Mahodaya Credit Solutions"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A1628'/%3E%3Ctext x='16' y='23' font-size='19' font-family='serif' font-weight='700' fill='%23C9A84C' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  /* Same tokens as index.html, so both pages are one site. */
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-l: #E8C96A;
+    --gold-dark: #9A7A2E;
+    --navy: #0A1628;
+    --navy-mid: #112240;
+    --navy-light: #1A3A6B;
+    --white: #FDFCF8;
+    --cream: #F5F0E8;
+    --text-muted: #8A9BB0;
+    --green: #2ECC71;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  section[id] { scroll-margin-top: 96px; }
+  body { font-family:'DM Sans', sans-serif; background:var(--navy); color:var(--white); overflow-x:hidden; }
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible{ outline:2px solid var(--gold-light); outline-offset:3px; }
+
+  /* NAV (as on index.html) */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:18px 40px;
+    background:rgba(10,22,40,0.92); backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(201,168,76,0.15);
+  }
+  .nav-logo { font-family:'Playfair Display', serif; font-size:22px; color:var(--gold); letter-spacing:.5px; text-decoration:none; }
+  .nav-logo span { color:var(--white); font-weight:700; }
+  .nav-right { display:flex; align-items:center; gap:22px; }
+  .nav-link { color:#B9C5D5; font-size:14px; font-weight:500; text-decoration:none; padding:10px 2px; transition:color .2s; }
+  .nav-link:hover { color:var(--gold-light); }
+  .nav-cta {
+    background:linear-gradient(180deg, #F5D97E, #DDB958); color:#1A1204;
+    box-shadow:0 3px 14px rgba(232,201,106,0.28);
+    padding:12px 24px; min-height:44px; display:inline-flex; align-items:center;
+    border-radius:6px; font-weight:600; font-size:14px; text-decoration:none; transition:background .2s;
+  }
+  .nav-cta:hover { background:linear-gradient(180deg, #FFE9A0, #EBC96A); box-shadow:0 5px 20px rgba(232,201,106,0.45); }
+
+  /* HERO: the same two-voice headline and card fan as the home page, without
+     the red pen (the pen belongs to the home page only). */
+  .hero { position:relative; overflow:hidden; text-align:center; padding:clamp(108px, 14vh, 128px) 24px 34px; }
+  .hero-bg { position:absolute; inset:0;
+    background:radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%),
+               radial-gradient(ellipse 60% 80% at 80% 80%, rgba(26,58,107,0.4) 0%, transparent 60%); }
+  .hero-grid { position:absolute; inset:0;
+    background-image:linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size:60px 60px; }
+  .hero > *:not(.hero-bg):not(.hero-grid) { position:relative; }
+  .badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.3); color:var(--gold);
+    padding:8px 20px; border-radius:100px; font-size:13px; font-weight:500; margin-bottom:26px;
+    animation:fadeUp .6s ease both;
+  }
+  .badge-dot { width:7px; height:7px; border-radius:50%; background:var(--green); }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  h1 {
+    font-family:'Playfair Display', serif; font-weight:900;
+    font-size:clamp(36px, 6.4vw, 70px); line-height:1.04; letter-spacing:-.012em;
+    max-width:900px; margin:0 auto 18px; animation:fadeUp .6s .1s ease both;
+  }
+  h1 .h1-lead { display:block; font-size:.66em; font-weight:700; color:var(--white); margin-bottom:.12em; letter-spacing:0; }
+  html[lang="en"] h1 .h1-lead { font-style:italic; }
+  html:not([lang="en"]) h1 { font-size:clamp(32px, 5.6vw, 60px); }   /* wider scripts */
+  h1 .gold { color:var(--gold); display:block; text-wrap:balance; }
+  .hero-sub { font-size:clamp(15px, 2.3vw, 18px); color:var(--text-muted); max-width:600px; line-height:1.7; margin:0 auto 26px; animation:fadeUp .6s .2s ease both; }
+  .hero-langs { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:14px; animation:fadeUp .6s .25s ease both; }
+  .lang-pill {
+    padding:12px 20px; min-height:44px; border-radius:100px; font-size:13px; font-weight:500;
+    border:1px solid rgba(201,168,76,0.25); color:var(--gold-light); background:rgba(201,168,76,0.07);
+    cursor:pointer; transition:all .2s; font-family:'DM Sans', sans-serif; display:inline-flex; align-items:center; gap:6px;
+  }
+  .lang-pill:hover { background:rgba(201,168,76,0.18); border-color:rgba(201,168,76,0.5); }
+  .lang-pill.active { background:#16294A; color:var(--gold-l); border-color:var(--gold); font-weight:700; box-shadow:0 4px 14px rgba(201,168,76,0.35); }
+  .lang-pill.active::before { content:'\2713'; font-size:12px; font-weight:700; }
+  .lang-note { font-size:12px; color:var(--text-muted); margin-bottom:24px; }
+  .hero-btns { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; animation:fadeUp .6s .3s ease both; }
+
+  /* ╔═══════════ HERO CARDS: the home page's fan, for loans ═══════════╗
+     Same three cards and the same entrance as the hero on index.html: the two
+     dark cards fan out, the gold one lifts out of the hand, a sheen crosses it.
+     The gold card carries a "%" where the home page's card has its chip.
+     No intro splash here, so the entrance starts straight away. */
+  .hc-stage{
+    --cardW:clamp(176px, 46vw, 250px);
+    position:relative; z-index:1;
+    width:calc(var(--cardW) * 1.72); height:calc(var(--cardW) * .844);
+    margin:4px auto 22px; perspective:1100px;
+  }
+  .hc-fan{ position:absolute; inset:0; transform-style:preserve-3d; transform:rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition:transform .3s ease-out; }
+  .hc-card{
+    position:absolute; left:50%; bottom:6%;
+    width:var(--cardW); aspect-ratio:856 / 540; margin-left:calc(var(--cardW) / -2);
+    border-radius:calc(var(--cardW) * .046); overflow:hidden; transform-origin:50% 120%;
+  }
+  .hc-card svg{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .hc-back{ box-shadow:0 12px 26px -6px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.09); }
+  .hc-back-l{ background:linear-gradient(150deg, #34507A 0%, #1C2F50 70%, #16243E 100%); transform:translateX(-30%) rotate(-13deg) translateZ(-24px); }
+  .hc-back-r{ background:linear-gradient(150deg, #3E3A57 0%, #24213A 70%, #1B1A2C 100%); transform:translateX(30%) rotate(11deg) translateZ(-24px); }
+  .hc-gold{
+    z-index:2;
+    background:
+      repeating-linear-gradient(98deg, rgba(255,255,255,.07) 0 1px, transparent 1px 3px),
+      linear-gradient(165deg, rgba(255,255,255,.34), rgba(255,255,255,0) 40%),
+      linear-gradient(135deg, #F7E09A 0%, #E3C066 28%, #C89D46 60%, #A9802F 82%, #D9B65F 100%);
+    box-shadow:0 26px 44px -14px rgba(0,0,0,.7), 0 8px 16px -4px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.6), inset 0 0 0 1px rgba(110,78,18,.4);
+    transform:translateY(-10%) rotate(-3deg) translateZ(30px);
+  }
+  .hc-gold::after{
+    content:''; position:absolute; inset:-30% -60%;
+    background:linear-gradient(105deg, transparent 42%, rgba(255,251,232,.75) 50%, transparent 58%);
+    mix-blend-mode:soft-light; transform:translateX(-70%); pointer-events:none;
+  }
+  .hc-back-l{ animation:hcFanL .8s cubic-bezier(.2,1,.3,1) .25s both; }
+  .hc-back-r{ animation:hcFanR .8s cubic-bezier(.2,1,.3,1) .31s both; }
+  .hc-gold{ animation:hcPick .95s cubic-bezier(.2,1.2,.35,1) .43s both; }
+  .hc-gold::after{ animation:hcSheen 1.3s cubic-bezier(.4,0,.2,1) 1.18s both; }
+  @keyframes hcFanL{ from{ opacity:0; transform:translateY(26%) rotate(0deg) translateZ(-24px); } to{ opacity:1; transform:translateX(-30%) rotate(-13deg) translateZ(-24px); } }
+  @keyframes hcFanR{ from{ opacity:0; transform:translateY(26%) rotate(0deg) translateZ(-24px); } to{ opacity:1; transform:translateX(30%) rotate(11deg) translateZ(-24px); } }
+  @keyframes hcPick{ 0%{ opacity:0; transform:translateY(28%) rotate(2deg) translateZ(30px); } 45%{ opacity:1; } 100%{ transform:translateY(-10%) rotate(-3deg) translateZ(30px); } }
+  @keyframes hcSheen{ from{ transform:translateX(-70%); } to{ transform:translateX(70%); } }
+  /* ╚═══════════ HERO CARDS END ═══════════╝ */
+  .btn-primary {
+    background:linear-gradient(180deg, #F5D97E, #DDB958); color:#1A1204;
+    box-shadow:0 4px 20px rgba(232,201,106,0.3);
+    padding:16px 36px; border-radius:8px; font-weight:700; font-size:17px; letter-spacing:.3px;
+    text-decoration:none; transition:all .2s; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary:hover { background:linear-gradient(180deg, #FFE9A0, #EBC96A); box-shadow:0 8px 30px rgba(232,201,106,0.5); }
+  .btn-secondary {
+    color:var(--white); padding:16px 36px; border-radius:8px; font-weight:500; font-size:16px;
+    text-decoration:none; border:1px solid rgba(255,255,255,0.2); transition:all .2s;
+  }
+  .btn-secondary:hover { border-color:var(--gold); color:var(--gold); }
+
+  /* SECTIONS (same rhythm as index.html) */
+  section { padding:clamp(40px, 5vw, 56px) 24px; max-width:1100px; margin:0 auto; }
+  .section-tag { font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+  .section-title { font-family:'Playfair Display', serif; font-size:clamp(28px, 4vw, 44px); font-weight:700; margin-bottom:16px; line-height:1.2; }
+  .section-sub { color:var(--text-muted); font-size:16px; max-width:560px; line-height:1.7; margin-bottom:28px; }
+
+  /* ╔═══════════ LOAN TYPES: a hand of small cards ═══════════╗
+     The same move as the bank cards on the home page and the gold card in its
+     hero: the loan you pick lifts out of the hand and turns gold. */
+  .lt-hand { display:flex; justify-content:center; padding:18px 8px 14px; margin-bottom:6px; }
+  .lt-card {
+    --tilt:0deg; position:relative; flex:0 0 auto; width:128px; height:80px; margin-left:-12px; padding:0;
+    border-radius:8px; border:1px solid rgba(255,255,255,.13); color:#fff; cursor:pointer; text-align:left;
+    font-family:'DM Sans', sans-serif; font-weight:600;
+    background:#16294A;
+    background:radial-gradient(130% 125% at 0% 0%, rgba(42,69,112,.85) 0%, transparent 64%), linear-gradient(155deg, #1C3054, #0E1A30);
+    box-shadow:-8px 0 16px -8px rgba(0,0,0,.65);
+    transform:rotate(var(--tilt));
+    transition:transform .28s cubic-bezier(.2,1.2,.35,1), box-shadow .2s, color .2s;
+  }
+  .lt-card:first-child { margin-left:0; }
+  .lt-card::before { content:''; position:absolute; left:11px; top:12px; width:17px; height:12px; border-radius:3px; background:linear-gradient(135deg,#F7E3A1,#C9A04A); opacity:.85; }
+  .lt-card svg { position:absolute; right:10px; top:10px; width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; opacity:.7; }
+  .lt-card .lt-nm { position:absolute; left:11px; right:8px; bottom:9px; font-size:12.5px; line-height:1.2; }
+  .lt-card:hover { transform:translateY(-5px) rotate(var(--tilt)); z-index:2; }
+  .lt-card.on {
+    z-index:3; color:#1A1204; border-color:rgba(255,255,255,.45); transform:translateY(-11px) rotate(-2deg);
+    background:repeating-linear-gradient(98deg, rgba(255,255,255,.07) 0 1px, transparent 1px 3px), linear-gradient(135deg, #F7E09A 0%, #E3C066 30%, #C89D46 66%, #D9B65F 100%);
+    box-shadow:0 14px 24px -10px rgba(0,0,0,.75), inset 0 0 0 1px rgba(110,78,18,.4);
+  }
+  .lt-card.on::before { background:linear-gradient(135deg,#FFF3C4,#D8B45C); box-shadow:0 0 0 1px rgba(92,64,12,.45); opacity:1; }
+  .lt-card.on svg { opacity:.85; }
+  /* the picked card gets the hero card's sheen, once, every time it is picked */
+  .lt-card { overflow:hidden; }
+  .lt-card.on::after { content:''; position:absolute; inset:-20% -50%; pointer-events:none;
+    background:linear-gradient(105deg, transparent 42%, rgba(255,251,232,.8) 50%, transparent 58%); mix-blend-mode:soft-light;
+    animation:hcSheen 1s cubic-bezier(.4,0,.2,1) .12s both; }
+  /* Deal-in: when the hand scrolls into view the cards slide out of one pile
+     into the fan, then the picked one lifts last, like the hero's gold card.
+     Hidden only once JS confirms it can run (html.js-motion). */
+  .lt-hand { --step:116px; }
+  .js-motion .lt-hand:not(.dealt) .lt-card { opacity:0; transform:translateX(calc((1.5 - var(--i)) * var(--step))) translateY(22px) rotate(0deg); }
+  .js-motion .lt-hand:not(.dealt) .lt-card.on::after { animation:none; }
+  .lt-hand.dealing .lt-card { transition:transform .7s cubic-bezier(.2,1,.3,1) calc(var(--i) * 90ms), opacity .35s ease calc(var(--i) * 90ms); }
+  .lt-hand.dealing .lt-card.on { transition-delay:480ms; transition-duration:.85s; transition-timing-function:cubic-bezier(.2,1.2,.35,1); }
+  .lt-hand.dealing .lt-card.on::after { animation-delay:1.15s; }
+  @media (max-width:520px){
+    .lt-hand { --step:82px; }
+    .lt-card { width:90px; height:66px; margin-left:-8px; }
+    .lt-card::before { left:9px; top:10px; width:14px; height:10px; }
+    .lt-card svg { right:8px; top:8px; width:17px; height:17px; }
+    .lt-card .lt-nm { left:9px; bottom:7px; font-size:11.5px; }
+  }
+  /* ╚═══════════ LOAN TYPES END ═══════════╝ */
+
+  /* the comparison list */
+  .ln-status { display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px 12px; font-size:13px; color:var(--text-muted);
+               border-top:1px solid rgba(255,255,255,.07); padding:12px 2px 0; margin-bottom:16px; }
+  .ln-status strong { color:var(--gold); font-weight:600; }
+  .ln-list { list-style:none; display:grid; grid-template-columns:repeat(auto-fill, minmax(330px, 1fr)); gap:12px; }
+  .ln-row {
+    --bc:#2A4570; position:relative; overflow:hidden;
+    display:grid; grid-template-columns:auto 1fr auto; gap:4px 14px; align-items:start;
+    background:var(--navy-mid); border:1px solid rgba(201,168,76,0.12); border-radius:14px; padding:16px 16px 14px 18px;
+    transition:border-color .22s, box-shadow .22s;
+  }
+  .ln-row::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--bc); opacity:.6; }
+  /* Rows rise in one after another, the way a bank's cards open on the home
+     page: when the list first scrolls into view, and on every loan switch. */
+  @keyframes lnIn { from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:none; } }
+  .js-motion .ln-list:not(.play) .ln-row { opacity:0; }
+  .ln-list.play .ln-row { animation:lnIn .4s cubic-bezier(.2,.7,.3,1) both; animation-delay:calc(var(--n, 0) * 40ms); }
+  .ln-row:hover { border-color:rgba(201,168,76,.38); box-shadow:0 10px 28px rgba(0,0,0,.3); }
+  /* bank icon: the small-card shape used for banks on the home page */
+  .ln-ico { position:relative; display:flex; width:48px; height:31px; margin-top:2px; border-radius:6px; font-family:'Playfair Display', serif; font-size:11px; font-weight:700;
+    align-items:flex-end; justify-content:flex-end; padding:0 6px 4px 0; color:#fff; border:1px solid rgba(255,255,255,.14);
+    background:#16294A;
+    background:radial-gradient(130% 125% at 0% 0%, color-mix(in srgb, var(--bc) 75%, transparent), transparent 66%), linear-gradient(155deg, #1C3054, #0E1A30); }
+  .ln-ico::before { content:''; position:absolute; left:6px; top:6px; width:9px; height:7px; border-radius:2px; background:linear-gradient(135deg,#F7E3A1,#C9A04A); opacity:.9; }
+  .ln-main { min-width:0; }
+  .ln-bank { display:block; font-family:'Playfair Display', serif; font-size:17px; line-height:1.25; color:var(--white); }
+  .ln-x { display:block; font-size:11.5px; color:var(--gold-light); margin-top:2px; }
+  .ln-fee { display:block; font-size:12.5px; color:#B9C5D5; line-height:1.55; margin-top:6px; }
+  .ln-fee i { display:block; font-style:normal; font-size:10.5px; letter-spacing:.6px; text-transform:uppercase; color:var(--text-muted); }
+  .ln-link { display:inline-flex; align-items:center; min-height:40px; margin-top:2px; font-size:12.5px; color:var(--gold-light); text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(232,201,106,.45); }
+  .ln-link:hover { color:var(--gold); }
+  .ln-rate { text-align:right; min-width:84px; }
+  .ln-rate small { display:block; font-size:10.5px; letter-spacing:.4px; color:var(--text-muted); line-height:1.3; }
+  .ln-rate strong {
+    display:block; font-family:'Playfair Display', serif; font-size:27px; font-weight:700; line-height:1.1; font-variant-numeric:tabular-nums;
+    background:linear-gradient(170deg, #F0D682 0%, #C9A84C 55%, #9A7A2E 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:var(--gold);
+  }
+  .ln-rate.none { max-width:110px; }
+  .ln-rate.none small { font-size:12px; color:#B9C5D5; letter-spacing:0; margin-top:4px; }
+  .ln-foot { font-size:12px; color:var(--text-muted); line-height:1.7; margin:18px 4px 0; max-width:820px; }
+  .ln-foot + .ln-foot { margin-top:8px; }
+
+  /* FORM (as on index.html, without the rosette: that rhyme stays on the home page) */
+  #help { text-align:center; }
+  #help .section-sub { margin:0 auto 28px; }
+  .form-wrap { background:var(--navy-mid); border:1px solid rgba(201,168,76,0.15); border-radius:20px; padding:40px; max-width:560px; margin:0 auto; text-align:left; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .form-group { display:flex; flex-direction:column; gap:8px; margin-bottom:16px; min-width:0; }
+  .form-group label { font-size:13px; font-weight:500; color:var(--text-muted); }
+  .form-group input, .form-group select {
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px;
+    padding:12px 16px; min-height:46px; color:var(--white); font-size:14px; font-family:'DM Sans', sans-serif; outline:none; transition:border .2s; width:100%; min-width:0;
+  }
+  .form-group input:focus, .form-group select:focus { border-color:var(--gold); }
+  .form-group select option { background:var(--navy-mid); }
+  .consent { display:flex; align-items:flex-start; gap:10px; margin-bottom:18px; padding:12px 14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; }
+  .consent input { margin-top:3px; width:16px; height:16px; accent-color:var(--gold); cursor:pointer; flex-shrink:0; }
+  .consent label { font-size:12px; color:var(--text-muted); line-height:1.6; cursor:pointer; }
+  .consent a { font-size:11px; color:var(--gold-light); white-space:nowrap; display:inline-block; padding:4px 0; }
+  .form-submit {
+    width:100%; background:linear-gradient(180deg, #F5D97E, #DDB958); color:#1A1204; border:none;
+    box-shadow:0 4px 20px rgba(232,201,106,0.3); padding:16px; border-radius:8px; font-weight:700; font-size:16px;
+    cursor:pointer; transition:all .2s; font-family:'DM Sans', sans-serif;
+  }
+  .form-submit:hover { background:linear-gradient(180deg, #FFE9A0, #EBC96A); box-shadow:0 8px 30px rgba(232,201,106,0.5); }
+  .form-safe { color:var(--text-muted); font-size:12px; margin-top:14px; text-align:center; line-height:1.6; }
+  .sent-ok { text-align:center; padding:42px 24px; }
+  .sent-tick svg { width:62px; height:62px; fill:none; stroke:var(--green); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; margin-bottom:18px; }
+  .sent-tick circle { stroke-opacity:.35; }
+  .sent-ok h3 { font-family:'Playfair Display', serif; font-size:21px; color:var(--white); margin-bottom:9px; }
+  .sent-ok p { color:var(--text-muted); font-size:14.5px; line-height:1.7; max-width:38ch; margin:0 auto; }
+
+  /* FOOTER (as on index.html) */
+  footer { background:rgba(10,22,40,0.95); border-top:1px solid rgba(201,168,76,0.1); padding:40px; text-align:center; }
+  .footer-logo { font-family:'Playfair Display', serif; font-size:24px; color:var(--gold); margin-bottom:8px; }
+  .footer-tag { color:var(--text-muted); font-size:14px; }
+  .footer-links a { display:inline-flex; align-items:center; min-height:44px; padding:0 8px; color:var(--gold-light); font-size:13px; }
+  .footer-bottom { margin-top:20px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.06); color:var(--text-muted); font-size:12px; line-height:1.7; }
+
+  @media (max-width:768px){ .form-row { grid-template-columns:1fr; gap:0; } }
+  @media (max-width:700px){
+    nav { padding:14px 16px; }
+    .nav-link { display:none; }   /* phones: the logo already leads back home */
+    .nav-logo { font-size:20px; }
+    section { padding-left:16px; padding-right:16px; }
+    .hero { padding-left:16px; padding-right:16px; }
+    .ln-list { grid-template-columns:1fr; }
+    .form-wrap { padding:24px 18px; }
+    footer { padding:32px 16px; }
+  }
+  @media (max-width:380px){ .ln-row { gap:4px 10px; padding-left:14px; } .ln-rate strong { font-size:23px; } .ln-rate { min-width:72px; } }
+  @media (prefers-reduced-motion: reduce){
+    html { scroll-behavior:auto; }
+    .badge, h1, .hero-sub, .hero-langs, .hero-btns { animation:none; }
+    .hc-card, .hc-gold::after, .lt-card.on::after, .ln-list.play .ln-row { animation:none; }
+    .hc-fan { transition:none; transform:none; }
+    .lt-card, .lt-hand.dealing .lt-card { transition:none; }
+    .js-motion .lt-hand:not(.dealt) .lt-card { opacity:1; transform:rotate(var(--tilt)); }
+    .js-motion .lt-hand:not(.dealt) .lt-card.on { transform:translateY(-11px) rotate(-2deg); }
+    .js-motion .ln-list:not(.play) .ln-row { opacity:1; }
+  }
+</style>
+<!-- Motion that waits for the visitor (the loan cards, the bank rows) is only
+     hidden once we know JavaScript runs, so nothing is ever stuck invisible. -->
+<script>document.documentElement.classList.add('js-motion');</script>
+<!-- ANALYTICS: same Measurement ID as index.html (build.js fills it in). Google's
+     script is not loaded at all while the ID is still the placeholder. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  (function(id){
+    if (/^G-X+$/.test(id)) return;   // still the placeholder: load nothing
+    var s = document.createElement('script');
+    s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', id, { anonymize_ip: true });
+  })('G-XXXXXXXXXX');
+  function track(name, params){
+    try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch(e){}
+  }
+</script>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html" data-keep-lang>Mahodaya <span>Credit Solutions</span></a>
+  <div class="nav-right">
+    <a class="nav-link" href="index.html" data-keep-lang data-i18n="navCards">Credit cards</a>
+    <a class="nav-cta" href="#help" data-i18n="navCta">Get loan help</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="badge"><span class="badge-dot"></span><span data-i18n="lBadge">Loans from 13 banks, side by side</span></div>
+  <h1 data-i18n="h1"><span class="h1-lead">Same loan,</span><span class="gold">a different price at every bank</span></h1>
+  <!-- Decorative (aria-hidden). Unbranded on purpose, like the home page card:
+       we compare loans, we don't lend. -->
+  <div class="hc-stage" aria-hidden="true">
+    <div class="hc-fan">
+      <div class="hc-card hc-back hc-back-l">
+        <svg viewBox="0 0 856 540" focusable="false"><rect x="86" y="176" width="126" height="96" rx="16" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="3"/><g fill="rgba(255,255,255,.14)"><rect x="86" y="370" width="420" height="16" rx="8"/><rect x="86" y="438" width="190" height="14" rx="7"/></g></svg>
+      </div>
+      <div class="hc-card hc-back hc-back-r">
+        <svg viewBox="0 0 856 540" focusable="false"><rect x="86" y="176" width="126" height="96" rx="16" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="3"/><g fill="rgba(255,255,255,.14)"><rect x="86" y="370" width="420" height="16" rx="8"/><rect x="86" y="438" width="190" height="14" rx="7"/></g></svg>
+      </div>
+      <div class="hc-card hc-gold">
+        <svg viewBox="0 0 856 540" focusable="false">
+          <g class="hc-guilloche" fill="none" stroke="rgba(96,66,14,.30)" stroke-width="1.3"></g>
+          <text x="78" y="330" font-family="'Playfair Display', serif" font-weight="900" font-size="230" fill="rgba(84,58,10,.5)">%</text>
+          <rect x="86" y="398" width="330" height="16" rx="8" fill="rgba(74,50,8,.34)"/>
+          <rect x="86" y="446" width="190" height="14" rx="7" fill="rgba(74,50,8,.26)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <p class="hero-sub" data-i18n="heroSub">Lowest rates and processing fees from each bank's own website, in one place. Tell us what you need and we will tell you the best way to apply. Our help is free.</p>
+  <div class="hero-langs" id="langBar">
+    <button class="lang-pill active" data-lang="en" onclick="setLang('en')">English</button>
+    <button class="lang-pill" data-lang="ml" onclick="setLang('ml')">മലയാളം</button>
+    <button class="lang-pill" data-lang="ta" onclick="setLang('ta')">தமிழ்</button>
+    <button class="lang-pill" data-lang="te" onclick="setLang('te')">తెలుగు</button>
+    <button class="lang-pill" data-lang="kn" onclick="setLang('kn')">ಕನ್ನಡ</button>
+    <button class="lang-pill" data-lang="hi" onclick="setLang('hi')">हिन्दी</button>
+  </div>
+  <div class="lang-note" data-i18n="langNote">Tap any language above to switch the whole page</div>
+  <div class="hero-btns">
+    <a href="#compare" class="btn-primary" data-i18n="btnCompare">Compare rates</a>
+    <a href="#help" class="btn-secondary" data-i18n="btnHelp">Get loan help</a>
+  </div>
+</div>
+
+<section id="compare">
+  <div class="section-tag" data-i18n="cmpTag">Compare</div>
+  <h2 class="section-title" data-i18n="cmpTitle">The lowest rate each bank shows</h2>
+  <p class="section-sub" data-i18n="cmpSub">Pick a loan. Banks are sorted from the lowest published rate.</p>
+
+  <div class="lt-hand" role="group" aria-label="Loan type">
+    <button class="lt-card on" data-t="pl" aria-pressed="true" onclick="setType('pl')" style="--tilt:-1.1deg;--i:0">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.8 3.6-5.6 7-5.6s6.2 1.8 7 5.6"/></svg>
+      <span class="lt-nm" data-i18n="tPL">Personal loan</span></button>
+    <button class="lt-card" data-t="hl" aria-pressed="false" onclick="setType('hl')" style="--tilt:.6deg;--i:1">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></svg>
+      <span class="lt-nm" data-i18n="tHL">Home loan</span></button>
+    <button class="lt-card" data-t="cl" aria-pressed="false" onclick="setType('cl')" style="--tilt:-.5deg;--i:2">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16v-3.5l2-4.5h12l2 4.5V16"/><path d="M3 16h18v2.5H3z"/><circle cx="7.5" cy="13.2" r=".6"/><circle cx="16.5" cy="13.2" r=".6"/></svg>
+      <span class="lt-nm" data-i18n="tCL">Car loan</span></button>
+    <button class="lt-card" data-t="bl" aria-pressed="false" onclick="setType('bl')" style="--tilt:1deg;--i:3">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M9 7.5V5.5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5.5v2"/><path d="M3 12.5h18"/></svg>
+      <span class="lt-nm" data-i18n="tBL">Business loan</span></button>
+  </div>
+
+  <div class="ln-status">
+    <span><strong id="lnCount">12</strong> <span data-i18n="banksWord">banks</span></span>
+    <span data-i18n="checked">Checked on 28 Oct 2026</span>
+  </div>
+  <ul class="ln-list" id="lnList" aria-live="polite"></ul>
+  <p class="ln-foot" data-i18n="note1">This is the lowest rate the bank advertises on its own website. Most people are offered more, depending on credit score, income and loan amount. Where a bank's page shows two different starting rates, we show the higher one.</p>
+  <p class="ln-foot" data-i18n="note2">Banks change rates often. The bank's own page is always final. Fees are shown in English exactly as each bank publishes them.</p>
+</section>
+
+<section id="help">
+  <div class="section-tag" data-i18n="helpTag">Get help</div>
+  <h2 class="section-title" data-i18n="helpTitle">Not sure which bank?</h2>
+  <p class="section-sub" data-i18n="helpSub">Tell us what you need. We look at your income and credit history and tell you the best way to apply. Our help is free. The bank decides on approval.</p>
+  <div class="form-wrap" id="loanForm">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="lfName" data-i18n="fName">Full Name</label>
+        <input id="lfName" type="text" name="name" autocomplete="name" placeholder="Your name" data-ph="ph_name"/>
+      </div>
+      <div class="form-group">
+        <label for="lfMobile" data-i18n="fMobile">Mobile Number</label>
+        <input id="lfMobile" type="tel" name="mobile" inputmode="numeric" pattern="[6-9][0-9]{9}" autocomplete="tel-national" placeholder="Your mobile number" data-ph="ph_mob" oninput="this.value=this.value.replace(/[^0-9]/g,'').replace(/^(?:91|0)(?=[0-9]{10})/,'').slice(0,10)"/>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="lfLoan" data-i18n="fLoan">Loan you need</label>
+        <select id="lfLoan" name="loan">
+          <option value="" data-i18n="o_loan">Select loan</option>
+          <option value="Personal loan" data-i18n="tPL">Personal loan</option>
+          <option value="Home loan" data-i18n="tHL">Home loan</option>
+          <option value="Car loan" data-i18n="tCL">Car loan</option>
+          <option value="Business loan" data-i18n="tBL">Business loan</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="lfAmount" data-i18n="fAmount">Amount needed</label>
+        <select id="lfAmount" name="amount">
+          <option value="" data-i18n="o_amt">Select amount</option>
+          <option value="Up to 1 lakh" data-i18n="amt1">Up to ₹1 lakh</option>
+          <option value="1 to 5 lakh" data-i18n="amt2">₹1 lakh to ₹5 lakh</option>
+          <option value="5 to 25 lakh" data-i18n="amt3">₹5 lakh to ₹25 lakh</option>
+          <option value="25 lakh to 1 crore" data-i18n="amt4">₹25 lakh to ₹1 crore</option>
+          <option value="Above 1 crore" data-i18n="amt5">Above ₹1 crore</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="lfIncome" data-i18n="fIncome">Monthly Income</label>
+        <select id="lfIncome" name="income">
+          <option value="" data-i18n="o_inc">Select income range</option>
+          <option>₹15,000 – ₹30,000</option>
+          <option>₹30,000 – ₹50,000</option>
+          <option>₹50,000 – ₹1,00,000</option>
+          <option>₹1,00,000+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="lfEmp" data-i18n="fEmp">Employment Type</label>
+        <select id="lfEmp" name="employment">
+          <option value="" data-i18n="o_typ">Select type</option>
+          <option value="Salaried" data-i18n="o_sal">Salaried</option>
+          <option value="Self Employed" data-i18n="o_self">Self Employed</option>
+          <option value="Business Owner" data-i18n="o_biz">Business Owner</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="lfCity" data-i18n="fCity">City</label>
+        <input id="lfCity" type="text" name="city" autocomplete="address-level2" placeholder="Your city" data-ph="ph_city"/>
+      </div>
+      <div class="form-group">
+        <label for="lfAge" data-i18n="fAge">Age</label>
+        <input id="lfAge" type="tel" name="age" inputmode="numeric" placeholder="Your age" data-ph="ph_age" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,2)"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lfLang" data-i18n="fLang">Preferred Language</label>
+      <select id="lfLang" name="language">
+        <option value="" data-i18n="o_lang">Select language</option>
+        <option>English</option>
+        <option>&#3374;&#3378;&#3375;&#3390;&#3379;&#3330; (Malayalam)</option>
+        <option>&#2980;&#2990;&#3007;&#2996;&#3021; (Tamil)</option>
+        <option>&#3108;&#3142;&#3122;&#3137;&#3095;&#3137; (Telugu)</option>
+        <option>&#3221;&#3240;&#3277;&#3240;&#3233; (Kannada)</option>
+        <option>&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)</option>
+      </select>
+    </div>
+    <div class="consent">
+      <input type="checkbox" id="lfConsent"/>
+      <label for="lfConsent"><span data-i18n="fConsentL">I agree that my details may be shared with the bank I apply to and its authorised partners to process my loan enquiry, and that you may contact me about it.</span>
+        <a href="index.html#privacy" data-keep-lang target="_blank" rel="noopener" data-i18n="privLink">Privacy Policy</a></label>
+    </div>
+    <button class="form-submit" type="button" onclick="handleLoanSubmit()" data-i18n="fSubmitL">Send my details</button>
+    <p class="form-safe" data-i18n="fSafeL">&#128274; We share your details only with the bank you apply to. We never sell your data.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Mahodaya Credit Solutions</div>
+  <div class="footer-tag" data-i18n="ftTag">Loan and credit card guidance in 6 languages</div>
+  <div class="footer-links">
+    <a href="index.html" data-keep-lang data-i18n="navCards">Credit cards</a>
+    <span style="opacity:.3;">|</span>
+    <a href="index.html#privacy" data-keep-lang data-i18n="privLink">Privacy Policy</a>
+    <span style="opacity:.3;">|</span>
+    <a href="index.html#contact" data-keep-lang data-i18n="cfLink">Contact</a>
+  </div>
+  <div class="footer-bottom">
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.01a</span><br/>
+    &copy; 2026 Mahodaya Credit Solutions<br/>
+    <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
+  </div>
+</footer>
+
+<script>
+console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.01a", "color:#C9A84C;font-weight:bold");
+
+// ===================================================================
+//  Leads go to the same two places as the card form on index.html.
+//  Keep these two values identical to CONTACT in index.html
+//  (build.js fills both files from .env).
+// ===================================================================
+const CONTACT = {
+  sheetUrl: 'https://script.google.com/macros/s/AKfycbyY7kB0mWEj8OpWVlwxWTwYiXos5rNYcfJwBZ0bexlSLyxNG6RdgUeAtkHmn2OaIpAR/exec',
+  sheetKey: 'mahodaya123'
+};
+
+/* ╔═══════════ LOAN DATA ═══════════╗
+   Every number below was read on the bank's own page on 28 Oct 2026.
+   r    lowest rate the page shows, % a year (null = the bank does not publish one)
+   k    'from' = starting rate, 'upto' = the page only gives a maximum, 'fixed' = one fixed rate
+   fee  processing fee, word for word in English ('' = not published)
+   x    optional product note
+   u    the page the numbers came from (the "Bank's page" link)
+   Rule: where a bank's page shows two different starting rates, the higher one
+   is used, so the site never makes a loan look cheaper than the bank does.
+   When you change a number, change "Checked on" (key: checked) in all 6
+   languages too. */
+const BANKS = {
+  hdfc:  {n:'HDFC Bank',             ico:'H',  col:'#004C8F'},
+  icici: {n:'ICICI Bank',            ico:'I',  col:'#F58220'},
+  sbi:   {n:'State Bank of India',   ico:'S',  col:'#2563EB'},
+  axis:  {n:'Axis Bank',             ico:'A',  col:'#97144D'},
+  idfc:  {n:'IDFC FIRST Bank',       ico:'F',  col:'#5B2D8E'},
+  kotak: {n:'Kotak Mahindra Bank',   ico:'K',  col:'#EE3124'},
+  indus: {n:'IndusInd Bank',         ico:'I',  col:'#004B87'},
+  rbl:   {n:'RBL Bank',              ico:'R',  col:'#D62B31'},
+  au:    {n:'AU Small Finance Bank', ico:'AU', col:'#1E88E5'},
+  yes:   {n:'YES Bank',              ico:'Y',  col:'#00008B'},
+  sc:    {n:'Standard Chartered',    ico:'SC', col:'#00A0DC'},
+  hsbc:  {n:'HSBC',                  ico:'H',  col:'#DB0011'},
+  fed:   {n:'Federal Bank',          ico:'FB', col:'#0066CC'}
+};
+const LOANS = {
+  pl: [
+    {b:'hdfc',  r:9.99,  k:'from', fee:'Up to ₹6,500 + GST', u:'https://www.hdfc.bank.in/personal-loan/interest-rates-and-charges'},
+    {b:'icici', r:9.99,  k:'from', fee:'Up to 2% + taxes', u:'https://www.icici.bank.in/personal-banking/loans/personal-loan/personal-loan-interest-rates'},
+    {b:'axis',  r:9.99,  k:'from', fee:'Up to 2% + GST', u:'https://www.axis.bank.in/loans/personal-loan/interest-rates-charges'},
+    {b:'idfc',  r:9.99,  k:'from', fee:'0% to 3.5%', u:'https://www.idfcfirst.bank.in/personal-banking/loans/personal-loan/personal-loan-interest-rates'},
+    {b:'hsbc',  r:9.80,  k:'from', fee:'Up to 1%', u:'https://www.hsbc.bank.in/loans/products/personal/'},
+    {b:'sbi',   r:10.00, k:'from', fee:'Up to 1.5% (min ₹1,000, max ₹15,000) + GST', u:'https://sbi.bank.in/web/personal-banking/loans/personal-loans/sbi-personal-loan'},
+    {b:'indus', r:10.49, k:'from', fee:'Typically 3.5%, lower on offers', u:'https://www.indusind.bank.in/in/en/personal/loans/personal-loan-interest-rate.html'},
+    {b:'kotak', r:10.99, k:'from', fee:'Up to 5% + taxes', u:'https://www.kotak.bank.in/en/personal-banking/loans/personal-loan/interest-rates.html'},
+    {b:'rbl',   r:18,    k:'fixed', fee:'2%', u:'https://www.rbl.bank.in/personal-banking/loans/personal-loan'},
+    {b:'au',    r:30,    k:'upto', fee:'Up to 4% (min ₹2,000)', u:'https://www.au.bank.in/personal-banking/personal-loan'},
+    {b:'yes',   r:null,  fee:'', u:'https://www.yes.bank.in/personal-banking/loans/personal-loan'},
+    {b:'fed',   r:null,  fee:'', u:'https://www.federal.bank.in/personal-loan-interest-rates'}
+  ],
+  hl: [
+    {b:'hdfc',  r:8.00,  k:'from', fee:'', u:'https://homeloans.hdfc.bank.in/checklist/home-loan-interest-rates'},
+    {b:'icici', r:8.75,  k:'from', fee:'0.5% to 2% + taxes', u:'https://www.icici.bank.in/personal-banking/loans/home-loan/interest-rates'},
+    {b:'sbi',   r:7.50,  k:'from', fee:'50% off the card rate (current offer)', u:'https://sbi.bank.in/web/interest-rates/interest-rates/loan-schemes-interest-rates/home-loans-interest-rates-current'},
+    {b:'axis',  r:8.75,  k:'from', fee:'Up to 1% or ₹10,000, whichever is higher, + GST', u:'https://www.axis.bank.in/loans/home-loan/interest-rates-charges'},
+    {b:'idfc',  r:8.85,  k:'from', fee:'Up to 3%', u:'https://www.idfcfirst.bank.in/personal-banking/loans/home-loan/home-loan-interest-rates'},
+    {b:'kotak', r:7.60,  k:'from', fee:'Up to 2% + taxes', u:'https://www.kotak.bank.in/en/personal-banking/loans/home-loan/interest-rates.html'},
+    {b:'sc',    r:7.99,  k:'from', fee:'0.5% to 1%', u:'https://www.sc.com/in/loans/home-property-loans/home-loans/'},
+    {b:'hsbc',  r:7.45,  k:'from', fee:'1% or ₹10,000, whichever is higher, + taxes', u:'https://www.hsbc.bank.in/home-loans/products/home/'},
+    {b:'indus', r:null,  fee:'', u:'https://www.indusind.bank.in/in/en/personal/loans/home-loan.html'},
+    {b:'yes',   r:null,  fee:'', u:'https://www.yes.bank.in/personal-banking/yes-individual/loans/home-loan'},
+    {b:'fed',   r:null,  fee:'', u:'https://www.federal.bank.in/retail-loans-interest-rates'}
+  ],
+  cl: [
+    {b:'hdfc',  r:9.40,  k:'from', fee:'Up to 0.5% (min ₹3,500, max ₹8,000)', u:'https://www.hdfc.bank.in/car-loan/interest-rates-and-charges'},
+    {b:'icici', r:8.40,  k:'from', fee:'Up to ₹8,500 + GST', u:'https://www.icici.bank.in/personal-banking/loans/car-loan'},
+    {b:'sbi',   r:8.55,  k:'from', fee:'₹500 to ₹2,000 + GST, by loan size', u:'https://sbi.bank.in/web/interest-rates/interest-rates/loan-schemes-interest-rates/auto-loans'},
+    {b:'axis',  r:8.80,  k:'from', fee:'Up to 2% + GST', u:'https://www.axis.bank.in/loans/car-loan/interest-rates-charges'},
+    {b:'idfc',  r:8.99,  k:'from', fee:'Up to 5% (incl. GST)', u:'https://www.idfcfirst.bank.in/personal-banking/loans/car-loan'},
+    {b:'au',    r:17,    k:'upto', fee:'Up to 2%', u:'https://www.au.bank.in/personal-banking/vehicle-loan/car-loan/new-car-loan'},
+    {b:'kotak', r:null,  fee:'3% + ₹7,500 documentation', u:'https://www.kotak.bank.in/en/personal-banking/loans/car-loan/fees-and-charges.html'},
+    {b:'indus', r:null,  fee:'', u:'https://www.indusind.bank.in/in/en/personal/loans/vehicle-loan/new-cars-loan.html'},
+    {b:'fed',   r:null,  fee:'', u:'https://www.federal.bank.in/car-loan-interest-rate'}
+  ],
+  bl: [
+    {b:'hdfc',  r:10.75, k:'from', fee:'Up to 2%', u:'https://www.hdfc.bank.in/business-loan/interest-rates-and-charges'},
+    {b:'icici', r:13.00, k:'from', fee:'Up to 2% + taxes', u:'https://www.icici.bank.in/personal-banking/loans/personal-loan/business-instalment-loan/interest-rate'},
+    {b:'axis',  r:15.00, k:'from', fee:'', u:'https://www.axis.bank.in/interest-rates-and-charges'},
+    {b:'idfc',  r:12.99, k:'from', fee:'Up to 3.5%', u:'https://www.idfcfirst.bank.in/business-banking/loans/business-loan/business-loan-interest-rates'},
+    {b:'indus', r:13.00, k:'from', fee:'Up to 3% + taxes', u:'https://www.indusind.bank.in/in/en/business/loans/unsecured-business-loans.html'},
+    {b:'sc',    r:17.25, k:'from', fee:'2%', u:'https://www.sc.com/in/business-banking-sme/business-expansion-loan-business-instalment-loan.html'},
+    {b:'sbi',   r:null,  x:'Mudra (PMMY) loans', fee:'Nil for Shishu and Kishore, 0.50% + tax for Tarun', u:'https://sbi.bank.in/web/business/sme/sme-government-schemes/pmmy'},
+    {b:'kotak', r:null,  fee:'Up to 2% + taxes', u:'https://www.kotak.bank.in/en/business/loans/business-loan/fees-and-charges.html'},
+    {b:'fed',   r:null,  fee:'', u:'https://www.federal.bank.in/business-loan-products'}
+  ]
+};
+/* ╚═══════════ LOAN DATA END ═══════════╝ */
+
+/* Text on this page, in all six languages. Form labels that also appear on
+   index.html use the same wording as there. */
+const T = {
+en:{
+navCards:'Credit cards', navCta:'Get loan help', lBadge:'Loans from 13 banks, side by side',
+h1:'<span class="h1-lead">Same loan,</span><span class="gold">a different price at every bank</span>',
+heroSub:'Lowest rates and processing fees from each bank\'s own website, in one place. Tell us what you need and we will tell you the best way to apply. Our help is free.',
+langNote:'Tap any language above to switch the whole page', btnCompare:'Compare rates', btnHelp:'Get loan help',
+cmpTag:'Compare', cmpTitle:'The lowest rate each bank shows', cmpSub:'Pick a loan. Banks are sorted from the lowest published rate.',
+tPL:'Personal loan', tHL:'Home loan', tCL:'Car loan', tBL:'Business loan',
+banksWord:'banks', checked:'Checked on 28 Oct 2026',
+rFrom:'Starting rate', rUpto:'Maximum rate', rFixed:'Fixed rate', rNone:'Rate not published', pa:'a year',
+feeLbl:'Processing fee', feeNone:'See the bank\'s page', bankLink:'Bank\'s page',
+note1:'This is the lowest rate the bank advertises on its own website. Most people are offered more, depending on credit score, income and loan amount. Where a bank\'s page shows two different starting rates, we show the higher one.',
+note2:'Banks change rates often. The bank\'s own page is always final. Fees are shown in English exactly as each bank publishes them.',
+helpTag:'Get help', helpTitle:'Not sure which bank?', helpSub:'Tell us what you need. We look at your income and credit history and tell you the best way to apply. Our help is free. The bank decides on approval.',
+fLoan:'Loan you need', o_loan:'Select loan', fAmount:'Amount needed', o_amt:'Select amount',
+amt1:'Up to ₹1 lakh', amt2:'₹1 lakh to ₹5 lakh', amt3:'₹5 lakh to ₹25 lakh', amt4:'₹25 lakh to ₹1 crore', amt5:'Above ₹1 crore',
+fConsentL:'I agree that my details may be shared with the bank I apply to and its authorised partners to process my loan enquiry, and that you may contact me about it.',
+fSubmitL:'Send my details', fSafeL:'&#128274; We share your details only with the bank you apply to. We never sell your data.',
+ftTag:'Loan and credit card guidance in 6 languages'
+},
+ml:{
+navCards:'ക്രെഡിറ്റ് കാർഡുകൾ', navCta:'ലോൺ സഹായം', lBadge:'13 ബാങ്കുകളുടെ ലോണുകൾ, ഒരുമിച്ച്',
+h1:'<span class="h1-lead">ഒരേ ലോൺ,</span><span class="gold">ഓരോ ബാങ്കിലും വേറെ വില</span>',
+heroSub:'ഓരോ ബാങ്കും സ്വന്തം വെബ്സൈറ്റിൽ കാണിക്കുന്ന ഏറ്റവും കുറഞ്ഞ പലിശയും പ്രോസസ്സിംഗ് ഫീസും ഒരിടത്ത്. നിങ്ങൾക്ക് എന്താണ് വേണ്ടതെന്ന് പറയൂ, എങ്ങനെ അപേക്ഷിക്കുന്നതാണ് നല്ലതെന്ന് ഞങ്ങൾ പറഞ്ഞുതരാം. ഞങ്ങളുടെ സഹായം സൗജന്യമാണ്.',
+btnCompare:'നിരക്കുകൾ താരതമ്യം ചെയ്യുക', btnHelp:'ലോൺ സഹായം നേടുക',
+cmpTag:'താരതമ്യം', cmpTitle:'ഓരോ ബാങ്കും കാണിക്കുന്ന ഏറ്റവും കുറഞ്ഞ പലിശ', cmpSub:'ഒരു ലോൺ തിരഞ്ഞെടുക്കുക. പ്രസിദ്ധീകരിച്ച ഏറ്റവും കുറഞ്ഞ നിരക്ക് മുതൽ ബാങ്കുകൾ ക്രമത്തിൽ.',
+tPL:'പേഴ്സണൽ ലോൺ', tHL:'ഹോം ലോൺ', tCL:'കാർ ലോൺ', tBL:'ബിസിനസ് ലോൺ',
+banksWord:'ബാങ്കുകൾ', checked:'പരിശോധിച്ചത്: 28 ഒക്ടോബർ 2026',
+rFrom:'തുടക്ക നിരക്ക്', rUpto:'പരമാവധി നിരക്ക്', rFixed:'സ്ഥിര നിരക്ക്', rNone:'നിരക്ക് പ്രസിദ്ധീകരിച്ചിട്ടില്ല', pa:'പ്രതിവർഷം',
+feeLbl:'പ്രോസസ്സിംഗ് ഫീസ്', feeNone:'ബാങ്കിന്റെ പേജ് കാണുക', bankLink:'ബാങ്കിന്റെ പേജ്',
+note1:'ഇത് ബാങ്ക് സ്വന്തം വെബ്സൈറ്റിൽ പരസ്യം ചെയ്യുന്ന ഏറ്റവും കുറഞ്ഞ നിരക്കാണ്. ക്രെഡിറ്റ് സ്കോർ, വരുമാനം, ലോൺ തുക എന്നിവ അനുസരിച്ച് മിക്കവർക്കും ഇതിലും കൂടിയ നിരക്കാണ് ലഭിക്കുക. ഒരു ബാങ്കിന്റെ പേജിൽ രണ്ട് വ്യത്യസ്ത തുടക്ക നിരക്കുകൾ ഉണ്ടെങ്കിൽ, കൂടിയത് ഞങ്ങൾ കാണിക്കുന്നു.',
+note2:'ബാങ്കുകൾ നിരക്കുകൾ ഇടയ്ക്കിടെ മാറ്റും. ബാങ്കിന്റെ സ്വന്തം പേജാണ് അന്തിമം. ഫീസ് വിവരങ്ങൾ ഓരോ ബാങ്കും പ്രസിദ്ധീകരിക്കുന്നതുപോലെ ഇംഗ്ലീഷിൽ തന്നെ നൽകിയിരിക്കുന്നു.',
+helpTag:'സഹായം', helpTitle:'ഏത് ബാങ്ക് എന്ന് ഉറപ്പില്ലേ?', helpSub:'നിങ്ങൾക്ക് എന്താണ് വേണ്ടതെന്ന് പറയൂ. നിങ്ങളുടെ വരുമാനവും ക്രെഡിറ്റ് ചരിത്രവും നോക്കി, എങ്ങനെ അപേക്ഷിക്കുന്നതാണ് നല്ലതെന്ന് ഞങ്ങൾ പറഞ്ഞുതരാം. ഞങ്ങളുടെ സഹായം സൗജന്യമാണ്. അംഗീകാരം നൽകുന്നത് ബാങ്കാണ്.',
+fLoan:'വേണ്ട ലോൺ', o_loan:'ലോൺ തിരഞ്ഞെടുക്കുക', fAmount:'വേണ്ട തുക', o_amt:'തുക തിരഞ്ഞെടുക്കുക',
+amt1:'₹1 ലക്ഷം വരെ', amt2:'₹1 ലക്ഷം മുതൽ ₹5 ലക്ഷം വരെ', amt3:'₹5 ലക്ഷം മുതൽ ₹25 ലക്ഷം വരെ', amt4:'₹25 ലക്ഷം മുതൽ ₹1 കോടി വരെ', amt5:'₹1 കോടിക്ക് മുകളിൽ',
+fConsentL:'എന്റെ ലോൺ അന്വേഷണം നടപ്പാക്കാൻ, ഞാൻ അപേക്ഷിക്കുന്ന ബാങ്കുമായും അതിന്റെ അംഗീകൃത പങ്കാളികളുമായും എന്റെ വിവരങ്ങൾ പങ്കിടാമെന്നും, ഇതിനെക്കുറിച്ച് നിങ്ങൾ എന്നെ ബന്ധപ്പെടാമെന്നും ഞാൻ സമ്മതിക്കുന്നു.',
+fSubmitL:'എന്റെ വിവരങ്ങൾ അയയ്ക്കുക', fSafeL:'&#128274; നിങ്ങൾ അപേക്ഷിക്കുന്ന ബാങ്കുമായി മാത്രമേ നിങ്ങളുടെ വിവരങ്ങൾ പങ്കിടൂ. നിങ്ങളുടെ ഡാറ്റ ഞങ്ങൾ ഒരിക്കലും വിൽക്കില്ല.',
+ftTag:'6 ഭാഷകളിൽ ലോൺ, ക്രെഡിറ്റ് കാർഡ് മാർഗ്ഗനിർദ്ദേശം'
+},
+ta:{
+navCards:'கிரெடிட் கார்டுகள்', navCta:'கடன் உதவி', lBadge:'13 வங்கிகளின் கடன்கள், ஒரே இடத்தில்',
+h1:'<span class="h1-lead">அதே கடன்,</span><span class="gold">ஒவ்வொரு வங்கியிலும் வேறு விலை</span>',
+heroSub:'ஒவ்வொரு வங்கியும் தன் இணையதளத்தில் காட்டும் மிகக் குறைந்த வட்டியும் செயலாக்கக் கட்டணமும் ஒரே இடத்தில். உங்களுக்கு என்ன தேவை என்று சொல்லுங்கள், எப்படி விண்ணப்பிப்பது சிறந்தது என்று நாங்கள் சொல்கிறோம். எங்கள் உதவி இலவசம்.',
+btnCompare:'விகிதங்களை ஒப்பிடுங்கள்', btnHelp:'கடன் உதவி பெறுங்கள்',
+cmpTag:'ஒப்பீடு', cmpTitle:'ஒவ்வொரு வங்கியும் காட்டும் மிகக் குறைந்த வட்டி', cmpSub:'ஒரு கடனைத் தேர்ந்தெடுங்கள். வெளியிடப்பட்ட மிகக் குறைந்த விகிதத்திலிருந்து வங்கிகள் வரிசையில் உள்ளன.',
+tPL:'தனிநபர் கடன்', tHL:'வீட்டுக் கடன்', tCL:'கார் கடன்', tBL:'வணிகக் கடன்',
+banksWord:'வங்கிகள்', checked:'சரிபார்த்தது: 28 அக்டோபர் 2026',
+rFrom:'தொடக்க விகிதம்', rUpto:'அதிகபட்ச விகிதம்', rFixed:'நிலையான விகிதம்', rNone:'விகிதம் வெளியிடப்படவில்லை', pa:'ஆண்டுக்கு',
+feeLbl:'செயலாக்கக் கட்டணம்', feeNone:'வங்கியின் பக்கத்தைப் பாருங்கள்', bankLink:'வங்கியின் பக்கம்',
+note1:'இது வங்கி தன் இணையதளத்தில் விளம்பரப்படுத்தும் மிகக் குறைந்த விகிதம். கிரெடிட் ஸ்கோர், வருமானம், கடன் தொகையைப் பொறுத்து பெரும்பாலானோருக்கு இதைவிட அதிக விகிதமே கிடைக்கும். ஒரு வங்கியின் பக்கத்தில் இரண்டு வெவ்வேறு தொடக்க விகிதங்கள் இருந்தால், அதிகமானதை நாங்கள் காட்டுகிறோம்.',
+note2:'வங்கிகள் விகிதங்களை அடிக்கடி மாற்றும். வங்கியின் சொந்தப் பக்கமே இறுதியானது. கட்டண விவரங்கள் ஒவ்வொரு வங்கியும் வெளியிடுவது போலவே ஆங்கிலத்தில் உள்ளன.',
+helpTag:'உதவி', helpTitle:'எந்த வங்கி என்று உறுதியில்லையா?', helpSub:'உங்களுக்கு என்ன தேவை என்று சொல்லுங்கள். உங்கள் வருமானம், கிரெடிட் வரலாற்றைப் பார்த்து, எப்படி விண்ணப்பிப்பது சிறந்தது என்று நாங்கள் சொல்கிறோம். எங்கள் உதவி இலவசம். ஒப்புதல் அளிப்பது வங்கிதான்.',
+fLoan:'தேவையான கடன்', o_loan:'கடனைத் தேர்ந்தெடுக்கவும்', fAmount:'தேவையான தொகை', o_amt:'தொகையைத் தேர்ந்தெடுக்கவும்',
+amt1:'₹1 லட்சம் வரை', amt2:'₹1 லட்சம் முதல் ₹5 லட்சம் வரை', amt3:'₹5 லட்சம் முதல் ₹25 லட்சம் வரை', amt4:'₹25 லட்சம் முதல் ₹1 கோடி வரை', amt5:'₹1 கோடிக்கு மேல்',
+fConsentL:'என் கடன் விசாரணையைச் செயல்படுத்த, நான் விண்ணப்பிக்கும் வங்கி மற்றும் அதன் அங்கீகரிக்கப்பட்ட கூட்டாளிகளுடன் என் விவரங்கள் பகிரப்படலாம் என்றும், இது குறித்து நீங்கள் என்னைத் தொடர்பு கொள்ளலாம் என்றும் ஒப்புக்கொள்கிறேன்.',
+fSubmitL:'என் விவரங்களை அனுப்பு', fSafeL:'&#128274; நீங்கள் விண்ணப்பிக்கும் வங்கியுடன் மட்டுமே உங்கள் விவரங்கள் பகிரப்படும். உங்கள் தரவை நாங்கள் ஒருபோதும் விற்பதில்லை.',
+ftTag:'6 மொழிகளில் கடன் மற்றும் கிரெடிட் கார்டு வழிகாட்டல்'
+},
+te:{
+navCards:'క్రెడిట్ కార్డులు', navCta:'లోన్ సహాయం', lBadge:'13 బ్యాంకుల లోన్లు, ఒకే చోట',
+h1:'<span class="h1-lead">అదే లోన్,</span><span class="gold">ప్రతి బ్యాంకులో వేరే ధర</span>',
+heroSub:'ప్రతి బ్యాంకు తన వెబ్‌సైట్‌లో చూపే అతి తక్కువ వడ్డీ, ప్రాసెసింగ్ ఫీజు ఒకే చోట. మీకు ఏం కావాలో చెప్పండి, ఎలా దరఖాస్తు చేస్తే మంచిదో మేము చెబుతాం. మా సహాయం ఉచితం.',
+btnCompare:'రేట్లను పోల్చండి', btnHelp:'లోన్ సహాయం పొందండి',
+cmpTag:'పోలిక', cmpTitle:'ప్రతి బ్యాంకు చూపే అతి తక్కువ వడ్డీ', cmpSub:'ఒక లోన్ ఎంచుకోండి. ప్రచురించిన అతి తక్కువ రేటు నుండి బ్యాంకులు క్రమంలో ఉన్నాయి.',
+tPL:'పర్సనల్ లోన్', tHL:'హోమ్ లోన్', tCL:'కార్ లోన్', tBL:'బిజినెస్ లోన్',
+banksWord:'బ్యాంకులు', checked:'తనిఖీ చేసినది: 28 అక్టోబర్ 2026',
+rFrom:'ప్రారంభ రేటు', rUpto:'గరిష్ఠ రేటు', rFixed:'స్థిర రేటు', rNone:'రేటు ప్రచురించలేదు', pa:'సంవత్సరానికి',
+feeLbl:'ప్రాసెసింగ్ ఫీజు', feeNone:'బ్యాంకు పేజీ చూడండి', bankLink:'బ్యాంకు పేజీ',
+note1:'ఇది బ్యాంకు తన వెబ్‌సైట్‌లో ప్రకటించే అతి తక్కువ రేటు. క్రెడిట్ స్కోర్, ఆదాయం, లోన్ మొత్తాన్ని బట్టి చాలామందికి ఇంతకంటే ఎక్కువ రేటు వస్తుంది. ఒక బ్యాంకు పేజీలో రెండు వేర్వేరు ప్రారంభ రేట్లు ఉంటే, ఎక్కువదాన్ని మేము చూపిస్తాం.',
+note2:'బ్యాంకులు రేట్లను తరచూ మారుస్తాయి. బ్యాంకు సొంత పేజీయే తుది. ఫీజు వివరాలు ప్రతి బ్యాంకు ప్రచురించినట్లే ఇంగ్లీషులో ఉన్నాయి.',
+helpTag:'సహాయం', helpTitle:'ఏ బ్యాంకు అని తెలియడం లేదా?', helpSub:'మీకు ఏం కావాలో చెప్పండి. మీ ఆదాయం, క్రెడిట్ చరిత్ర చూసి, ఎలా దరఖాస్తు చేస్తే మంచిదో మేము చెబుతాం. మా సహాయం ఉచితం. ఆమోదం ఇచ్చేది బ్యాంకే.',
+fLoan:'కావలసిన లోన్', o_loan:'లోన్ ఎంచుకోండి', fAmount:'కావలసిన మొత్తం', o_amt:'మొత్తం ఎంచుకోండి',
+amt1:'₹1 లక్ష వరకు', amt2:'₹1 లక్ష నుండి ₹5 లక్షల వరకు', amt3:'₹5 లక్షల నుండి ₹25 లక్షల వరకు', amt4:'₹25 లక్షల నుండి ₹1 కోటి వరకు', amt5:'₹1 కోటి పైన',
+fConsentL:'నా లోన్ విచారణను ప్రాసెస్ చేయడానికి, నేను దరఖాస్తు చేసే బ్యాంకుతో మరియు దాని అధికారిక భాగస్వాములతో నా వివరాలు పంచుకోవచ్చని, దీని గురించి మీరు నన్ను సంప్రదించవచ్చని నేను అంగీకరిస్తున్నాను.',
+fSubmitL:'నా వివరాలు పంపండి', fSafeL:'&#128274; మీరు దరఖాస్తు చేసే బ్యాంకుతో మాత్రమే మీ వివరాలు పంచుకుంటాం. మీ డేటాను మేము ఎప్పుడూ అమ్మము.',
+ftTag:'6 భాషల్లో లోన్ మరియు క్రెడిట్ కార్డు మార్గదర్శనం'
+},
+kn:{
+navCards:'ಕ್ರೆಡಿಟ್ ಕಾರ್ಡ್‌ಗಳು', navCta:'ಸಾಲ ಸಹಾಯ', lBadge:'13 ಬ್ಯಾಂಕುಗಳ ಸಾಲಗಳು, ಒಂದೇ ಕಡೆ',
+h1:'<span class="h1-lead">ಅದೇ ಸಾಲ,</span><span class="gold">ಪ್ರತಿ ಬ್ಯಾಂಕಿನಲ್ಲಿ ಬೇರೆ ಬೆಲೆ</span>',
+heroSub:'ಪ್ರತಿ ಬ್ಯಾಂಕ್ ತನ್ನ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ತೋರಿಸುವ ಅತಿ ಕಡಿಮೆ ಬಡ್ಡಿ ಮತ್ತು ಪ್ರೊಸೆಸಿಂಗ್ ಶುಲ್ಕ ಒಂದೇ ಕಡೆ. ನಿಮಗೆ ಏನು ಬೇಕು ಎಂದು ಹೇಳಿ, ಹೇಗೆ ಅರ್ಜಿ ಹಾಕುವುದು ಉತ್ತಮ ಎಂದು ನಾವು ಹೇಳುತ್ತೇವೆ. ನಮ್ಮ ಸಹಾಯ ಉಚಿತ.',
+btnCompare:'ದರಗಳನ್ನು ಹೋಲಿಸಿ', btnHelp:'ಸಾಲ ಸಹಾಯ ಪಡೆಯಿರಿ',
+cmpTag:'ಹೋಲಿಕೆ', cmpTitle:'ಪ್ರತಿ ಬ್ಯಾಂಕ್ ತೋರಿಸುವ ಅತಿ ಕಡಿಮೆ ಬಡ್ಡಿ', cmpSub:'ಒಂದು ಸಾಲ ಆಯ್ಕೆಮಾಡಿ. ಪ್ರಕಟಿತ ಅತಿ ಕಡಿಮೆ ದರದಿಂದ ಬ್ಯಾಂಕುಗಳನ್ನು ಕ್ರಮವಾಗಿ ಜೋಡಿಸಲಾಗಿದೆ.',
+tPL:'ವೈಯಕ್ತಿಕ ಸಾಲ', tHL:'ಗೃಹ ಸಾಲ', tCL:'ಕಾರು ಸಾಲ', tBL:'ವ್ಯಾಪಾರ ಸಾಲ',
+banksWord:'ಬ್ಯಾಂಕುಗಳು', checked:'ಪರಿಶೀಲಿಸಿದ್ದು: 28 ಅಕ್ಟೋಬರ್ 2026',
+rFrom:'ಆರಂಭಿಕ ದರ', rUpto:'ಗರಿಷ್ಠ ದರ', rFixed:'ಸ್ಥಿರ ದರ', rNone:'ದರ ಪ್ರಕಟಿಸಿಲ್ಲ', pa:'ವರ್ಷಕ್ಕೆ',
+feeLbl:'ಪ್ರೊಸೆಸಿಂಗ್ ಶುಲ್ಕ', feeNone:'ಬ್ಯಾಂಕಿನ ಪುಟ ನೋಡಿ', bankLink:'ಬ್ಯಾಂಕಿನ ಪುಟ',
+note1:'ಇದು ಬ್ಯಾಂಕ್ ತನ್ನ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಜಾಹೀರಾತು ಮಾಡುವ ಅತಿ ಕಡಿಮೆ ದರ. ಕ್ರೆಡಿಟ್ ಸ್ಕೋರ್, ಆದಾಯ ಮತ್ತು ಸಾಲದ ಮೊತ್ತವನ್ನು ಅವಲಂಬಿಸಿ ಹೆಚ್ಚಿನವರಿಗೆ ಇದಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ದರ ಸಿಗುತ್ತದೆ. ಒಂದು ಬ್ಯಾಂಕಿನ ಪುಟದಲ್ಲಿ ಎರಡು ಬೇರೆ ಆರಂಭಿಕ ದರಗಳಿದ್ದರೆ, ಹೆಚ್ಚಿನದನ್ನು ನಾವು ತೋರಿಸುತ್ತೇವೆ.',
+note2:'ಬ್ಯಾಂಕುಗಳು ದರಗಳನ್ನು ಆಗಾಗ ಬದಲಾಯಿಸುತ್ತವೆ. ಬ್ಯಾಂಕಿನ ಸ್ವಂತ ಪುಟವೇ ಅಂತಿಮ. ಶುಲ್ಕದ ವಿವರಗಳನ್ನು ಪ್ರತಿ ಬ್ಯಾಂಕ್ ಪ್ರಕಟಿಸಿದಂತೆಯೇ ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ನೀಡಲಾಗಿದೆ.',
+helpTag:'ಸಹಾಯ', helpTitle:'ಯಾವ ಬ್ಯಾಂಕ್ ಎಂದು ಖಚಿತವಿಲ್ಲವೇ?', helpSub:'ನಿಮಗೆ ಏನು ಬೇಕು ಎಂದು ಹೇಳಿ. ನಿಮ್ಮ ಆದಾಯ ಮತ್ತು ಕ್ರೆಡಿಟ್ ಇತಿಹಾಸ ನೋಡಿ, ಹೇಗೆ ಅರ್ಜಿ ಹಾಕುವುದು ಉತ್ತಮ ಎಂದು ನಾವು ಹೇಳುತ್ತೇವೆ. ನಮ್ಮ ಸಹಾಯ ಉಚಿತ. ಅನುಮೋದನೆ ನೀಡುವುದು ಬ್ಯಾಂಕ್.',
+fLoan:'ಬೇಕಾದ ಸಾಲ', o_loan:'ಸಾಲ ಆಯ್ಕೆಮಾಡಿ', fAmount:'ಬೇಕಾದ ಮೊತ್ತ', o_amt:'ಮೊತ್ತ ಆಯ್ಕೆಮಾಡಿ',
+amt1:'₹1 ಲಕ್ಷದವರೆಗೆ', amt2:'₹1 ಲಕ್ಷದಿಂದ ₹5 ಲಕ್ಷದವರೆಗೆ', amt3:'₹5 ಲಕ್ಷದಿಂದ ₹25 ಲಕ್ಷದವರೆಗೆ', amt4:'₹25 ಲಕ್ಷದಿಂದ ₹1 ಕೋಟಿವರೆಗೆ', amt5:'₹1 ಕೋಟಿಗಿಂತ ಹೆಚ್ಚು',
+fConsentL:'ನನ್ನ ಸಾಲದ ವಿಚಾರಣೆಯನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲು, ನಾನು ಅರ್ಜಿ ಹಾಕುವ ಬ್ಯಾಂಕ್ ಮತ್ತು ಅದರ ಅಧಿಕೃತ ಪಾಲುದಾರರೊಂದಿಗೆ ನನ್ನ ವಿವರಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಬಹುದು ಮತ್ತು ಈ ಬಗ್ಗೆ ನೀವು ನನ್ನನ್ನು ಸಂಪರ್ಕಿಸಬಹುದು ಎಂದು ನಾನು ಒಪ್ಪುತ್ತೇನೆ.',
+fSubmitL:'ನನ್ನ ವಿವರಗಳನ್ನು ಕಳುಹಿಸಿ', fSafeL:'&#128274; ನೀವು ಅರ್ಜಿ ಹಾಕುವ ಬ್ಯಾಂಕಿನೊಂದಿಗೆ ಮಾತ್ರ ನಿಮ್ಮ ವಿವರಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳುತ್ತೇವೆ. ನಿಮ್ಮ ಡೇಟಾವನ್ನು ನಾವು ಎಂದಿಗೂ ಮಾರುವುದಿಲ್ಲ.',
+ftTag:'6 ಭಾಷೆಗಳಲ್ಲಿ ಸಾಲ ಮತ್ತು ಕ್ರೆಡಿಟ್ ಕಾರ್ಡ್ ಮಾರ್ಗದರ್ಶನ'
+},
+hi:{
+navCards:'क्रेडिट कार्ड', navCta:'लोन में मदद', lBadge:'13 बैंकों के लोन, एक साथ',
+h1:'<span class="h1-lead">वही लोन,</span><span class="gold">हर बैंक में अलग कीमत</span>',
+heroSub:'हर बैंक अपनी वेबसाइट पर जो सबसे कम ब्याज दर और प्रोसेसिंग फीस दिखाता है, वह सब एक जगह। बताइए आपको क्या चाहिए, हम बताएंगे कि आवेदन कैसे करना सबसे अच्छा है। हमारी मदद मुफ़्त है।',
+btnCompare:'दरों की तुलना करें', btnHelp:'लोन में मदद लें',
+cmpTag:'तुलना', cmpTitle:'हर बैंक की दिखाई गई सबसे कम दर', cmpSub:'एक लोन चुनें। बैंक सबसे कम प्रकाशित दर के क्रम में हैं।',
+tPL:'पर्सनल लोन', tHL:'होम लोन', tCL:'कार लोन', tBL:'बिज़नेस लोन',
+banksWord:'बैंक', checked:'जाँचा गया: 28 अक्टूबर 2026',
+rFrom:'शुरुआती दर', rUpto:'अधिकतम दर', rFixed:'स्थिर दर', rNone:'दर प्रकाशित नहीं', pa:'सालाना',
+feeLbl:'प्रोसेसिंग फीस', feeNone:'बैंक का पेज देखें', bankLink:'बैंक का पेज',
+note1:'यह वह सबसे कम दर है जो बैंक अपनी वेबसाइट पर विज्ञापित करता है। क्रेडिट स्कोर, आय और लोन राशि के आधार पर ज़्यादातर लोगों को इससे ज़्यादा दर मिलती है। अगर किसी बैंक के पेज पर दो अलग शुरुआती दरें हैं, तो हम ज़्यादा वाली दिखाते हैं।',
+note2:'बैंक अपनी दरें अक्सर बदलते हैं। बैंक का अपना पेज ही अंतिम है। फीस की जानकारी हर बैंक जैसे प्रकाशित करता है, वैसे ही अंग्रेज़ी में दी गई है।',
+helpTag:'मदद', helpTitle:'पक्का नहीं कि कौन सा बैंक?', helpSub:'बताइए आपको क्या चाहिए। हम आपकी आय और क्रेडिट इतिहास देखकर बताएंगे कि आवेदन कैसे करना सबसे अच्छा है। हमारी मदद मुफ़्त है। मंज़ूरी बैंक देता है।',
+fLoan:'कौन सा लोन चाहिए', o_loan:'लोन चुनें', fAmount:'कितनी राशि चाहिए', o_amt:'राशि चुनें',
+amt1:'₹1 लाख तक', amt2:'₹1 लाख से ₹5 लाख', amt3:'₹5 लाख से ₹25 लाख', amt4:'₹25 लाख से ₹1 करोड़', amt5:'₹1 करोड़ से ज़्यादा',
+fConsentL:'मैं सहमत हूँ कि मेरी लोन पूछताछ आगे बढ़ाने के लिए मेरी जानकारी उस बैंक और उसके अधिकृत भागीदारों के साथ साझा की जा सकती है जिसमें मैं आवेदन करूँ, और आप इस बारे में मुझसे संपर्क कर सकते हैं।',
+fSubmitL:'मेरी जानकारी भेजें', fSafeL:'&#128274; आपकी जानकारी केवल उसी बैंक के साथ साझा होती है जिसमें आप आवेदन करते हैं। हम आपका डेटा कभी नहीं बेचते।',
+ftTag:'6 भाषाओं में लोन और क्रेडिट कार्ड मार्गदर्शन'
+}
+};
+/* Shared with index.html: same words there and here. */
+const T_SHARED = {
+  en:{fName:'Full Name', fMobile:'Mobile Number', fIncome:'Monthly Income', fEmp:'Employment Type', fCity:'City', fAge:'Age', fLang:'Preferred Language', o_inc:'Select income range', o_typ:'Select type', o_sal:'Salaried', o_self:'Self Employed', o_biz:'Business Owner', o_lang:'Select language', ph_name:'Your name', ph_mob:'Your mobile number', ph_city:'Your city', ph_age:'Your age', privLink:'Privacy Policy', cfLink:'Contact', okTitle:'Thank you. We have your details.', okBody:'We will get back to you within one working day.', ftIp:'This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.', vFill:'Please fill in:', vConsent:'Please tick the consent box before submitting.', vMobile:'Valid 10-digit mobile number'},
+  ml:{fName:'പൂർണ്ണ പേര്', fMobile:'മൊബൈൽ നമ്പർ', fIncome:'മാസ വരുമാനം', fEmp:'ജോലി തരം', fCity:'നഗരം', fAge:'വയസ്സ്', fLang:'ഇഷ്ട ഭാഷ', o_inc:'വരുമാന പരിധി തിരഞ്ഞെടുക്കുക', o_typ:'തരം തിരഞ്ഞെടുക്കുക', o_sal:'ശമ്പളക്കാരൻ', o_self:'സ്വയം തൊഴിൽ', o_biz:'ബിസിനസ് ഉടമ', o_lang:'ഭാഷ തിരഞ്ഞെടുക്കുക', ph_name:'നിങ്ങളുടെ പേര്', ph_mob:'നിങ്ങളുടെ മൊബൈൽ നമ്പർ', ph_city:'നിങ്ങളുടെ നഗരം', ph_age:'നിങ്ങളുടെ വയസ്സ്', privLink:'സ്വകാര്യതാ നയം', cfLink:'ബന്ധപ്പെടുക', okTitle:'നന്ദി. നിങ്ങളുടെ വിവരങ്ങൾ ഞങ്ങൾക്ക് ലഭിച്ചു.', okBody:'ഒരു പ്രവൃത്തി ദിവസത്തിനകം ഞങ്ങൾ ബന്ധപ്പെടും.', ftIp:'ഇത് ഒരു സ്വതന്ത്ര ധനകാര്യ ഉപദേശക സേവനമാണ്. എല്ലാ ബാങ്ക് ലോഗോകളും ട്രേഡ്മാർക്കുകളും അവയുടെ ഉടമസ്ഥരുടെ സ്വത്താണ്.', vFill:'ദയവായി പൂരിപ്പിക്കുക:', vConsent:'സമർപ്പിക്കുന്നതിന് മുമ്പ് സമ്മത ബോക്സ് ടിക്ക് ചെയ്യുക.', vMobile:'ശരിയായ 10 അക്ക മൊബൈൽ നമ്പർ'},
+  ta:{fName:'முழுப் பெயர்', fMobile:'மொபைல் எண்', fIncome:'மாத வருமானம்', fEmp:'வேலை வகை', fCity:'நகரம்', fAge:'வயது', fLang:'விருப்ப மொழி', o_inc:'வருமான வரம்பைத் தேர்ந்தெடுக்கவும்', o_typ:'வகையைத் தேர்ந்தெடுக்கவும்', o_sal:'சம்பளதாரர்', o_self:'சுயதொழில்', o_biz:'வணிக உரிமையாளர்', o_lang:'மொழியைத் தேர்ந்தெடுக்கவும்', ph_name:'உங்கள் பெயர்', ph_mob:'உங்கள் மொபைல் எண்', ph_city:'உங்கள் நகரம்', ph_age:'உங்கள் வயது', privLink:'தனியுரிமைக் கொள்கை', cfLink:'தொடர்பு', okTitle:'நன்றி. உங்கள் விவரங்கள் எங்களுக்குக் கிடைத்தன.', okBody:'ஒரு வேலை நாளுக்குள் நாங்கள் தொடர்பு கொள்வோம்.', ftIp:'இது ஒரு சுயேச்சையான நிதி ஆலோசனை சேவை. அனைத்து வங்கி லோகோக்கள் மற்றும் வர்த்தக முத்திரைகள் அவற்றின் உரிமையாளர்களுக்குச் சொந்தமானது.', vFill:'நிரப்பவும்:', vConsent:'சமர்ப்பிக்கும் முன் ஒப்புதல் பெட்டியைத் தேர்ந்தெடுக்கவும்.', vMobile:'சரியான 10 இலக்க மொபைல் எண்'},
+  te:{fName:'పూర్తి పేరు', fMobile:'మొబైల్ నంబర్', fIncome:'నెలవారీ ఆదాయం', fEmp:'ఉద్యోగ రకం', fCity:'నగరం', fAge:'వయస్సు', fLang:'ఇష్టమైన భాష', o_inc:'ఆదాయ పరిధిని ఎంచుకోండి', o_typ:'రకాన్ని ఎంచుకోండి', o_sal:'జీతం పొందేవారు', o_self:'స్వయం ఉపాధి', o_biz:'వ్యాపార యజమాని', o_lang:'భాషను ఎంచుకోండి', ph_name:'మీ పేరు', ph_mob:'మీ మొబైల్ నంబర్', ph_city:'మీ నగరం', ph_age:'మీ వయస్సు', privLink:'గోప్యతా విధానం', cfLink:'సంప్రదించండి', okTitle:'ధన్యవాదాలు. మీ వివరాలు మాకు అందాయి.', okBody:'ఒక పని దినంలోపు మేము సంప్రదిస్తాము.', ftIp:'ఇది స్వతంత్ర ఆర్థిక సలహా సేవ. అన్ని బ్యాంక్ లోగోలు మరియు ట్రేడ్‌మార్క్‌లు వాటి యజమానుల ఆస్తి.', vFill:'దయచేసి పూరించండి:', vConsent:'సమర్పించే ముందు సమ్మతి బాక్స్‌ను టిక్ చేయండి.', vMobile:'సరైన 10 అంకెల మొబైల్ నంబర్'},
+  kn:{fName:'ಪೂರ್ಣ ಹೆಸರು', fMobile:'ಮೊಬೈಲ್ ಸಂಖ್ಯೆ', fIncome:'ಮಾಸಿಕ ಆದಾಯ', fEmp:'ಉದ್ಯೋಗದ ಪ್ರಕಾರ', fCity:'ನಗರ', fAge:'ವಯಸ್ಸು', fLang:'ಇಷ್ಟದ ಭಾಷೆ', o_inc:'ಆದಾಯ ವ್ಯಾಪ್ತಿ ಆಯ್ಕೆಮಾಡಿ', o_typ:'ಪ್ರಕಾರ ಆಯ್ಕೆಮಾಡಿ', o_sal:'ಸಂಬಳ ಪಡೆಯುವವರು', o_self:'ಸ್ವಯಂ ಉದ್ಯೋಗ', o_biz:'ವ್ಯಾಪಾರ ಮಾಲೀಕ', o_lang:'ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ', ph_name:'ನಿಮ್ಮ ಹೆಸರು', ph_mob:'ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ', ph_city:'ನಿಮ್ಮ ನಗರ', ph_age:'ನಿಮ್ಮ ವಯಸ್ಸು', privLink:'ಗೌಪ್ಯತಾ ನೀತಿ', cfLink:'ಸಂಪರ್ಕಿಸಿ', okTitle:'ಧನ್ಯವಾದಗಳು. ನಿಮ್ಮ ವಿವರಗಳು ನಮಗೆ ಸಿಕ್ಕಿವೆ.', okBody:'ಒಂದು ಕೆಲಸದ ದಿನದೊಳಗೆ ನಾವು ಸಂಪರ್ಕಿಸುತ್ತೇವೆ.', ftIp:'ಇದು ಸ್ವತಂತ್ರ ಹಣಕಾಸು ಸಲಹಾ ಸೇವೆ. ಎಲ್ಲಾ ಬ್ಯಾಂಕ್ ಲೋಗೋಗಳು ಮತ್ತು ಟ್ರೇಡ್‌ಮಾರ್ಕ್‌ಗಳು ಅವುಗಳ ಮಾಲೀಕರ ಆಸ್ತಿ.', vFill:'ದಯವಿಟ್ಟು ಭರ್ತಿ ಮಾಡಿ:', vConsent:'ಸಲ್ಲಿಸುವ ಮೊದಲು ಸಮ್ಮತಿ ಬಾಕ್ಸ್ ಟಿಕ್ ಮಾಡಿ.', vMobile:'ಸರಿಯಾದ 10 ಅಂಕಿಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ'},
+  hi:{fName:'पूरा नाम', fMobile:'मोबाइल नंबर', fIncome:'मासिक आय', fEmp:'रोजगार का प्रकार', fCity:'शहर', fAge:'उम्र', fLang:'पसंदीदा भाषा', o_inc:'आय सीमा चुनें', o_typ:'प्रकार चुनें', o_sal:'वेतनभोगी', o_self:'स्वरोजगार', o_biz:'व्यापार मालिक', o_lang:'भाषा चुनें', ph_name:'आपका नाम', ph_mob:'आपका मोबाइल नंबर', ph_city:'आपका शहर', ph_age:'आपकी उम्र', privLink:'गोपनीयता नीति', cfLink:'संपर्क', okTitle:'धन्यवाद। आपकी जानकारी हमें मिल गई।', okBody:'एक कार्यदिवस के भीतर हम आपसे संपर्क करेंगे।', ftIp:'यह एक स्वतंत्र वित्तीय सलाहकार सेवा है। सभी बैंक लोगो और ट्रेडमार्क उनके संबंधित स्वामियों की संपत्ति हैं।', vFill:'कृपया भरें:', vConsent:'सबमिट करने से पहले सहमति बॉक्स पर टिक करें।', vMobile:'सही 10 अंकों का मोबाइल नंबर'}
+};
+Object.keys(T_SHARED).forEach(l => { T[l] = Object.assign(T[l] || {}, T_SHARED[l]); });
+T.en.langNote = T.en.langNote || 'Tap any language above to switch the whole page';
+T.ml.langNote = 'മുഴുവൻ പേജും മാറ്റാൻ ഭാഷ തിരഞ്ഞെടുക്കുക';
+T.ta.langNote = 'முழுப் பக்கத்தையும் மாற்ற ஏதேனும் மொழியைத் தட்டவும்';
+T.te.langNote = 'మొత్తం పేజీని మార్చడానికి ఏదైనా భాషను నొక్కండి';
+T.kn.langNote = 'ಸಂಪೂರ್ಣ ಪುಟವನ್ನು ಬದಲಾಯಿಸಲು ಯಾವುದೇ ಭಾಷೆಯನ್ನು ಒತ್ತಿ';
+T.hi.langNote = 'पूरा पेज बदलने के लिए किसी भी भाषा पर टैप करें';
+
+let CUR = 'en', TYPE = 'pl';
+const TYPE_NAME = {pl:'Personal loan', hl:'Home loan', cl:'Car loan', bl:'Business loan'};
+
+function esc(v){ return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function safeUrl(u){ return /^https?:\/\//i.test(u) ? u : '#'; }
+function fmtRate(r){ return r.toFixed(2) + '%'; }   // always two decimals, so 8.00% lines up with 7.99%
+
+function renderLoans(){
+  const d = T[CUR] || T.en, list = document.getElementById('lnList');
+  if (!list) return;
+  // Lowest published rate first; "up to" figures after them; unpublished last.
+  const key = row => row.r == null ? 9999 : (row.k === 'upto' ? 1000 + row.r : row.r);
+  const rows = (LOANS[TYPE] || []).slice().sort((a, b) => key(a) - key(b) || BANKS[a.b].n.localeCompare(BANKS[b.b].n));
+  list.innerHTML = rows.map((row, i) => {
+    const bk = BANKS[row.b];
+    const rate = row.r == null
+      ? `<div class="ln-rate none"><small>${d.rNone}</small></div>`
+      : `<div class="ln-rate"><small>${row.k === 'upto' ? d.rUpto : row.k === 'fixed' ? d.rFixed : d.rFrom}</small><strong>${fmtRate(row.r)}</strong><small>${d.pa}</small></div>`;
+    return `<li class="ln-row" style="--bc:${esc(bk.col)};--n:${i}">
+      <span class="ln-ico" aria-hidden="true">${esc(bk.ico)}</span>
+      <div class="ln-main">
+        <b class="ln-bank">${esc(bk.n)}</b>${row.x ? `<span class="ln-x">${esc(row.x)}</span>` : ''}
+        <span class="ln-fee"><i>${d.feeLbl}</i>${row.fee ? esc(row.fee) : d.feeNone}</span>
+        <a class="ln-link" href="${esc(safeUrl(row.u))}" target="_blank" rel="noopener">${d.bankLink} &#8599;</a>
+      </div>
+      ${rate}
+    </li>`;
+  }).join('');
+  const n = document.getElementById('lnCount');
+  if (n) n.textContent = rows.length;
+}
+
+function setType(t){
+  if (!LOANS[t]) return;
+  TYPE = t;
+  document.querySelectorAll('.lt-card').forEach(b => {
+    const on = b.dataset.t === t;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on);
+  });
+  // Carry the choice into the form, unless the visitor already picked there.
+  const sel = document.getElementById('lfLoan');
+  if (sel && !sel.dataset.touched) sel.value = TYPE_NAME[t];
+  renderLoans();
+  track('loan_type', {type: t, language: CUR});
+}
+
+function setLang(code){
+  if (!T[code]) code = 'en';
+  CUR = code;
+  const d = T[code];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (d[k]) el.innerHTML = d[k];
+  });
+  document.querySelectorAll('[data-ph]').forEach(el => {
+    const k = el.getAttribute('data-ph');
+    if (d[k]) el.placeholder = d[k];
+  });
+  document.querySelectorAll('#langBar .lang-pill').forEach(b => b.classList.toggle('active', b.dataset.lang === code));
+  document.documentElement.lang = code;
+  // Links back to the card pages open in the same language.
+  document.querySelectorAll('a[data-keep-lang]').forEach(a => {
+    const base = a.getAttribute('href').replace(/\?lang=[a-z]+/, '');
+    const [path, hash] = base.split('#');
+    a.setAttribute('href', path + (code !== 'en' ? '?lang=' + code : '') + (hash ? '#' + hash : ''));
+  });
+  renderLoans();
+}
+
+function handleLoanSubmit(){
+  const d = T[CUR] || T.en;
+  const wrap = document.getElementById('loanForm');
+  const get = n => wrap.querySelector('[name="' + n + '"]');
+  const val = n => { const el = get(n); return el ? el.value.trim() : ''; };
+  const errors = [];
+  if (val('name').length < 2) errors.push(d.fName);
+  const digits = val('mobile').replace(/\D/g, '');
+  const mob = digits.length === 12 && digits.startsWith('91') ? digits.slice(2) : digits;
+  if (!(mob.length === 10 && /^[6-9]/.test(mob))) errors.push(d.vMobile);
+  if (!val('loan')) errors.push(d.fLoan);
+  if (!val('amount')) errors.push(d.fAmount);
+  if (!val('income')) errors.push(d.fIncome);
+  if (!val('employment')) errors.push(d.fEmp);
+  if (val('city').length < 2) errors.push(d.fCity);
+  if (!val('language')) errors.push(d.fLang);
+  if (errors.length) { alert(d.vFill + '\n\n• ' + errors.join('\n• ')); return; }
+  if (!document.getElementById('lfConsent').checked) { alert(d.vConsent); return; }
+
+  // Same fields as the card form, so loan leads land in the same Netlify form
+  // ("lead", defined in index.html) and the same Sheet columns. The loan and
+  // amount go in "spend", which is the "Spends on" column in the Sheet.
+  const lead = {
+    name: val('name'),
+    mobile: mob,             // plain 10 digits: a leading + shows as #ERROR! in Sheets
+    age: val('age'),
+    city: val('city'),
+    income: val('income'),
+    employment: val('employment'),
+    language: val('language'),
+    spend: 'LOAN: ' + val('loan') + ', ' + val('amount'),
+    page_language: CUR
+  };
+  try {
+    fetch('/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams(Object.assign({'form-name': 'lead'}, lead)).toString()
+    }).catch(function(){});
+  } catch(e) {}
+
+  window.__sheetState = 'not configured';
+  if (CONTACT.sheetUrl) {
+    window.__sheetState = 'sending';
+    try {
+      // A real form post into a hidden iframe, as on index.html (a no-cors
+      // fetch to Apps Script can be silently dropped).
+      let frame = document.getElementById('sheetSink');
+      if (!frame) {
+        frame = document.createElement('iframe');
+        frame.id = frame.name = 'sheetSink';
+        frame.style.display = 'none';
+        document.body.appendChild(frame);
+      }
+      frame.onload = function(){ window.__sheetState = 'delivered'; };
+      const f = document.createElement('form');
+      f.method = 'POST'; f.action = CONTACT.sheetUrl; f.target = 'sheetSink'; f.style.display = 'none';
+      const field = document.createElement('input');
+      field.type = 'hidden'; field.name = 'payload';
+      field.value = JSON.stringify(Object.assign({secret: CONTACT.sheetKey, source: 'loans page'}, lead));
+      f.appendChild(field);
+      document.body.appendChild(f);
+      f.submit();
+      setTimeout(function(){ if (f.parentNode) f.parentNode.removeChild(f); }, 2000);
+    } catch(e) { window.__sheetState = 'failed: ' + (e.message || e); }
+  }
+  track('lead_submit', {language: CUR, page: 'loans', loan: val('loan')});
+
+  wrap.innerHTML =
+    '<div class="sent-ok"><div class="sent-tick" aria-hidden="true">' +
+    '<svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l8 8 15-16"/></svg>' +
+    '</div><h3></h3><p></p></div>';
+  wrap.querySelector('h3').textContent = d.okTitle;
+  wrap.querySelector('p').textContent = d.okBody;
+  // Owner-only diagnostic, as on index.html. Delete once leads land properly.
+  setTimeout(function(){
+    const dbg = document.createElement('p');
+    dbg.style.cssText = 'margin-top:18px;font-size:11px;opacity:.5;';
+    dbg.textContent = 'sheet: ' + (window.__sheetState || 'unknown');
+    wrap.querySelector('.sent-ok').appendChild(dbg);
+  }, 1500);
+  wrap.scrollIntoView({behavior: 'smooth', block: 'center'});
+}
+
+(function init(){
+  const lf = document.getElementById('lfLoan');
+  if (lf) lf.addEventListener('change', function(){ this.dataset.touched = '1'; });
+  const q = new URLSearchParams(location.search);
+  const t = (q.get('type') || '').toLowerCase();
+  if (LOANS[t]) TYPE = t;
+  setLang(q.get('lang') || 'en');
+  if (TYPE !== 'pl') setType(TYPE);
+  else if (lf) lf.value = TYPE_NAME.pl;
+})();
+
+/* ╔═══════════ MOTION: hero cards, the dealt hand, the rows ═══════════╗ */
+(function(){
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hand = document.querySelector('.lt-hand'), list = document.getElementById('lnList');
+
+  // 1. The gold card's guilloche rosette, drawn here as on index.html.
+  function rosettePath(cx, cy, R, amp, lobes, rings, steps){
+    let d = '';
+    for (let i = 0; i < rings; i++) {
+      const ph = i * (Math.PI * 2 / lobes) / rings, Ri = R + i * 2;
+      for (let s = 0; s <= steps; s++) {
+        const t = s / steps * Math.PI * 2, r = Ri + amp * Math.sin(lobes * t + ph);
+        d += (s ? 'L' : 'M') + (cx + r * Math.cos(t)).toFixed(1) + ' ' + (cy + r * Math.sin(t)).toFixed(1);
+      }
+    }
+    return d;
+  }
+  const g = document.querySelector('.hc-guilloche');
+  if (g) g.innerHTML = '<path d="' + rosettePath(704, 170, 112, 30, 13, 11, 240) + '"/><circle cx="704" cy="170" r="78"/><circle cx="704" cy="170" r="168"/>';
+
+  // 2. Deal the hand once it is on screen; start the rows when the list is.
+  function deal(){
+    if (!hand || hand.classList.contains('dealt')) return;
+    if (reduce) { hand.classList.add('dealt'); return; }
+    hand.classList.add('dealing');
+    requestAnimationFrame(() => requestAnimationFrame(() => hand.classList.add('dealt')));
+    setTimeout(() => hand.classList.remove('dealing'), 1700);   // back to quick hover and pick
+  }
+  function play(){ if (list) list.classList.add('play'); }
+  if (!window.IntersectionObserver) { deal(); play(); }
+  else {
+    const watch = (el, fn, opts) => {
+      if (!el) return;
+      const io = new IntersectionObserver(entries => { if (entries.some(e => e.isIntersecting)) { fn(); io.disconnect(); } }, opts);
+      io.observe(el);
+    };
+    watch(hand, deal, { threshold: .25 });
+    // The list is several screens tall on a phone, so it starts as soon as its
+    // top edge is on screen, not when a share of it is (that left a blank gap).
+    watch(list, play, { rootMargin: '0px 0px -8% 0px' });
+  }
+
+  // 3. On a computer the hero cards lean toward the mouse. Phones stay still.
+  const hero = document.querySelector('.hero'), fan = document.querySelector('.hc-fan');
+  if (hero && fan && !reduce && window.matchMedia && matchMedia('(pointer: fine)').matches) {
+    let raf = 0, rx = 0, ry = 0;
+    hero.addEventListener('pointermove', e => {
+      const b = fan.getBoundingClientRect();
+      ry = Math.max(-1, Math.min(1, (e.clientX - (b.left + b.width / 2)) / Math.max(360, innerWidth / 2))) * 10;
+      rx = Math.max(-1, Math.min(1, (e.clientY - (b.top + b.height / 2)) / Math.max(360, innerHeight / 2))) * -8;
+      if (!raf) raf = requestAnimationFrame(() => { raf = 0; fan.style.setProperty('--ry', ry.toFixed(2) + 'deg'); fan.style.setProperty('--rx', rx.toFixed(2) + 'deg'); });
+    });
+    hero.addEventListener('pointerleave', () => { fan.style.setProperty('--ry', '0deg'); fan.style.setProperty('--rx', '0deg'); });
+  }
+})();
+/* ╚═══════════ MOTION END ═══════════╝ */
+</script>
+</body>
+</html>
