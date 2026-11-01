@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base target="_top">
+<meta charset="utf-8"/>
+<title>Mahodaya CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#0A1628; --panel:#101F38; --raise:#16294A; --line:rgba(255,255,255,.09);
+  --gold:#C9A84C; --gold-l:#E8C96A; --text:#E8EEF6; --mute:#8495AB;
+  --red:#E0685F; --amber:#D9A33C; --green:#4FB07A; --blue:#5B8FD6; --violet:#9B7FD4; --teal:#45A69B;
+  --r:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink); color:var(--text);
+  font:400 15px/1.5 'DM Sans',system-ui,sans-serif;
+  font-variant-numeric:tabular-nums;
+  padding-bottom:88px;
+  -webkit-font-smoothing:antialiased;
+}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+:focus-visible{outline:2px solid var(--gold-l);outline-offset:2px;border-radius:4px}
+
+/* ---------- header ---------- */
+header{
+  position:sticky; top:0; z-index:20; background:rgba(10,22,40,.94);
+  backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+}
+.hwrap{max-width:720px;margin:0 auto;padding:14px 16px 0}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand h1{font:700 21px/1 'Playfair Display',serif;letter-spacing:.2px}
+.brand h1 span{color:var(--gold)}
+.menu{display:flex;gap:8px;margin-left:auto}
+.menu button,.menu a{font-size:12.5px;color:var(--mute);border:1px solid var(--line);border-radius:7px;padding:6px 11px;text-decoration:none}
+.menu button:hover,.menu a:hover{color:var(--text);border-color:var(--gold)}
+.pulse{display:block;margin:11px 0 12px}
+.brief{font-size:14.5px;font-weight:500;color:var(--text)}
+.brief.hot{color:var(--gold-l)}
+.tally{display:flex;gap:16px;flex-wrap:wrap;margin-top:5px;font-size:12.5px;color:var(--mute)}
+.tally b{color:var(--text);font-weight:600}
+.tools{display:flex;gap:8px;padding-bottom:12px}
+.tools input[type=search]{
+  flex:1;min-width:0;background:var(--panel);border:1px solid var(--line);
+  border-radius:9px;padding:10px 12px;outline:none
+}
+.tools input[type=search]:focus{border-color:var(--gold)}
+.tools select{
+  background:var(--panel);border:1px solid var(--line);border-radius:9px;
+  padding:10px 8px;outline:none;max-width:42%
+}
+
+/* ---------- list ---------- */
+main{max-width:720px;margin:0 auto;padding:4px 16px 0}
+.band{display:flex;align-items:center;gap:10px;margin:22px 0 9px}
+.band h2{font-size:11.5px;font-weight:600;letter-spacing:.14em;color:var(--mute)}
+.band .rule{flex:1;height:1px;background:var(--line)}
+.band .n{font-size:12px;color:var(--mute)}
+.band.urgent h2{color:var(--red)}
+
+.lead{
+  display:flex;gap:12px;align-items:flex-start;
+  background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--stage,var(--mute));
+  border-radius:var(--r);padding:13px 13px 13px 12px;margin-bottom:8px;width:100%;text-align:left
+}
+.lead:hover{background:var(--raise)}
+.lead .body{flex:1;min-width:0;text-align:left}
+.lead .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.lead .nm{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lead .new{font-size:10.5px;font-weight:600;letter-spacing:.08em;color:var(--ink);background:var(--gold);border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:2px}
+.lead .pl{font-size:12.5px;color:var(--mute);white-space:nowrap}
+.lead .meta{font-size:13px;color:var(--mute);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lead .due{font-size:12.5px;margin-top:5px;color:var(--mute)}
+.lead .due.over{color:var(--red)}
+.lead .due.today{color:var(--gold-l)}
+.wa{
+  flex:0 0 auto;width:40px;height:40px;border-radius:10px;border:1px solid rgba(201,168,76,.35);
+  display:grid;place-items:center;color:var(--gold);align-self:center
+}
+.wa:hover{background:var(--gold);color:var(--ink)}
+.wa svg{width:18px;height:18px;fill:currentColor}
+
+.empty{text-align:center;padding:56px 20px;color:var(--mute)}
+.empty h3{font:700 19px/1.3 'Playfair Display',serif;color:var(--text);margin-bottom:7px}
+.empty p{font-size:14px;max-width:36ch;margin:0 auto 18px}
+
+/* ---------- primary action ---------- */
+.fab{
+  position:fixed;left:50%;transform:translateX(-50%);
+  bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;
+  background:var(--gold);color:var(--ink);font-weight:600;font-size:15px;
+  padding:13px 24px;border-radius:999px;box-shadow:0 10px 28px rgba(0,0,0,.45)
+}
+.fab:hover{background:var(--gold-l)}
+
+/* ---------- sheet ---------- */
+.scrim{position:fixed;inset:0;background:rgba(4,10,20,.72);z-index:40;display:none}
+.scrim.on{display:block}
+.sheet{
+  position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:92vh;max-height:92dvh;overflow:auto;
+  background:var(--ink);border-top:1px solid var(--line);border-radius:18px 18px 0 0;
+  padding:18px 16px calc(26px + env(safe-area-inset-bottom,0px));
+  transform:translateY(100%);transition:transform .26s cubic-bezier(.2,.8,.3,1);
+}
+.sheet.on{transform:none}
+@media(min-width:720px){
+  .sheet{left:50%;right:auto;width:680px;transform:translate(-50%,100%);border-radius:18px 18px 0 0}
+  .sheet.on{transform:translate(-50%,0)}
+}
+@media(prefers-reduced-motion:reduce){ .sheet{transition:none} }
+.shead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.shead h2{font:700 19px/1.2 'Playfair Display',serif}
+.x{font-size:26px;line-height:1;color:var(--mute);padding:0 6px}
+
+.f{margin-bottom:13px}
+.f label{display:block;font-size:12.5px;color:var(--mute);margin-bottom:5px}
+.f input,.f select,.f textarea{
+  width:100%;background:var(--panel);border:1px solid var(--line);
+  border-radius:9px;padding:11px 12px;outline:none
+}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--gold)}
+.f textarea{min-height:82px;resize:vertical}
+.f .sub{font-size:11.5px;color:var(--mute);margin-top:5px;line-height:1.5}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:460px){ .row{grid-template-columns:1fr} }
+#loanBox[hidden]{display:none}
+
+/* what the visitor sent from the website: shown, not edited */
+.web{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px}
+.web dt{color:var(--mute)}
+.web dd{color:var(--text);min-width:0;overflow-wrap:anywhere}
+
+.stages{display:flex;flex-wrap:wrap;gap:7px}
+.st{
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:13px;
+  color:var(--mute);display:flex;align-items:center;gap:7px
+}
+.st i{width:7px;height:7px;border-radius:50%;background:var(--c);display:block}
+.st[aria-pressed=true]{border-color:var(--c);color:var(--text);background:rgba(255,255,255,.05)}
+
+.fb{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:10px;padding:11px 12px;margin-bottom:13px}
+.fb p{flex:1;min-width:180px;font-size:13px;color:var(--text)}
+.fb p small{display:block;color:var(--mute);font-size:12px;margin-top:2px}
+.fb button{background:var(--gold);color:var(--ink);font-weight:600;font-size:13.5px;border-radius:8px;padding:9px 14px}
+
+.acts{display:flex;gap:9px;margin-top:20px;flex-wrap:wrap}
+.btn{padding:12px 18px;border-radius:9px;font-weight:600;font-size:14.5px;border:1px solid var(--line);color:var(--text)}
+.btn.go{background:var(--gold);color:var(--ink);border-color:var(--gold);flex:1}
+.btn.go:hover{background:var(--gold-l)}
+.btn.go:disabled{opacity:.6;cursor:wait}
+.btn.del{color:var(--red);border-color:rgba(224,104,95,.4);margin-left:auto}
+.hint{font-size:12.5px;color:var(--mute);margin-top:12px;line-height:1.6}
+.grp{
+  font-size:11.5px;font-weight:600;letter-spacing:.13em;color:var(--mute);
+  margin:22px 0 11px;padding-bottom:7px;border-bottom:1px solid var(--line)
+}
+.grp:first-of-type{margin-top:4px}
+
+.bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;padding:11px 16px;
+  background:var(--raise);border-top:1px solid var(--line);font-size:13.5px;text-align:center
+}
+.bar.warn{background:#4A2320;color:#F3C8C3}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hwrap">
+    <div class="brand">
+      <h1>Mahodaya <span>CRM</span></h1>
+      <div class="menu">
+        <button id="bRefresh">Refresh</button>
+        <a id="bSheet" href="#" target="_blank" rel="noopener" hidden>Sheet</a>
+        <button id="bImport">Import</button>
+      </div>
+    </div>
+    <div class="pulse" id="pulse"></div>
+    <div class="tools">
+      <input type="search" id="q" placeholder="Search name, mobile, city or bank" aria-label="Search leads"/>
+      <select id="fStage" aria-label="Filter by stage"></select>
+    </div>
+  </div>
+</header>
+
+<main id="list"></main>
+
+<button class="fab" id="bNew">New lead</button>
+
+<div class="scrim" id="scrim"></div>
+<section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sTitle"></section>
+
+<div class="bar" id="bar" hidden></div>
+
+<script>
+/* ------------------------------------------------------------------
+   Mahodaya CRM. Every lead is a row in the Leads tab of the leads
+   spreadsheet: the website's script adds new ones, this page reads them
+   through Code.gs (google.script.run) and saves your changes back to the
+   same row. It checks for new leads every minute while it is open.
+------------------------------------------------------------------ */
+
+const SITE = 'https://mahodaya.netlify.app/';   // for the feedback link
+const STAGES = [
+  {k:'new',       t:'New',            c:'#8495AB', open:true},
+  {k:'contacted', t:'Contacted',      c:'#5B8FD6', open:true},
+  {k:'docs',      t:'Documents',      c:'#9B7FD4', open:true},
+  {k:'applied',   t:'Applied',        c:'#D9A33C', open:true},
+  {k:'approved',  t:'Approved',       c:'#45A69B', open:true},
+  {k:'delivered', t:'Disbursed / delivered', c:'#4FB07A', open:true},
+  {k:'payout',    t:'Payout received',c:'#C9A84C', open:false},
+  {k:'lost',      t:'Not proceeding', c:'#E0685F', open:false}
+];
+const SM = Object.fromEntries(STAGES.map(s=>[s.k,s]));
+const FEEDBACK_STAGES = ['approved','delivered','payout'];   // they got it: time to ask
+const PRODUCTS = ['Credit card','Personal loan','Home loan','Car loan','Business loan','Loan against property','Gold loan'];
+const BANKCATS = ['Private bank','Public sector bank','NBFC','Small finance bank','Foreign bank'];
+const ELIG = [
+  {k:'',         t:'Not checked yet'},
+  {k:'regular',  t:'Regular card'},
+  {k:'secured',  t:'Secured card only (FD-backed)'},
+  {k:'cobrand',  t:'Co-brand only'},
+  {k:'none',     t:'Not eligible right now'}
+];
+const REFER_BONUS = 100;                      // paid per successful referral
+const BONUS = [{k:'',t:'No referral'},{k:'due',t:'₹'+REFER_BONUS+' due'},{k:'paid',t:'₹'+REFER_BONUS+' paid'}];
+const PAN_RE = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+const panClean = v => String(v||'').toUpperCase().replace(/\s+/g,'');
+const panValid = v => PAN_RE.test(panClean(v));
+const panTail  = v => panValid(v) ? panClean(v).slice(-4) : '';
+// The same names the website's "Bank you want" lists use (cards and loans).
+const BANKS = ['HDFC Bank','ICICI Bank','SBI Card','State Bank of India','Axis Bank','IDFC FIRST Bank','Kotak Mahindra Bank',
+  'IndusInd Bank','RBL Bank','AU Small Finance Bank','Yes Bank','American Express','Standard Chartered','HSBC Bank','Federal Bank','Federal Bank / Scapia'];
+
+// The feedback message, in the lead's language. {name} and {link} are filled in.
+const ASK = {
+  en:'Hi {name}, thank you for choosing Mahodaya Credit Solutions. Could you tell us how we did? It takes two minutes: {link}',
+  ml:'നമസ്കാരം {name}, Mahodaya Credit Solutions തിരഞ്ഞെടുത്തതിന് നന്ദി. ഞങ്ങളുടെ സേവനം എങ്ങനെയുണ്ടായിരുന്നു എന്ന് പറയാമോ? രണ്ട് മിനിറ്റ് മതി: {link}',
+  ta:'வணக்கம் {name}, Mahodaya Credit Solutions-ஐத் தேர்ந்தெடுத்ததற்கு நன்றி. எங்கள் சேவை எப்படி இருந்தது என்று சொல்ல முடியுமா? இரண்டு நிமிடம் போதும்: {link}',
+  te:'నమస్కారం {name}, Mahodaya Credit Solutions ను ఎంచుకున్నందుకు ధన్యవాదాలు. మా సేవ ఎలా ఉందో చెప్పగలరా? రెండు నిమిషాలు చాలు: {link}',
+  kn:'ನಮಸ್ಕಾರ {name}, Mahodaya Credit Solutions ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಿದ್ದಕ್ಕೆ ಧನ್ಯವಾದಗಳು. ನಮ್ಮ ಸೇವೆ ಹೇಗಿತ್ತು ಎಂದು ತಿಳಿಸುವಿರಾ? ಎರಡು ನಿಮಿಷ ಸಾಕು: {link}',
+  hi:'नमस्ते {name}, Mahodaya Credit Solutions को चुनने के लिए धन्यवाद। क्या आप बता सकते हैं कि हमारी सेवा कैसी रही? बस दो मिनट लगेंगे: {link}'
+};
+
+let LEADS = [];         // what the sheet held at the last load
+let READY = false, LOADING = false;
+let editing = null;     // id being edited, or null for a new lead
+
+/* ---------- tiny helpers ---------- */
+const $  = s => document.querySelector(s);
+const el = (t,a={},...kids)=>{
+  const n=document.createElement(t);
+  for(const [k,v] of Object.entries(a)){
+    if(k==='class') n.className=v;
+    else if(k==='html') n.innerHTML=v;
+    else if(k.startsWith('on')) n.addEventListener(k.slice(2),v);
+    else if(v!==null&&v!==false&&v!==undefined) n.setAttribute(k,v);
+  }
+  for(const c of kids.flat()) if(c!=null) n.append(c.nodeType?c:document.createTextNode(c));
+  return n;
+};
+const todayISO = ()=>{ const d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); return d.toISOString().slice(0,10); };
+const days = iso => Math.round((new Date(iso+'T00:00') - new Date(todayISO()+'T00:00'))/864e5);
+const digits10 = m => { const d=String(m||'').replace(/\D/g,''); return d.length===12&&d.startsWith('91')?d.slice(2):d; };
+const fmtDay = iso => { const d=new Date(String(iso).length===10?iso+'T00:00':iso); return isNaN(d)?String(iso):d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}); };
+const errText = e => (e && (e.message||e.code)) || String(e||'unknown error');
+function note(msg,warn){
+  const b=$('#bar'); b.textContent=msg; b.hidden=false; b.className='bar'+(warn?' warn':'');
+  clearTimeout(note._t); note._t=setTimeout(()=>{b.hidden=true}, warn?7000:2800);
+}
+
+/* ---------- talking to the sheet (Code.gs) ---------- */
+const api = (fn, ...args) => new Promise((res, rej) => {
+  if (!(window.google && google.script && google.script.run)) { rej(new Error('Open the CRM from its web app address.')); return; }
+  google.script.run.withSuccessHandler(res).withFailureHandler(rej)[fn](...args);
+});
+const byLabel = (list, v) => {
+  v = String(v||'').trim().toLowerCase();
+  const hit = list.find(x => x.k === v || x.t.toLowerCase() === v);
+  return hit ? hit.k : '';
+};
+const stageKey = v => byLabel(STAGES, v) || (/disburs|deliver/i.test(v) ? 'delivered' : /payout/i.test(v) ? 'payout' : /not proceed|lost|reject/i.test(v) ? 'lost' : 'new');
+const bonusKey = v => /paid/i.test(v) ? 'paid' : /due/i.test(v) ? 'due' : '';
+// The website puts the loan and the bank they want into "Spends on":
+// "Shopping | Bank: HDFC Bank", "LOAN: Car loan, 1 to 5 lakh | Bank: SBI".
+const bankFromSpend = s => { const m = String(s||'').match(/\|\s*Bank:\s*(.+)$/); return m ? m[1].trim() : ''; };
+const productFromSpend = s => { const m = String(s||'').match(/^LOAN:\s*([^,|]+)/); return m ? m[1].trim() : (s ? 'Credit card' : ''); };
+
+function fromRow(r){
+  return Object.assign({}, r, {
+    stage: stageKey(r.stage),
+    eligibility: byLabel(ELIG, r.eligibility),
+    bonus: bonusKey(r.bonus),
+    bank: r.bank || bankFromSpend(r.spend),
+    product: r.product || productFromSpend(r.spend)
+  });
+}
+function toRow(d){
+  const out = Object.assign({}, d);
+  if ('stage' in d) out.stage = (SM[d.stage]||SM.new).t;
+  if ('eligibility' in d) out.eligibility = d.eligibility ? (ELIG.find(e=>e.k===d.eligibility)||{}).t || '' : '';
+  if ('bonus' in d) out.bonus = d.bonus ? (BONUS.find(b=>b.k===d.bonus)||{t:''}).t : '';
+  return out;
+}
+
+async function load(quiet){
+  if (LOADING) return;
+  LOADING = true;
+  if (!quiet) $('#bRefresh').textContent = 'Loading';
+  try {
+    const rows = await api('listLeads');
+    LEADS = rows.map(fromRow);
+    READY = true; render();
+    if (!quiet) note(LEADS.length + ' lead' + (LEADS.length===1?'':'s') + ' loaded.');
+  } catch(e) {
+    READY = true; render(); note('Could not load leads: ' + errText(e), true);
+  } finally {
+    LOADING = false; $('#bRefresh').textContent = 'Refresh';
+  }
+}
+
+/* ---------- urgency bands: the thing this tool is actually for ---------- */
+function band(l){
+  if(!SM[l.stage]?.open) return 'closed';
+  if(!l.followUp) return 'unscheduled';
+  const d = days(l.followUp);
+  if(d < 0) return 'overdue';
+  if(d === 0) return 'today';
+  if(d <= 7) return 'week';
+  return 'later';
+}
+const BANDS=[
+  ['overdue','Overdue',true],['today','Today',false],['week','This week',false],
+  ['later','Later',false],['unscheduled','No follow-up set',false],['closed','Closed',false]
+];
+
+function dueText(l){
+  if(!SM[l.stage]?.open) return '';
+  if(!l.followUp) return l.stage==='new' ? 'New lead, call them' : 'No follow-up date';
+  const d=days(l.followUp);
+  if(d<0)  return `Follow-up was ${-d} day${d===-1?'':'s'} ago`;
+  if(d===0) return 'Follow up today';
+  if(d===1) return 'Follow up tomorrow';
+  return `Follow up in ${d} days`;
+}
+
+/* ---------- render ---------- */
+function render(){
+  const q=$('#q').value.trim().toLowerCase();
+  const fs=$('#fStage').value;
+  const rows = LEADS.filter(l=>{
+    if(fs && l.stage!==fs) return false;
+    if(!q) return true;
+    return [l.name,l.mobile,l.city,l.card,l.bank,l.product].some(v=>String(v||'').toLowerCase().includes(q));
+  });
+
+  const open    = LEADS.filter(l=>SM[l.stage]?.open);
+  const overdue = open.filter(l=>l.followUp && days(l.followUp)<0).length;
+  const dueToday= open.filter(l=>l.followUp && days(l.followUp)===0).length;
+  const fresh   = LEADS.filter(l=>l.stage==='new' && !l.followUp).length;
+  const noDate  = open.filter(l=>!l.followUp).length;
+  const bonusDue= LEADS.filter(l=>l.bonus==='due').length;
+
+  // The daily refresher: what today actually asks of you, in one line.
+  let brief;
+  if(!LEADS.length)            brief = READY ? 'Nothing in the pipeline yet.' : 'Loading your leads.';
+  else if(overdue+dueToday+fresh===0) brief = noDate
+      ? `Nothing due today. ${noDate} lead${noDate===1?'':'s'} still need a follow-up date.`
+      : 'Nothing due today. You are clear.';
+  else {
+    const parts=[];
+    if(fresh)    parts.push(`${fresh} new`);
+    if(overdue)  parts.push(`${overdue} overdue`);
+    if(dueToday) parts.push(`${dueToday} due today`);
+    brief = parts.join(', ') + ' to call.';
+  }
+
+  $('#pulse').replaceChildren(
+    el('div',{class:'brief'+(overdue||fresh?' hot':'')}, brief),
+    el('div',{class:'tally'},
+      el('span',{}, el('b',{},String(open.length)), ' in progress'),
+      el('span',{}, el('b',{},String(LEADS.filter(l=>l.stage==='payout').length)), ' paid out'),
+      bonusDue ? el('span',{}, el('b',{},'₹'+(bonusDue*REFER_BONUS)), ' referral bonus to pay') : null)
+  );
+
+  const main=$('#list'); main.replaceChildren();
+
+  if(!LEADS.length){
+    main.append(el('div',{class:'empty'},
+      el('h3',{},READY?'No leads yet':'Loading your leads'),
+      el('p',{},READY
+        ? 'Leads from the website appear here by themselves. You can also add one with New lead.'
+        : 'One moment.')
+    ));
+    return;
+  }
+  if(!rows.length){
+    main.append(el('div',{class:'empty'},
+      el('h3',{},'Nothing matches'),
+      el('p',{},'Try a different name, or clear the stage filter.')));
+    return;
+  }
+
+  const grouped={}; rows.forEach(l=>(grouped[band(l)] ||= []).push(l));
+  for(const [key,title,urgent] of BANDS){
+    const g=grouped[key]; if(!g||!g.length) continue;
+    g.sort((a,b)=>(a.followUp||'9999').localeCompare(b.followUp||'9999') || String(b.createdAt).localeCompare(String(a.createdAt)));
+    main.append(el('div',{class:'band'+(urgent?' urgent':'')},
+      el('h2',{},title), el('span',{class:'rule'}), el('span',{class:'n'},String(g.length))));
+    g.forEach(l=>main.append(leadRow(l)));
+  }
+}
+
+function leadRow(l){
+  const s=SM[l.stage]||SM.new;
+  const b=band(l);
+  const wa=digits10(l.mobile);
+  const bits=[s.t, l.product||null, l.card||l.bank||null, l.city||null].filter(Boolean).join(' · ');
+  const row = el('div',{class:'lead',style:`--stage:${s.c}`},
+    el('button',{class:'body',onclick:()=>openSheet(l.id),'aria-label':`Open ${l.name||'lead'}`},
+      el('div',{class:'top'}, el('span',{class:'nm'},l.name||'Unnamed', l.stage==='new'&&!l.followUp?el('span',{class:'new'},'NEW'):null),
+                              el('span',{class:'pl'}, wa?('+91 '+wa):'')),
+      el('div',{class:'meta'},bits),
+      dueText(l) ? el('div',{class:'due '+(b==='overdue'?'over':b==='today'?'today':'')},dueText(l)) : null
+    )
+  );
+  if(wa) row.append(el('a',{class:'wa',href:`https://wa.me/91${wa}`,target:'_blank',rel:'noopener',
+    title:`Message ${l.name||'lead'} on WhatsApp`,'aria-label':`Message ${l.name||'lead'} on WhatsApp`,
+    html:'<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.5 14.2c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.2-.9-2.7-1.2-4.4-4-4.5-4.2-.1-.2-1-1.4-1-2.6s.6-1.8.9-2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.1.3.6 1.1 1.3 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l2 .9c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>'}));
+  return row;
+}
+
+/* ---------- feedback: ask once they have their card or loan ---------- */
+function leadLang(l){
+  const s = String(l.language||'').toLowerCase();
+  const by = [['ml','malayalam'],['ta','tamil'],['te','telugu'],['kn','kannada'],['hi','hindi'],['en','english']];
+  for (const [c,w] of by) if (s.includes(w)) return c;
+  const p = String(l.pageLang||'').toLowerCase();
+  return /^(ml|ta|te|kn|hi|en)$/.test(p) ? p : 'en';
+}
+async function askFeedback(l){
+  const wa = digits10(l.mobile);
+  if(!wa){ note('This lead has no mobile number.',true); return; }
+  const lang = leadLang(l), first = String(l.name||'').trim().split(/\s+/)[0] || '';
+  const got = /loan/i.test(l.product||'') ? 'Loan' : 'Credit card';
+  const link = SITE + 'feedback.html?' + new URLSearchParams({lang, n:first, m:wa, got}).toString();
+  const text = ASK[lang].replace('{name}', first).replace('{link}', link);
+  window.open('https://wa.me/91' + wa + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+  try { await api('saveLead', l.id, {feedbackAsked: todayISO()}); load(true); }
+  catch(e){ note('WhatsApp opened, but the date was not saved: '+errText(e),true); }
+}
+
+/* ---------- detail sheet ---------- */
+function openSheet(id){
+  editing = id;
+  const l = id ? (LEADS.find(x=>x.id===id)||{}) : {stage:'new',product:'Credit card'};
+
+  const stageBtns = el('div',{class:'stages'});
+  STAGES.forEach(s=>{
+    const b=el('button',{class:'st',style:`--c:${s.c}`,type:'button','aria-pressed':String((l.stage||'new')===s.k),
+      onclick:()=>{ stageBtns.querySelectorAll('.st').forEach(x=>x.setAttribute('aria-pressed','false'));
+                    b.setAttribute('aria-pressed','true'); }},
+      el('i',{}), s.t);
+    b.dataset.k=s.k; stageBtns.append(b);
+  });
+
+  const f   = (label,node,hint)=>el('div',{class:'f'}, el('label',{},label), node,
+                                    hint?el('p',{class:'sub'},hint):null);
+  const inp = (id2,v,extra={})=>el('input',Object.assign({id:id2,value:v==null?'':v},extra));
+  const sel = (id2,opts,cur,extra={})=>{
+    const n=el('select',Object.assign({id:id2},extra));
+    const list = opts.slice();
+    // keep a value the list does not know, so saving never drops it
+    if (cur && !list.some(o=>(typeof o==='string'?o:o.k)===cur)) list.push(cur);
+    list.forEach(o=>{ const v=typeof o==='string'?o:o.k, t=typeof o==='string'?o:o.t;
+      n.append(el('option',{value:v,selected:(cur||'')===v?'selected':null},t)); });
+    return n;
+  };
+  const head = t => el('h3',{class:'grp'},t);
+
+  // loan-only fields appear when the product is not a card
+  const loanBox = el('div',{class:'row',id:'loanBox'},
+    f('Loan amount',  inp('iAmt',l.loanAmount,{placeholder:'e.g. 500000',inputmode:'decimal'})),
+    f('Tenure (months)', inp('iTen',l.tenure,{placeholder:'e.g. 36',inputmode:'numeric'})));
+  const prodSel = sel('iProd',PRODUCTS,l.product||'Credit card');
+  const syncLoan = ()=>{ loanBox.hidden = (prodSel.value==='Credit card'); };
+  prodSel.addEventListener('change',syncLoan);
+
+  // what the visitor sent from the website, as they sent it
+  const web = [];
+  if (l.createdAt) web.push(['Received', fmtDay(l.createdAt)]);
+  if (l.source)    web.push(['Source', l.source]);
+  if (l.language)  web.push(['Language', l.language]);
+  if (l.income)    web.push(['Income', l.income]);
+  if (l.spend)     web.push(['Asked for', l.spend]);
+
+  const fbBox = (id && FEEDBACK_STAGES.includes(l.stage) && digits10(l.mobile)) ? el('div',{class:'fb'},
+    el('p',{}, 'They have it. Ask how it went.',
+      el('small',{}, l.feedbackAsked ? ('Asked on '+fmtDay(l.feedbackAsked)+'.') : 'Opens WhatsApp with a short message and the feedback link, in their language.')),
+    el('button',{type:'button',onclick:()=>askFeedback(l)}, l.feedbackAsked ? 'Ask again' : 'Ask for feedback')) : null;
+
+  $('#sheet').replaceChildren(
+    el('div',{class:'shead'},
+      el('h2',{id:'sTitle'}, id?(l.name||'Edit lead'):'New lead'),
+      el('button',{class:'x',onclick:closeSheet,'aria-label':'Close'},'×')),
+
+    fbBox,
+    web.length ? head('From the website') : null,
+    web.length ? el('dl',{class:'web'}, ...web.map(([k,v])=>[el('dt',{},k), el('dd',{},v)])) : null,
+
+    head('Person'),
+    f('Name', inp('iName',l.name,{placeholder:'Full name'})),
+    el('div',{class:'row'},
+      f('Mobile', inp('iMob',l.mobile,{placeholder:'10-digit number',inputmode:'numeric'})),
+      f('Age',    inp('iAge',l.age,{placeholder:'Years',inputmode:'numeric'}))),
+    el('div',{class:'row'},
+      f('City', inp('iCity',l.city,{placeholder:'City'})),
+      f('Net monthly salary', inp('iSal',l.salary,{placeholder:l.income?('Form said '+l.income):'Take-home, e.g. 45000',inputmode:'decimal'}))),
+    el('div',{class:'row'},
+      f('Employment', inp('iEmp',l.employment,{placeholder:'Salaried / Self-employed'})),
+      f('PAN', inp('iPan','',{placeholder:l.panLast4?('•••••• '+l.panLast4):'ABCDE1234F',
+                              autocapitalize:'characters',spellcheck:'false',maxlength:'10',
+                              autocomplete:'off',autocorrect:'off','data-lpignore':'true'}),
+        l.panLast4 ? 'On file, ending '+l.panLast4+'. Retype only to correct it.'
+                   : 'Checked for a valid format. Only the last 4 characters are stored.')),
+
+    head('Product'),
+    el('div',{class:'row'},
+      f('Product', prodSel),
+      f('Bank they want', sel('iBank',[''].concat(BANKS),l.bank))),
+    el('div',{class:'row'},
+      f('Bank category', sel('iCat',[''].concat(BANKCATS),l.bankCat)),
+      f('Card or scheme', inp('iCard',l.card,{placeholder:'e.g. Millennia'}))),
+    loanBox,
+    f('What they qualify for', sel('iElig',ELIG,l.eligibility)),
+
+    head('Progress'),
+    f('Stage', stageBtns),
+    f('Next follow-up', inp('iFu',l.followUp,{type:'date'})),
+    f('Notes', el('textarea',{id:'iNotes',placeholder:'What was said, what they need next'},l.notes||'')),
+
+    head('Money'),
+    el('div',{class:'row'},
+      f('Processing fee', inp('iFee',l.fee,{placeholder:'Charged to customer',inputmode:'decimal'})),
+      f('Payout received', inp('iPay',l.payout,{placeholder:'Your commission',inputmode:'decimal'}))),
+    el('div',{class:'row'},
+      f('Referred by', inp('iRef',l.referredBy,{placeholder:'Name or mobile'})),
+      f('Referral bonus', sel('iBonus', BONUS, l.bonus))),
+
+    el('div',{class:'acts'},
+      el('button',{class:'btn go',id:'bSave',onclick:saveLead}, id?'Save changes':'Add lead'),
+      id?el('button',{class:'btn del',onclick:()=>removeLead(id)},'Delete'):null),
+    el('p',{class:'hint'}, id ? 'Saved straight into the Leads sheet.' : 'Added as a new row in the Leads sheet.')
+  );
+  syncLoan();
+  $('#scrim').classList.add('on'); $('#sheet').classList.add('on');
+}
+
+function closeSheet(){
+  // Wipe the typed PAN out of the page on close, so the full number never lingers.
+  const pan=$('#iPan'); if(pan) pan.value='';
+  $('#scrim').classList.remove('on'); $('#sheet').classList.remove('on'); editing=null;
+}
+
+function readSheet(){
+  const g=i=>($('#'+i)?.value||'').trim();
+  const stage=$('#sheet').querySelector('.st[aria-pressed=true]')?.dataset.k||'new';
+  const d = {
+    name:g('iName'), mobile:digits10(g('iMob')), city:g('iCity'), age:g('iAge'),
+    salary:g('iSal'), employment:g('iEmp'),
+    product:g('iProd'), bankCat:g('iCat'), bank:g('iBank'), card:g('iCard'),
+    loanAmount:g('iAmt'), tenure:g('iTen'), eligibility:g('iElig'),
+    stage, followUp:g('iFu'), notes:g('iNotes'),
+    fee:g('iFee'), payout:g('iPay'), referredBy:g('iRef'), bonus:g('iBonus')
+  };
+  // Only the last four characters of a PAN are kept. See the note in the form.
+  const pan=g('iPan');
+  if(pan) d.panLast4 = panTail(pan);
+  return d;
+}
+
+async function saveLead(){
+  const d=readSheet();
+  if(!d.name){ note('A name is needed to save this lead.',true); $('#iName')?.focus(); return; }
+  const panTyped=($('#iPan')?.value||'').trim();
+  if(panTyped && !panValid(panTyped)){
+    note('That PAN does not look right. The format is five letters, four digits, one letter.',true);
+    $('#iPan')?.focus(); return;
+  }
+  const btn=$('#bSave'); if(btn) btn.disabled=true;
+  try{
+    if(editing){ await api('saveLead', editing, toRow(d)); note('Saved.'); }
+    else       { await api('addLead', toRow(d)); note('Lead added.'); }
+    closeSheet(); load(true);
+  }catch(e){ note('Could not save: '+errText(e),true); if(btn) btn.disabled=false; }
+}
+async function removeLead(id){
+  const l=LEADS.find(x=>x.id===id);
+  if(!confirm(`Delete ${l?.name||'this lead'}? This removes the row from the Leads sheet and cannot be undone.`)) return;
+  try{ await api('deleteLead', id); note('Deleted.'); closeSheet(); load(true); }
+  catch(e){ note('Could not delete: '+errText(e),true); }
+}
+
+/* ---------- import: bring in old leads (old CRM export, Netlify CSV) ---------- */
+function parseCSV(text){
+  const rows=[]; let row=[],cur='',q=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){ if(c==='"'){ if(text[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=c; }
+    else if(c==='"') q=true;
+    else if(c===','){ row.push(cur); cur=''; }
+    else if(c==='\n'){ row.push(cur); rows.push(row); row=[]; cur=''; }
+    else if(c!=='\r') cur+=c;
+  }
+  if(cur||row.length){ row.push(cur); rows.push(row); }
+  return rows.filter(r=>r.some(c=>c.trim()));
+}
+const PICK={name:['name','full name','your name'],mobile:['mobile','phone','number','contact'],
+  city:['city','town','location'],salary:['salary','net salary','net monthly salary'],income:['income','monthly income'],
+  employment:['employment','employment type','occupation'],notes:['message','notes','comment'],
+  card:['card'],bank:['bank','bank wanted'],age:['age'],product:['product','loan','requirement'],
+  referredBy:['referred by','referrer','refer','referredby'],language:['language','preferred language'],
+  spend:['spend','spends on'],stage:['stage'],followUp:['followup','follow-up','next follow-up'],
+  panLast4:['panlast4','pan last 4'],bankCat:['bankcat','bank category'],loanAmount:['loanamount','loan amount'],
+  tenure:['tenure','tenure (months)'],eligibility:['eligibility'],fee:['fee','processing fee'],
+  payout:['payout','payout received'],bonus:['bonus','referral bonus']};
+async function doImport(text){
+  const rows=parseCSV(text);
+  if(rows.length<2){ note('That did not look like CSV with a header row.',true); return; }
+  const head=rows[0].map(h=>h.trim().toLowerCase());
+  const col={}; for(const [k,names] of Object.entries(PICK)){
+    const i=head.findIndex(h=>names.includes(h)); if(i>-1) col[k]=i;
+  }
+  if(col.name===undefined){ note('No "name" column found, so nothing was imported.',true); return; }
+  const list = rows.slice(1).map(r=>{
+    const d={}; for(const [k,i] of Object.entries(col)) d[k]=(r[i]||'').trim();
+    d.mobile=digits10(d.mobile);
+    d.stage = d.stage ? stageKey(d.stage) : 'new';
+    d.eligibility = byLabel(ELIG, d.eligibility); d.bonus = bonusKey(d.bonus);
+    if(!d.followUp || !/^\d{4}-\d{2}-\d{2}$/.test(d.followUp)) d.followUp = todayISO();
+    d.source = 'Import';
+    return toRow(d);
+  });
+  try{
+    const r = await api('importLeads', list);
+    note(`Imported ${r.added}. Skipped ${r.skipped} (no name, or that mobile is already in the sheet).`);
+    closeSheet(); load(true);
+  }catch(e){ note('Import failed: '+errText(e),true); }
+}
+function importSheet(){
+  editing=null;
+  $('#sheet').replaceChildren(
+    el('div',{class:'shead'}, el('h2',{id:'sTitle'},'Import leads'),
+      el('button',{class:'x',onclick:closeSheet,'aria-label':'Close'},'×')),
+    el('div',{class:'f'}, el('label',{},'Paste CSV, including its header row'),
+      el('textarea',{id:'iCsv',style:'min-height:180px',placeholder:'name,mobile,city,income\nAnil Kumar,9876543210,Kochi,45000'})),
+    el('div',{class:'acts'}, el('button',{class:'btn go',onclick:()=>doImport($('#iCsv').value)},'Import')),
+    el('p',{class:'hint'},'Use this once, to bring leads across from the old CRM (its Export button) or a Netlify CSV. New website leads arrive here by themselves. A mobile number already in the sheet is skipped, so importing twice is safe.')
+  );
+  $('#scrim').classList.add('on'); $('#sheet').classList.add('on');
+}
+
+/* ---------- wiring ---------- */
+$('#fStage').replaceChildren(el('option',{value:''},'All stages'),
+  ...STAGES.map(s=>el('option',{value:s.k},s.t)));
+$('#q').addEventListener('input',render);
+$('#fStage').addEventListener('change',render);
+$('#bNew').addEventListener('click',()=>openSheet(null));
+$('#bImport').addEventListener('click',importSheet);
+$('#bRefresh').addEventListener('click',()=>load(false));
+$('#scrim').addEventListener('click',closeSheet);
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeSheet(); });
+render();
+load(true);
+api('getSheetUrl').then(u=>{ const a=$('#bSheet'); a.href=u; a.hidden=false; }).catch(()=>{});
+// New website leads: look again every minute while the CRM is open and on
+// screen, and whenever you come back to it (not while you are editing one).
+setInterval(()=>{ if(!document.hidden && !$('#sheet').classList.contains('on')) load(true); }, 60000);
+document.addEventListener('visibilitychange',()=>{ if(!document.hidden && !$('#sheet').classList.contains('on')) load(true); });
+</script>
+</body>
+</html>

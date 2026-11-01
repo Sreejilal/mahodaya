@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Feedback | Mahodaya Credit Solutions</title>
+<meta name="description" content="Tell Mahodaya Credit Solutions how your card or loan enquiry went."/>
+<!-- Sent to customers by link (the CRM's "Ask for feedback" button), so search
+     engines don't need it. -->
+<meta name="robots" content="noindex, follow"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A1628'/%3E%3Ctext x='16' y='23' font-size='19' font-family='serif' font-weight='700' fill='%23C9A84C' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  /* Same tokens as index.html and loans.html, so it is one site. */
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --navy: #0A1628;
+    --navy-mid: #112240;
+    --white: #FDFCF8;
+    --text-muted: #8A9BB0;
+    --green: #2ECC71;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'DM Sans', sans-serif; background:var(--navy); color:var(--white); overflow-x:hidden; min-height:100vh; display:flex; flex-direction:column; }
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible { outline:2px solid var(--gold-light); outline-offset:3px; }
+
+  nav { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 40px; border-bottom:1px solid rgba(201,168,76,0.15); }
+  .nav-logo { font-family:'Playfair Display', serif; font-size:22px; color:var(--gold); letter-spacing:.5px; text-decoration:none; }
+  .nav-logo span { color:var(--white); font-weight:700; }
+
+  main { flex:1; width:100%; max-width:600px; margin:0 auto; padding:clamp(32px, 6vw, 56px) 24px; }
+  .langs { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:26px; }
+  .lang-pill {
+    padding:10px 16px; min-height:44px; border-radius:100px; font-size:13px; font-weight:500;
+    border:1px solid rgba(201,168,76,0.25); color:var(--gold-light); background:rgba(201,168,76,0.07);
+    cursor:pointer; font-family:'DM Sans', sans-serif;
+  }
+  .lang-pill.active { background:#16294A; border-color:var(--gold); font-weight:700; }
+  h1 { font-family:'Playfair Display', serif; font-size:clamp(30px, 6vw, 42px); line-height:1.2; text-align:center; margin-bottom:12px; overflow-wrap:anywhere; }
+  html:not([lang="en"]) h1 { font-size:clamp(25px, 5.4vw, 36px); }   /* wider scripts: one long Malayalam word was wider than a phone */
+  .sub { color:var(--text-muted); font-size:15.5px; line-height:1.7; text-align:center; max-width:46ch; margin:0 auto 28px; }
+
+  .form-wrap { background:var(--navy-mid); border:1px solid rgba(201,168,76,0.15); border-radius:20px; padding:32px; }
+  .group { display:flex; flex-direction:column; gap:8px; margin-bottom:18px; min-width:0; }
+  .group > label, .group > .lbl { font-size:13px; font-weight:500; color:var(--text-muted); }
+  input[type=text], input[type=tel], select, textarea {
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px;
+    padding:12px 16px; min-height:46px; color:var(--white); font-size:14px; font-family:'DM Sans', sans-serif; outline:none; width:100%; min-width:0;
+  }
+  input:focus, select:focus, textarea:focus { border-color:var(--gold); }
+  select option { background:var(--navy-mid); }
+  textarea { min-height:110px; resize:vertical; line-height:1.6; }
+
+  /* The stars: the only required part. */
+  .stars { display:flex; gap:6px; }
+  .star { width:52px; height:52px; border-radius:12px; border:1px solid rgba(201,168,76,0.25); background:rgba(255,255,255,0.03); cursor:pointer; display:grid; place-items:center; transition:transform .15s, background .15s, border-color .15s; }
+  .star svg { width:28px; height:28px; fill:none; stroke:var(--gold); stroke-width:1.6; stroke-linejoin:round; }
+  .star.on { background:rgba(201,168,76,0.16); border-color:var(--gold); }
+  .star.on svg { fill:var(--gold); }
+  .star:hover { transform:translateY(-2px); }
+  .stars.need .star { border-color:#E0685F; }
+
+  .check { display:flex; align-items:flex-start; gap:10px; margin:4px 0 20px; padding:12px 14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; }
+  .check input { margin-top:3px; width:16px; height:16px; accent-color:var(--gold); flex-shrink:0; cursor:pointer; }
+  .check label { font-size:12.5px; color:var(--text-muted); line-height:1.6; cursor:pointer; min-width:0; overflow-wrap:anywhere; }
+
+  .send {
+    width:100%; background:linear-gradient(180deg, #F5D97E, #DDB958); color:#1A1204; border:none;
+    box-shadow:0 4px 20px rgba(232,201,106,0.3); padding:16px; border-radius:8px; font-weight:700; font-size:16px;
+    cursor:pointer; font-family:'DM Sans', sans-serif;
+  }
+  .send:hover { background:linear-gradient(180deg, #FFE9A0, #EBC96A); }
+  .send:disabled { opacity:.6; cursor:wait; }
+  .msg { min-height:20px; margin-top:12px; font-size:13px; text-align:center; color:#F3C8C3; }
+  .bot { position:absolute; left:-9999px; }
+
+  .sent-ok { text-align:center; padding:28px 8px; }
+  .sent-ok svg { width:62px; height:62px; fill:none; stroke:var(--green); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; margin-bottom:18px; }
+  .sent-ok circle { stroke-opacity:.35; }
+  .sent-ok h2 { font-family:'Playfair Display', serif; font-size:24px; margin-bottom:8px; }
+  .sent-ok p { color:var(--text-muted); font-size:15px; line-height:1.7; }
+
+  footer { text-align:center; padding:28px 16px; border-top:1px solid rgba(255,255,255,0.06); color:var(--text-muted); font-size:12px; line-height:1.8; }
+  footer a { color:var(--gold-light); }
+
+  @media (max-width:600px){
+    nav { padding:14px 16px; }
+    .nav-logo { font-size:20px; }
+    main { padding-left:16px; padding-right:16px; }
+    .form-wrap { padding:22px 16px; }
+    .star { width:48px; height:48px; }
+  }
+  @media (max-width:360px){ .star { width:42px; height:42px; } .star svg { width:24px; height:24px; } }
+  @media (prefers-reduced-motion: reduce){ .star { transition:none; } .star:hover { transform:none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html" data-keep-lang>Mahodaya <span>Credit Solutions</span></a>
+</nav>
+
+<main>
+  <div class="langs" id="langBar">
+    <button class="lang-pill active" data-lang="en" onclick="setLang('en')">English</button>
+    <button class="lang-pill" data-lang="ml" onclick="setLang('ml')">മലയാളം</button>
+    <button class="lang-pill" data-lang="ta" onclick="setLang('ta')">தமிழ்</button>
+    <button class="lang-pill" data-lang="te" onclick="setLang('te')">తెలుగు</button>
+    <button class="lang-pill" data-lang="kn" onclick="setLang('kn')">ಕನ್ನಡ</button>
+    <button class="lang-pill" data-lang="hi" onclick="setLang('hi')">हिन्दी</button>
+  </div>
+  <h1 data-i18n="fbTitle">How did we do?</h1>
+  <p class="sub" data-i18n="fbSub">Thank you for letting us help you. Tell us honestly how it went. Only the stars are needed.</p>
+
+  <div class="form-wrap" id="fbWrap">
+    <!-- A real Netlify form: Netlify finds it at deploy time and keeps every
+         submission under Forms, "feedback". Nothing goes to the leads Sheet. -->
+    <form name="feedback" id="fbForm" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="feedback"/>
+      <p class="bot"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"/></label></p>
+      <input type="hidden" name="rating" id="fbRating"/>
+      <input type="hidden" name="page_language" id="fbPageLang" value="en"/>
+
+      <div class="group">
+        <span class="lbl" id="fbStarsL" data-i18n="fbStars">Your rating</span>
+        <div class="stars" id="fbStars" role="group" aria-labelledby="fbStarsL"></div>
+      </div>
+      <div class="group">
+        <label for="fbGot" data-i18n="fbGot">What did you get?</label>
+        <select id="fbGot" name="got">
+          <option value="" data-i18n="o_pick">Choose one</option>
+          <option value="Credit card" data-i18n="o_card">A credit card</option>
+          <option value="Loan" data-i18n="o_loan">A loan</option>
+          <option value="Still waiting" data-i18n="o_wait">Still waiting</option>
+          <option value="Did not go ahead" data-i18n="o_no">I did not go ahead</option>
+        </select>
+      </div>
+      <div class="group">
+        <label for="fbName" data-i18n="fbName">Your name (optional)</label>
+        <input id="fbName" type="text" name="name" autocomplete="name"/>
+      </div>
+      <div class="group">
+        <label for="fbMobile" data-i18n="fbMobile">Mobile number (optional, so we know who you are)</label>
+        <input id="fbMobile" type="tel" name="mobile" inputmode="numeric" autocomplete="tel-national" oninput="this.value=this.value.replace(/[^0-9]/g,'').replace(/^(?:91|0)(?=[0-9]{10})/,'').slice(0,10)"/>
+      </div>
+      <div class="group">
+        <label for="fbComment" data-i18n="fbWell">What went well, or what should we do better? (optional)</label>
+        <textarea id="fbComment" name="comment" maxlength="2000" placeholder="Anything at all" data-ph="ph_well"></textarea>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="fbShow" name="show_ok" value="yes"/>
+        <label for="fbShow" data-i18n="fbShow">You may show my first name and this comment on your website</label>
+      </div>
+      <button class="send" type="submit" id="fbSend" data-i18n="fbSend">Send feedback</button>
+      <p class="msg" id="fbMsg" role="alert"></p>
+    </form>
+  </div>
+</main>
+
+<footer>
+  <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.01e</span><br/>
+  &copy; 2026 Mahodaya Credit Solutions &middot; <a href="index.html#privacy" data-keep-lang data-i18n="privLink">Privacy Policy</a>
+</footer>
+
+<script>
+console.log("%cMahodaya Credit Solutions, feedback page, build v2026.11.01e", "color:#C9A84C;font-weight:bold");
+const T = {
+  en:{fbTitle:'How did we do?', fbSub:'Thank you for letting us help you. Tell us honestly how it went. Only the stars are needed.', fbStars:'Your rating', fbGot:'What did you get?', o_pick:'Choose one', o_card:'A credit card', o_loan:'A loan', o_wait:'Still waiting', o_no:'I did not go ahead', fbName:'Your name (optional)', fbMobile:'Mobile number (optional, so we know who you are)', fbWell:'What went well, or what should we do better? (optional)', ph_well:'Anything at all', fbShow:'You may show my first name and this comment on your website', fbSend:'Send feedback', fbNeedStars:'Please pick 1 to 5 stars.', fbErr:'Could not send. Please try again in a moment.', okTitle:'Thank you.', okBody:'Your feedback reached us. It helps more than you think.', privLink:'Privacy Policy'},
+  ml:{fbTitle:'ഞങ്ങളുടെ സേവനം എങ്ങനെയുണ്ടായിരുന്നു?', fbSub:'ഞങ്ങളെ സഹായിക്കാൻ അനുവദിച്ചതിന് നന്ദി. അനുഭവം സത്യസന്ധമായി പറയൂ. നക്ഷത്രങ്ങൾ മാത്രം മതി.', fbStars:'നിങ്ങളുടെ റേറ്റിംഗ്', fbGot:'നിങ്ങൾക്ക് എന്താണ് ലഭിച്ചത്?', o_pick:'ഒന്ന് തിരഞ്ഞെടുക്കുക', o_card:'ക്രെഡിറ്റ് കാർഡ്', o_loan:'ലോൺ', o_wait:'ഇപ്പോഴും കാത്തിരിക്കുന്നു', o_no:'ഞാൻ മുന്നോട്ട് പോയില്ല', fbName:'നിങ്ങളുടെ പേര് (നിർബന്ധമില്ല)', fbMobile:'മൊബൈൽ നമ്പർ (നിർബന്ധമില്ല, നിങ്ങൾ ആരെന്ന് അറിയാൻ)', fbWell:'എന്താണ് നന്നായത്, അല്ലെങ്കിൽ എന്ത് മെച്ചപ്പെടുത്തണം? (നിർബന്ധമില്ല)', ph_well:'എന്തും എഴുതാം', fbShow:'എന്റെ ആദ്യ പേരും ഈ അഭിപ്രായവും നിങ്ങളുടെ വെബ്സൈറ്റിൽ കാണിക്കാം', fbSend:'ഫീഡ്ബാക്ക് അയയ്ക്കുക', fbNeedStars:'ദയവായി 1 മുതൽ 5 വരെ നക്ഷത്രങ്ങൾ തിരഞ്ഞെടുക്കുക.', fbErr:'അയയ്ക്കാൻ കഴിഞ്ഞില്ല. അൽപ്പസമയത്തിനു ശേഷം വീണ്ടും ശ്രമിക്കുക.', okTitle:'നന്ദി.', okBody:'നിങ്ങളുടെ ഫീഡ്ബാക്ക് ഞങ്ങൾക്ക് ലഭിച്ചു. ഇത് വലിയ സഹായമാണ്.', privLink:'സ്വകാര്യതാ നയം'},
+  ta:{fbTitle:'எங்கள் சேவை எப்படி இருந்தது?', fbSub:'உங்களுக்கு உதவ வாய்ப்பளித்ததற்கு நன்றி. அனுபவத்தை நேர்மையாகச் சொல்லுங்கள். நட்சத்திரங்கள் மட்டும் போதும்.', fbStars:'உங்கள் மதிப்பீடு', fbGot:'உங்களுக்கு என்ன கிடைத்தது?', o_pick:'ஒன்றைத் தேர்ந்தெடுக்கவும்', o_card:'கிரெடிட் கார்டு', o_loan:'கடன்', o_wait:'இன்னும் காத்திருக்கிறேன்', o_no:'நான் தொடரவில்லை', fbName:'உங்கள் பெயர் (விருப்பத்தேர்வு)', fbMobile:'மொபைல் எண் (விருப்பத்தேர்வு, நீங்கள் யார் என்று தெரிந்துகொள்ள)', fbWell:'எது நன்றாக இருந்தது, அல்லது எதை மேம்படுத்த வேண்டும்? (விருப்பத்தேர்வு)', ph_well:'எதை வேண்டுமானாலும் எழுதலாம்', fbShow:'என் முதல் பெயரையும் இந்தக் கருத்தையும் உங்கள் இணையதளத்தில் காட்டலாம்', fbSend:'கருத்தை அனுப்பு', fbNeedStars:'தயவுசெய்து 1 முதல் 5 நட்சத்திரங்களைத் தேர்ந்தெடுக்கவும்.', fbErr:'அனுப்ப முடியவில்லை. சிறிது நேரம் கழித்து மீண்டும் முயலவும்.', okTitle:'நன்றி.', okBody:'உங்கள் கருத்து எங்களுக்குக் கிடைத்தது. இது பெரிய உதவி.', privLink:'தனியுரிமைக் கொள்கை'},
+  te:{fbTitle:'మా సేవ ఎలా ఉంది?', fbSub:'మీకు సహాయం చేసే అవకాశం ఇచ్చినందుకు ధన్యవాదాలు. మీ అనుభవాన్ని నిజాయితీగా చెప్పండి. నక్షత్రాలు ఇస్తే చాలు.', fbStars:'మీ రేటింగ్', fbGot:'మీకు ఏమి లభించింది?', o_pick:'ఒకటి ఎంచుకోండి', o_card:'క్రెడిట్ కార్డు', o_loan:'లోన్', o_wait:'ఇంకా ఎదురుచూస్తున్నాను', o_no:'నేను ముందుకు వెళ్లలేదు', fbName:'మీ పేరు (ఐచ్ఛికం)', fbMobile:'మొబైల్ నంబర్ (ఐచ్ఛికం, మీరు ఎవరో తెలుసుకోవడానికి)', fbWell:'ఏది బాగుంది, లేదా ఏది మెరుగుపరచాలి? (ఐచ్ఛికం)', ph_well:'ఏదైనా రాయండి', fbShow:'నా మొదటి పేరు మరియు ఈ అభిప్రాయాన్ని మీ వెబ్‌సైట్‌లో చూపవచ్చు', fbSend:'అభిప్రాయం పంపండి', fbNeedStars:'దయచేసి 1 నుండి 5 నక్షత్రాలు ఎంచుకోండి.', fbErr:'పంపడం కుదరలేదు. కాసేపటి తర్వాత మళ్ళీ ప్రయత్నించండి.', okTitle:'ధన్యవాదాలు.', okBody:'మీ అభిప్రాయం మాకు అందింది. ఇది చాలా సహాయపడుతుంది.', privLink:'గోప్యతా విధానం'},
+  kn:{fbTitle:'ನಮ್ಮ ಸೇವೆ ಹೇಗಿತ್ತು?', fbSub:'ನಿಮಗೆ ಸಹಾಯ ಮಾಡಲು ಅವಕಾಶ ನೀಡಿದ್ದಕ್ಕೆ ಧನ್ಯವಾದಗಳು. ನಿಮ್ಮ ಅನುಭವವನ್ನು ಪ್ರಾಮಾಣಿಕವಾಗಿ ತಿಳಿಸಿ. ನಕ್ಷತ್ರಗಳು ಮಾತ್ರ ಸಾಕು.', fbStars:'ನಿಮ್ಮ ರೇಟಿಂಗ್', fbGot:'ನಿಮಗೆ ಏನು ಸಿಕ್ಕಿತು?', o_pick:'ಒಂದನ್ನು ಆಯ್ಕೆ ಮಾಡಿ', o_card:'ಕ್ರೆಡಿಟ್ ಕಾರ್ಡ್', o_loan:'ಸಾಲ', o_wait:'ಇನ್ನೂ ಕಾಯುತ್ತಿದ್ದೇನೆ', o_no:'ನಾನು ಮುಂದುವರಿಯಲಿಲ್ಲ', fbName:'ನಿಮ್ಮ ಹೆಸರು (ಐಚ್ಛಿಕ)', fbMobile:'ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (ಐಚ್ಛಿಕ, ನೀವು ಯಾರೆಂದು ತಿಳಿಯಲು)', fbWell:'ಏನು ಚೆನ್ನಾಗಿತ್ತು, ಅಥವಾ ಏನನ್ನು ಸುಧಾರಿಸಬೇಕು? (ಐಚ್ಛಿಕ)', ph_well:'ಏನನ್ನಾದರೂ ಬರೆಯಿರಿ', fbShow:'ನನ್ನ ಮೊದಲ ಹೆಸರು ಮತ್ತು ಈ ಅಭಿಪ್ರಾಯವನ್ನು ನಿಮ್ಮ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ತೋರಿಸಬಹುದು', fbSend:'ಅಭಿಪ್ರಾಯ ಕಳುಹಿಸಿ', fbNeedStars:'ದಯವಿಟ್ಟು 1 ರಿಂದ 5 ನಕ್ಷತ್ರಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಿ.', fbErr:'ಕಳುಹಿಸಲು ಆಗಲಿಲ್ಲ. ಸ್ವಲ್ಪ ಸಮಯದ ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.', okTitle:'ಧನ್ಯವಾದಗಳು.', okBody:'ನಿಮ್ಮ ಅಭಿಪ್ರಾಯ ನಮಗೆ ತಲುಪಿದೆ. ಇದು ತುಂಬಾ ಸಹಾಯ ಮಾಡುತ್ತದೆ.', privLink:'ಗೌಪ್ಯತಾ ನೀತಿ'},
+  hi:{fbTitle:'हमारी सेवा कैसी रही?', fbSub:'हमें आपकी मदद करने का मौका देने के लिए धन्यवाद। अपना अनुभव ईमानदारी से बताइए। सिर्फ सितारे देना काफी है।', fbStars:'आपकी रेटिंग', fbGot:'आपको क्या मिला?', o_pick:'एक चुनें', o_card:'क्रेडिट कार्ड', o_loan:'लोन', o_wait:'अभी इंतज़ार है', o_no:'मैंने आगे नहीं बढ़ाया', fbName:'आपका नाम (वैकल्पिक)', fbMobile:'मोबाइल नंबर (वैकल्पिक, ताकि हम जान सकें कि आप कौन हैं)', fbWell:'क्या अच्छा रहा, या हमें क्या बेहतर करना चाहिए? (वैकल्पिक)', ph_well:'कुछ भी लिखें', fbShow:'आप मेरा पहला नाम और यह टिप्पणी अपनी वेबसाइट पर दिखा सकते हैं', fbSend:'फीडबैक भेजें', fbNeedStars:'कृपया 1 से 5 सितारे चुनें।', fbErr:'भेजा नहीं जा सका। थोड़ी देर बाद फिर कोशिश करें।', okTitle:'धन्यवाद।', okBody:'आपका फीडबैक हमें मिल गया। इससे बहुत मदद मिलती है।', privLink:'गोपनीयता नीति'}
+};
+let CUR = 'en', RATING = 0;
+
+function setLang(code){
+  if (!T[code]) code = 'en';
+  CUR = code;
+  const d = T[code];
+  document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.getAttribute('data-i18n'); if (d[k]) el.textContent = d[k]; });
+  document.querySelectorAll('[data-ph]').forEach(el => { const k = el.getAttribute('data-ph'); if (d[k]) el.placeholder = d[k]; });
+  document.querySelectorAll('#langBar .lang-pill').forEach(b => b.classList.toggle('active', b.dataset.lang === code));
+  document.documentElement.lang = code;
+  const pl = document.getElementById('fbPageLang'); if (pl) pl.value = code;
+  document.querySelectorAll('a[data-keep-lang]').forEach(a => {
+    const [path, hash] = a.getAttribute('href').replace(/\?lang=[a-z]+/, '').split('#');
+    a.setAttribute('href', path + (code !== 'en' ? '?lang=' + code : '') + (hash ? '#' + hash : ''));
+  });
+}
+
+// Five star buttons; picking one fills it and every star before it.
+(function(){
+  const box = document.getElementById('fbStars');
+  const path = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.7 5.5 6 .9-4.4 4.2 1 6-5.3-2.8-5.3 2.8 1-6L3.3 9.6l6-.9z"/></svg>';
+  for (let i = 1; i <= 5; i++) {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'star'; b.dataset.v = i;
+    b.setAttribute('aria-label', i + ' / 5'); b.setAttribute('aria-pressed', 'false');
+    b.innerHTML = path;
+    b.addEventListener('click', () => {
+      RATING = i;
+      document.getElementById('fbRating').value = i;
+      box.classList.remove('need');
+      box.querySelectorAll('.star').forEach(s => { const on = +s.dataset.v <= i; s.classList.toggle('on', on); s.setAttribute('aria-pressed', String(+s.dataset.v === i)); });
+      document.getElementById('fbMsg').textContent = '';
+    });
+    box.appendChild(b);
+  }
+})();
+
+document.getElementById('fbForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const d = T[CUR] || T.en, msg = document.getElementById('fbMsg'), btn = document.getElementById('fbSend');
+  if (!RATING) { msg.textContent = d.fbNeedStars; document.getElementById('fbStars').classList.add('need'); return; }
+  btn.disabled = true; msg.textContent = '';
+  fetch('/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: new URLSearchParams(new FormData(this)).toString()
+  }).then(r => {
+    if (!r.ok) throw new Error('status ' + r.status);
+    const wrap = document.getElementById('fbWrap');
+    wrap.innerHTML = '<div class="sent-ok"><svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l8 8 15-16"/></svg><h2></h2><p></p></div>';
+    wrap.querySelector('h2').textContent = d.okTitle;
+    wrap.querySelector('p').textContent = d.okBody;
+  }).catch(() => { msg.textContent = d.fbErr; btn.disabled = false; });
+});
+
+// The CRM's link can carry the language and who it is for:
+// feedback.html?lang=ml&n=<name>&m=<mobile>&got=<Credit card|Loan>
+(function(){
+  const q = new URLSearchParams(location.search);
+  setLang(q.get('lang') || 'en');
+  const n = (q.get('n') || '').slice(0, 60), m = (q.get('m') || '').replace(/\D/g, '').slice(-10), got = q.get('got') || '';
+  if (n) document.getElementById('fbName').value = n;
+  if (m) document.getElementById('fbMobile').value = m;
+  const sel = document.getElementById('fbGot');
+  if (got && [...sel.options].some(o => o.value === got)) sel.value = got;
+})();
+</script>
+</body>
+</html>

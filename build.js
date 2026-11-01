@@ -26,7 +26,7 @@ function loadEnv() {
 
 const env = loadEnv();
 // Every page of the site. Each one goes to dist/ with the same settings filled in.
-const PAGES = ['index.html', 'loans.html'];
+const PAGES = ['index.html', 'loans.html', 'feedback.html'];
 
 PAGES.forEach(page => {
   if (!fs.existsSync(path.join(__dirname, page))) {

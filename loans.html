@@ -527,6 +527,26 @@
         </select>
       </div>
     </div>
+    <!-- Optional (not checked in handleLoanSubmit). Bank names stay in English. -->
+    <div class="form-group">
+      <label for="lfBank" data-i18n="fBank">Bank you want (optional)</label>
+      <select id="lfBank" name="bank">
+        <option value="" data-i18n="o_bankAny">No preference</option>
+        <option>HDFC Bank</option>
+        <option>ICICI Bank</option>
+        <option>State Bank of India</option>
+        <option>Axis Bank</option>
+        <option>IDFC FIRST Bank</option>
+        <option>Kotak Mahindra Bank</option>
+        <option>IndusInd Bank</option>
+        <option>RBL Bank</option>
+        <option>AU Small Finance Bank</option>
+        <option>YES Bank</option>
+        <option>Standard Chartered</option>
+        <option>HSBC</option>
+        <option>Federal Bank</option>
+      </select>
+    </div>
     <div class="form-row">
       <div class="form-group">
         <label for="lfIncome" data-i18n="fIncome">Monthly Income</label>
@@ -591,14 +611,14 @@
     <a href="index.html#contact" data-keep-lang data-i18n="cfLink">Contact</a>
   </div>
   <div class="footer-bottom">
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.01d</span><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.01e</span><br/>
     &copy; 2026 Mahodaya Credit Solutions<br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
 </footer>
 
 <script>
-console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.01d", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.01e", "color:#C9A84C;font-weight:bold");
 
 // ===================================================================
 //  Leads go to the same two places as the card form on index.html.
@@ -835,6 +855,17 @@ const T_EMI = {
 };
 Object.keys(T_EMI).forEach(l => { T[l] = Object.assign(T[l] || {}, T_EMI[l]); });
 
+// Optional "Bank you want" field (v2026.11.01e), same words as index.html.
+const T_BANK = {
+  en:{fBank:'Bank you want (optional)', o_bankAny:'No preference'},
+  ml:{fBank:'നിങ്ങൾക്ക് വേണ്ട ബാങ്ക് (നിർബന്ധമില്ല)', o_bankAny:'പ്രത്യേക താൽപ്പര്യമില്ല'},
+  ta:{fBank:'நீங்கள் விரும்பும் வங்கி (விருப்பத்தேர்வு)', o_bankAny:'குறிப்பிட்ட விருப்பம் இல்லை'},
+  te:{fBank:'మీకు కావలసిన బ్యాంకు (ఐచ్ఛికం)', o_bankAny:'ప్రత్యేక ఇష్టం లేదు'},
+  kn:{fBank:'ನಿಮಗೆ ಬೇಕಾದ ಬ್ಯಾಂಕ್ (ಐಚ್ಛಿಕ)', o_bankAny:'ಯಾವುದೇ ಆದ್ಯತೆ ಇಲ್ಲ'},
+  hi:{fBank:'आपको कौन सा बैंक चाहिए (वैकल्पिक)', o_bankAny:'कोई खास पसंद नहीं'}
+};
+Object.keys(T_BANK).forEach(l => { T[l] = Object.assign(T[l] || {}, T_BANK[l]); });
+
 let CUR = 'en', TYPE = 'pl';
 const TYPE_NAME = {pl:'Personal loan', hl:'Home loan', cl:'Car loan', bl:'Business loan'};
 
@@ -936,7 +967,8 @@ function handleLoanSubmit(){
     income: val('income'),
     employment: val('employment'),
     language: val('language'),
-    spend: 'LOAN: ' + val('loan') + ', ' + val('amount'),
+    spend: 'LOAN: ' + val('loan') + ', ' + val('amount') + (val('bank') ? ' | Bank: ' + val('bank') : ''),
+    bank: val('bank'),
     page_language: CUR
   };
   try {
