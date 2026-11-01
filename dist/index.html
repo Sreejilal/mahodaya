@@ -4,8 +4,12 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Mahodaya Credit Solutions | Credit Card Advisory in 6 Indian Languages</title>
-<meta name="description" content="Free credit card guidance in Malayalam, Tamil, Telugu, Kannada, Hindi and English. Compare lifetime free and annual fee cards from all major Indian banks. Authorised DSA partner."/>
-<meta name="keywords" content="credit card India, lifetime free credit card, credit card Malayalam, credit card advisor Kerala, LTF credit card 2026"/>
+<meta name="description" content="Mahodaya Credit Solutions (Mahodaya Finance): free credit card guidance in Malayalam, Tamil, Telugu, Kannada, Hindi and English. Compare lifetime free and annual fee cards from all major Indian banks. Authorised DSA partner."/>
+<meta name="keywords" content="Mahodaya Finance, Mahodaya Credit Solutions, credit card India, lifetime free credit card, credit card Malayalam, credit card advisor Kerala, LTF credit card 2026"/>
+<link rel="canonical" href="https://mahodaya.netlify.app/"/>
+<!-- Tells Google the business name, and that "Mahodaya Finance" searches mean us.
+     The name shown on the page stays Mahodaya Credit Solutions. -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Mahodaya Credit Solutions","alternateName":["Mahodaya Finance","Mahodaya"],"url":"https://mahodaya.netlify.app/","description":"Free credit card and loan guidance in Malayalam, Tamil, Telugu, Kannada, Hindi and English. Authorised HDFC Bank DSA.","areaServed":"IN"}</script>
 <meta name="robots" content="index, follow"/>
 <meta property="og:title" content="Mahodaya Credit Solutions"/>
 <meta property="og:description" content="Find the right credit card in your own language. Free expert guidance, Pan India."/>
@@ -13,16 +17,17 @@
 <!-- ══ SOCIAL PREVIEW ══
      WhatsApp/Facebook require the FULL url, not a relative path.
      If you ever rename the Netlify site, change the address on the
-     3 lines below (og:url, og:image, twitter:image) to match. -->
-<meta property="og:url" content="https://whimsical-monstera-3825c6.netlify.app/"/>
-<meta property="og:image" content="https://whimsical-monstera-3825c6.netlify.app/og-image.png"/>
+     3 lines below (og:url, og:image, twitter:image), the canonical link and
+     the ld+json above, and the same tags in loans.html, to match. -->
+<meta property="og:url" content="https://mahodaya.netlify.app/"/>
+<meta property="og:image" content="https://mahodaya.netlify.app/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:site_name" content="Mahodaya Credit Solutions"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Mahodaya Credit Solutions"/>
 <meta name="twitter:description" content="Find the right credit card in your own language. 107 cards from 14 banks. Free expert guidance."/>
-<meta name="twitter:image" content="https://whimsical-monstera-3825c6.netlify.app/og-image.png"/>
+<meta name="twitter:image" content="https://mahodaya.netlify.app/og-image.png"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A1628'/%3E%3Ctext x='16' y='23' font-size='19' font-family='serif' font-weight='700' fill='%23C9A84C' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -79,6 +84,7 @@
     font-weight: 600;
     font-size: 14px;
     text-decoration: none;
+    white-space: nowrap;   /* one line, never "Apply / Now" */
     transition: background 0.2s;
   }
   .nav-cta:hover { background: linear-gradient(180deg, #FFE9A0, #EBC96A); box-shadow: 0 5px 20px rgba(232,201,106,0.45); }
@@ -285,6 +291,10 @@
     margin-bottom: 16px;
     line-height: 1.2;
   }
+  /* The card-browser title's gold list of card levels: a small line under the
+     heading, not a second headline (it filled 3 lines on a phone). */
+  #ltf-cards .section-title br { display: none; }
+  #ltf-cards .section-title span { display: block; margin-top: 10px; font-size: .46em; font-weight: 600; letter-spacing: .02em; line-height: 1.5; }
   .section-sub { color: var(--text-muted); font-size: 16px; max-width: 540px; line-height: 1.7; margin-bottom: 48px; }
 
   /* CARDS GRID */
@@ -514,7 +524,9 @@
     .form-row { grid-template-columns: 1fr !important; }
   }
   @media(max-width:600px) {
-    nav { padding: 14px 20px; }
+    nav { padding: 14px 20px; gap: 12px; }
+    .nav-logo { font-size: 20px; }
+    .nav-cta { padding: 10px 14px; font-size: 13px; }
     .stats-bar { gap: 30px; }
     .form-row { grid-template-columns: 1fr; }
     .lang-grid { grid-template-columns: 1fr; }
@@ -1017,16 +1029,21 @@
   .js-motion .card.reveal.in{ transform:none; }
   .card:hover{ transform:translateY(-5px); border-color:rgba(201,168,76,.4); }
 
-  /* A line that draws down through the three steps as they come into view. */
+  /* A line joins each step number to the next, drawing down as the steps come
+     into view. One piece per gap, so it never shows through a number and stops
+     at step 3 (one long line ran behind the circles and on past step 3). */
   .steps{ position:relative; }
-  .steps::before{
-    content:''; position:absolute; left:23px; top:28px; bottom:28px; width:2px;
-    background:linear-gradient(180deg, var(--gold), rgba(201,168,76,.15));
-    transform:scaleY(0); transform-origin:top center;
-    transition:transform 1.1s cubic-bezier(.4,.1,.2,1);
+  .step:not(:last-child)::after{
+    content:''; position:absolute; left:23px; top:76px; bottom:-28px; width:2px;
+    background:linear-gradient(180deg, var(--gold), rgba(201,168,76,.3));
+    transform-origin:top center;
   }
-  .js-motion .steps.in::before{ transform:scaleY(1); }
-  @media(max-width:600px){ .steps::before{ display:none; } }
+  .js-motion .step.reveal:not(:last-child)::after{
+    transform:scaleY(0);
+    transition:transform .6s cubic-bezier(.4,.1,.2,1) calc(var(--rd,0s) + .4s);
+  }
+  .js-motion .step.reveal.in:not(:last-child)::after{ transform:scaleY(1); }
+  @media(max-width:600px){ .step::after{ display:none; } }
 
   /* The step number lights up as the line reaches it. */
   .js-motion .step.reveal .step-num{
@@ -1044,7 +1061,7 @@
   /* Anyone who asks for less motion gets the page with none of it. */
   @media (prefers-reduced-motion: reduce){
     .js-motion .reveal, .js-motion .card.reveal{ opacity:1; transform:none; transition:none; }
-    .steps::before, .js-motion .steps.in::before{ transform:scaleY(1); transition:none; }
+    .js-motion .step.reveal:not(:last-child)::after{ transform:scaleY(1); transition:none; }
     .card:hover{ transform:none; }
   }
   /* ╚═══════════ MOTION BLOCK 1/2 END ═══════════╝ */
@@ -1258,15 +1275,17 @@
   .loan-band h3{ font-family:'Playfair Display',serif; font-size:22px; line-height:1.25; margin-bottom:6px; }
   .loan-band p{ color:var(--text-muted); font-size:14px; line-height:1.65; }
   .loan-band .btn-secondary{ flex:0 0 auto; padding:13px 24px; font-size:15px; white-space:nowrap; }
-  /* a tiny hand of three cards, the middle one picked: the hero's move, standing still */
-  .lb-hand{ position:relative; flex:0 0 auto; width:82px; height:52px; }
-  .lb-hand i{ position:absolute; bottom:4px; width:44px; height:29px; border-radius:5px; border:1px solid rgba(255,255,255,.14);
-    background:linear-gradient(155deg, #1C3054, #0E1A30); box-shadow:-5px 0 10px -6px rgba(0,0,0,.6); }
+  /* three small price tags, the middle one picked (gold): the loans page's
+     hero, standing still. Tags, not cards: this box leads to loans. */
+  .lb-hand{ position:relative; flex:0 0 auto; width:82px; height:52px; filter:drop-shadow(0 4px 5px rgba(0,0,0,.5)); }
+  .lb-hand i{ position:absolute; bottom:6px; width:46px; height:24px;
+    background:linear-gradient(155deg, #34507A, #16243E);
+    clip-path:polygon(24% 0, 100% 0, 100% 100%, 24% 100%, 0 50%);
+    -webkit-mask:radial-gradient(circle at 19% 50%, transparent 2.6px, #000 3.2px); mask:radial-gradient(circle at 19% 50%, transparent 2.6px, #000 3.2px); }
   .lb-hand i:nth-child(1){ left:0; transform:rotate(-9deg); }
   .lb-hand i:nth-child(3){ right:0; transform:rotate(8deg); }
-  .lb-hand i:nth-child(2){ left:19px; bottom:12px; z-index:1; border-color:rgba(255,255,255,.45); transform:rotate(-2deg);
+  .lb-hand i:nth-child(2){ left:18px; bottom:15px; z-index:1; transform:rotate(-3deg);
     background:linear-gradient(135deg, #F7E09A 0%, #E3C066 30%, #C89D46 66%, #D9B65F 100%); }
-  .lb-hand i::before{ content:''; position:absolute; left:5px; top:5px; width:8px; height:6px; border-radius:2px; background:linear-gradient(135deg,#F7E3A1,#C9A04A); }
   @media (max-width:640px){
     .loan-band{ flex-direction:column; align-items:flex-start; gap:14px; padding:20px 18px; }
     .loan-band .btn-secondary{ white-space:normal; }
@@ -2080,7 +2099,7 @@
     <span style="opacity:.3;margin:0 6px;">|</span>
     <button class="link-btn" onclick="openContact()" data-i18n="cfLink">Contact</button>
     <br/><br/>
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.01b</span><br/><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.01d</span><br/><br/>
     <span data-i18n="ftCopy">&copy; 2026 &middot; Authorised DSA Partner</span><br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
@@ -2415,7 +2434,7 @@ function showSubmitted(){
 </script>
 
 <script>
-console.log("%cMahodaya Credit Solutions, build v2026.11.01b", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, build v2026.11.01d", "color:#C9A84C;font-weight:bold");
 const T = {
 en:{
 langNote:"Tap any language above to switch the whole page",

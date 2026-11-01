@@ -4,13 +4,14 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Compare Loan Rates from 13 Banks | Mahodaya Credit Solutions</title>
-<meta name="description" content="Personal, home, car and business loan rates and processing fees from 13 Indian banks, side by side, taken from each bank's own website. Free guidance in Malayalam, Tamil, Telugu, Kannada, Hindi and English."/>
+<meta name="description" content="Personal, home, car and business loan rates and processing fees from 13 Indian banks, side by side, taken from each bank's own website, with an EMI calculator. Free guidance from Mahodaya Credit Solutions (Mahodaya Finance) in Malayalam, Tamil, Telugu, Kannada, Hindi and English."/>
 <meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://mahodaya.netlify.app/loans.html"/>
 <meta property="og:title" content="Compare loan rates | Mahodaya Credit Solutions"/>
-<meta property="og:description" content="Lowest published loan rates and fees from 13 banks, in one place. Free guidance in 6 languages."/>
+<meta property="og:description" content="Lowest published loan rates and fees from 13 banks, in one place, with an EMI calculator. Free guidance in 6 languages."/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://whimsical-monstera-3825c6.netlify.app/loans.html"/>
-<meta property="og:image" content="https://whimsical-monstera-3825c6.netlify.app/og-image.png"/>
+<meta property="og:url" content="https://mahodaya.netlify.app/loans.html"/>
+<meta property="og:image" content="https://mahodaya.netlify.app/og-image.png"/>
 <meta property="og:site_name" content="Mahodaya Credit Solutions"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A1628'/%3E%3Ctext x='16' y='23' font-size='19' font-family='serif' font-weight='700' fill='%23C9A84C' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -54,6 +55,7 @@
     box-shadow:0 3px 14px rgba(232,201,106,0.28);
     padding:12px 24px; min-height:44px; display:inline-flex; align-items:center;
     border-radius:6px; font-weight:600; font-size:14px; text-decoration:none; transition:background .2s;
+    white-space:nowrap;   /* one line, never "Get loan / help" */
   }
   .nav-cta:hover { background:linear-gradient(180deg, #FFE9A0, #EBC96A); box-shadow:0 5px 20px rgba(232,201,106,0.45); }
 
@@ -97,50 +99,43 @@
   .lang-note { font-size:12px; color:var(--text-muted); margin-bottom:24px; }
   .hero-btns { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; animation:fadeUp .6s .3s ease both; }
 
-  /* ╔═══════════ HERO CARDS: the home page's fan, for loans ═══════════╗
-     Same three cards and the same entrance as the hero on index.html: the two
-     dark cards fan out, the gold one lifts out of the hand, a sheen crosses it.
-     The gold card carries a "%" where the home page's card has its chip.
-     No intro splash here, so the entrance starts straight away. */
+  /* ╔═══════════ HERO TAGS: three price tags, for loans ═══════════╗
+     "Same loan, a different price at every bank": three price tags fan out and
+     the gold one, the lowest price, lifts out, with a light sheen across it.
+     Price tags, not credit cards: this page is about loans. The entrance is the
+     same move as the home page's card fan, and starts straight away (no intro). */
   .hc-stage{
     --cardW:clamp(176px, 46vw, 250px);
     position:relative; z-index:1;
-    width:calc(var(--cardW) * 1.72); height:calc(var(--cardW) * .844);
+    width:calc(var(--cardW) * 1.72); height:calc(var(--cardW) * .78);
     margin:4px auto 22px; perspective:1100px;
   }
   .hc-fan{ position:absolute; inset:0; transform-style:preserve-3d; transform:rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition:transform .3s ease-out; }
   .hc-card{
-    position:absolute; left:50%; bottom:6%;
-    width:var(--cardW); aspect-ratio:856 / 540; margin-left:calc(var(--cardW) / -2);
-    border-radius:calc(var(--cardW) * .046); overflow:hidden; transform-origin:50% 120%;
+    position:absolute; left:50%; bottom:10%;
+    width:var(--cardW); aspect-ratio:2 / 1; margin-left:calc(var(--cardW) / -2);
+    transform-origin:50% 120%;
   }
-  .hc-card svg{ position:absolute; inset:0; width:100%; height:100%; display:block; }
-  .hc-back{ box-shadow:0 12px 26px -6px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.09); }
-  .hc-back-l{ background:linear-gradient(150deg, #34507A 0%, #1C2F50 70%, #16243E 100%); transform:translateX(-30%) rotate(-13deg) translateZ(-24px); }
-  .hc-back-r{ background:linear-gradient(150deg, #3E3A57 0%, #24213A 70%, #1B1A2C 100%); transform:translateX(30%) rotate(11deg) translateZ(-24px); }
+  .hc-card svg{ position:absolute; inset:0; width:100%; height:100%; display:block; overflow:visible; }
+  .hc-back{ filter:drop-shadow(0 10px 12px rgba(0,0,0,.5)); }
+  .hc-back-l{ transform:translateX(-30%) rotate(-13deg) translateZ(-24px); }
+  .hc-back-r{ transform:translateX(30%) rotate(11deg) translateZ(-24px); }
   .hc-gold{
     z-index:2;
-    background:
-      repeating-linear-gradient(98deg, rgba(255,255,255,.07) 0 1px, transparent 1px 3px),
-      linear-gradient(165deg, rgba(255,255,255,.34), rgba(255,255,255,0) 40%),
-      linear-gradient(135deg, #F7E09A 0%, #E3C066 28%, #C89D46 60%, #A9802F 82%, #D9B65F 100%);
-    box-shadow:0 26px 44px -14px rgba(0,0,0,.7), 0 8px 16px -4px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.6), inset 0 0 0 1px rgba(110,78,18,.4);
+    filter:drop-shadow(0 20px 22px rgba(0,0,0,.6)) drop-shadow(0 5px 6px rgba(0,0,0,.3));
     transform:translateY(-10%) rotate(-3deg) translateZ(30px);
   }
-  .hc-gold::after{
-    content:''; position:absolute; inset:-30% -60%;
-    background:linear-gradient(105deg, transparent 42%, rgba(255,251,232,.75) 50%, transparent 58%);
-    mix-blend-mode:soft-light; transform:translateX(-70%); pointer-events:none;
-  }
+  .hc-shine{ transform:translateX(0); }
   .hc-back-l{ animation:hcFanL .8s cubic-bezier(.2,1,.3,1) .25s both; }
   .hc-back-r{ animation:hcFanR .8s cubic-bezier(.2,1,.3,1) .31s both; }
   .hc-gold{ animation:hcPick .95s cubic-bezier(.2,1.2,.35,1) .43s both; }
-  .hc-gold::after{ animation:hcSheen 1.3s cubic-bezier(.4,0,.2,1) 1.18s both; }
+  .hc-shine{ animation:hcShine 1.3s cubic-bezier(.4,0,.2,1) 1.18s both; }
+  @keyframes hcShine{ from{ transform:translateX(0); } to{ transform:translateX(860px); } }
   @keyframes hcFanL{ from{ opacity:0; transform:translateY(26%) rotate(0deg) translateZ(-24px); } to{ opacity:1; transform:translateX(-30%) rotate(-13deg) translateZ(-24px); } }
   @keyframes hcFanR{ from{ opacity:0; transform:translateY(26%) rotate(0deg) translateZ(-24px); } to{ opacity:1; transform:translateX(30%) rotate(11deg) translateZ(-24px); } }
   @keyframes hcPick{ 0%{ opacity:0; transform:translateY(28%) rotate(2deg) translateZ(30px); } 45%{ opacity:1; } 100%{ transform:translateY(-10%) rotate(-3deg) translateZ(30px); } }
   @keyframes hcSheen{ from{ transform:translateX(-70%); } to{ transform:translateX(70%); } }
-  /* ╚═══════════ HERO CARDS END ═══════════╝ */
+  /* ╚═══════════ HERO TAGS END ═══════════╝ */
   .btn-primary {
     background:linear-gradient(180deg, #F5D97E, #DDB958); color:#1A1204;
     box-shadow:0 4px 20px rgba(232,201,106,0.3);
@@ -160,52 +155,48 @@
   .section-title { font-family:'Playfair Display', serif; font-size:clamp(28px, 4vw, 44px); font-weight:700; margin-bottom:16px; line-height:1.2; }
   .section-sub { color:var(--text-muted); font-size:16px; max-width:560px; line-height:1.7; margin-bottom:28px; }
 
-  /* ╔═══════════ LOAN TYPES: a hand of small cards ═══════════╗
-     The same move as the bank cards on the home page and the gold card in its
-     hero: the loan you pick lifts out of the hand and turns gold. */
-  .lt-hand { display:flex; justify-content:center; padding:18px 8px 14px; margin-bottom:6px; }
+  /* ╔═══════════ LOAN TYPES: four tiles ═══════════╗
+     Tiles with a big icon, side by side (no card chip, no overlapping hand: they
+     read as credit cards on a loans page). The one you pick still lifts and
+     turns gold, the same move as the gold card on the home page. */
+  .lt-hand { --gap:12px; display:flex; justify-content:center; gap:var(--gap); padding:18px 0 14px; margin-bottom:6px; }
   .lt-card {
-    --tilt:0deg; position:relative; flex:0 0 auto; width:128px; height:80px; margin-left:-12px; padding:0;
-    border-radius:8px; border:1px solid rgba(255,255,255,.13); color:#fff; cursor:pointer; text-align:left;
+    --tilt:0deg; position:relative; flex:1 1 0; max-width:124px; min-width:0; height:92px; padding:0;
+    border-radius:12px; border:1px solid rgba(255,255,255,.13); color:#fff; cursor:pointer; text-align:left;
     font-family:'DM Sans', sans-serif; font-weight:600;
     background:#16294A;
     background:radial-gradient(130% 125% at 0% 0%, rgba(42,69,112,.85) 0%, transparent 64%), linear-gradient(155deg, #1C3054, #0E1A30);
-    box-shadow:-8px 0 16px -8px rgba(0,0,0,.65);
+    box-shadow:0 8px 18px -10px rgba(0,0,0,.7);
     transform:rotate(var(--tilt));
     transition:transform .28s cubic-bezier(.2,1.2,.35,1), box-shadow .2s, color .2s;
   }
-  .lt-card:first-child { margin-left:0; }
-  .lt-card::before { content:''; position:absolute; left:11px; top:12px; width:17px; height:12px; border-radius:3px; background:linear-gradient(135deg,#F7E3A1,#C9A04A); opacity:.85; }
-  .lt-card svg { position:absolute; right:10px; top:10px; width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; opacity:.7; }
-  .lt-card .lt-nm { position:absolute; left:11px; right:8px; bottom:9px; font-size:12.5px; line-height:1.2; }
-  .lt-card:hover { transform:translateY(-5px) rotate(var(--tilt)); z-index:2; }
+  .lt-card svg { position:absolute; left:12px; top:12px; width:26px; height:26px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; opacity:.85; }
+  .lt-card .lt-nm { position:absolute; left:12px; right:8px; bottom:10px; font-size:12.5px; line-height:1.2; }
+  .lt-card:hover { transform:translateY(-4px) rotate(var(--tilt)); z-index:2; }
   .lt-card.on {
-    z-index:3; color:#1A1204; border-color:rgba(255,255,255,.45); transform:translateY(-11px) rotate(-2deg);
+    z-index:3; color:#1A1204; border-color:rgba(255,255,255,.45); transform:translateY(-9px) rotate(-1.5deg);
     background:repeating-linear-gradient(98deg, rgba(255,255,255,.07) 0 1px, transparent 1px 3px), linear-gradient(135deg, #F7E09A 0%, #E3C066 30%, #C89D46 66%, #D9B65F 100%);
     box-shadow:0 14px 24px -10px rgba(0,0,0,.75), inset 0 0 0 1px rgba(110,78,18,.4);
   }
-  .lt-card.on::before { background:linear-gradient(135deg,#FFF3C4,#D8B45C); box-shadow:0 0 0 1px rgba(92,64,12,.45); opacity:1; }
-  .lt-card.on svg { opacity:.85; }
+  .lt-card.on svg { opacity:1; }
   /* the picked card gets the hero card's sheen, once, every time it is picked */
   .lt-card { overflow:hidden; }
   .lt-card.on::after { content:''; position:absolute; inset:-20% -50%; pointer-events:none;
     background:linear-gradient(105deg, transparent 42%, rgba(255,251,232,.8) 50%, transparent 58%); mix-blend-mode:soft-light;
     animation:hcSheen 1s cubic-bezier(.4,0,.2,1) .12s both; }
-  /* Deal-in: when the hand scrolls into view the cards slide out of one pile
-     into the fan, then the picked one lifts last, like the hero's gold card.
+  /* Deal-in: when the tiles scroll into view they slide out of one pile into
+     the row, then the picked one lifts last, like the hero's gold tag.
      Hidden only once JS confirms it can run (html.js-motion). */
-  .lt-hand { --step:116px; }
-  .js-motion .lt-hand:not(.dealt) .lt-card { opacity:0; transform:translateX(calc((1.5 - var(--i)) * var(--step))) translateY(22px) rotate(0deg); }
+  .js-motion .lt-hand:not(.dealt) .lt-card { opacity:0; transform:translateX(calc((1.5 - var(--i)) * (100% + var(--gap)))) translateY(22px) rotate(0deg); }
   .js-motion .lt-hand:not(.dealt) .lt-card.on::after { animation:none; }
   .lt-hand.dealing .lt-card { transition:transform .7s cubic-bezier(.2,1,.3,1) calc(var(--i) * 90ms), opacity .35s ease calc(var(--i) * 90ms); }
   .lt-hand.dealing .lt-card.on { transition-delay:480ms; transition-duration:.85s; transition-timing-function:cubic-bezier(.2,1.2,.35,1); }
   .lt-hand.dealing .lt-card.on::after { animation-delay:1.15s; }
   @media (max-width:520px){
-    .lt-hand { --step:82px; }
-    .lt-card { width:90px; height:66px; margin-left:-8px; }
-    .lt-card::before { left:9px; top:10px; width:14px; height:10px; }
-    .lt-card svg { right:8px; top:8px; width:17px; height:17px; }
-    .lt-card .lt-nm { left:9px; bottom:7px; font-size:11.5px; }
+    .lt-hand { --gap:7px; }
+    .lt-card { height:78px; border-radius:10px; }
+    .lt-card svg { left:9px; top:9px; width:22px; height:22px; }
+    .lt-card .lt-nm { left:9px; right:6px; bottom:8px; font-size:11.5px; }
   }
   /* ╚═══════════ LOAN TYPES END ═══════════╝ */
 
@@ -227,12 +218,12 @@
   .js-motion .ln-list:not(.play) .ln-row { opacity:0; }
   .ln-list.play .ln-row { animation:lnIn .4s cubic-bezier(.2,.7,.3,1) both; animation-delay:calc(var(--n, 0) * 40ms); }
   .ln-row:hover { border-color:rgba(201,168,76,.38); box-shadow:0 10px 28px rgba(0,0,0,.3); }
-  /* bank icon: the small-card shape used for banks on the home page */
-  .ln-ico { position:relative; display:flex; width:48px; height:31px; margin-top:2px; border-radius:6px; font-family:'Playfair Display', serif; font-size:11px; font-weight:700;
-    align-items:flex-end; justify-content:flex-end; padding:0 6px 4px 0; color:#fff; border:1px solid rgba(255,255,255,.14);
+  /* bank icon: a square badge with the bank's letter and colour (not a small
+     card with a chip, which read as a credit card next to each loan) */
+  .ln-ico { display:flex; align-items:center; justify-content:center; width:40px; height:40px; margin-top:2px; border-radius:10px; font-family:'Playfair Display', serif; font-size:14px; font-weight:700;
+    color:#fff; border:1px solid rgba(255,255,255,.14);
     background:#16294A;
-    background:radial-gradient(130% 125% at 0% 0%, color-mix(in srgb, var(--bc) 75%, transparent), transparent 66%), linear-gradient(155deg, #1C3054, #0E1A30); }
-  .ln-ico::before { content:''; position:absolute; left:6px; top:6px; width:9px; height:7px; border-radius:2px; background:linear-gradient(135deg,#F7E3A1,#C9A04A); opacity:.9; }
+    background:radial-gradient(120% 120% at 0% 0%, color-mix(in srgb, var(--bc) 75%, transparent), transparent 70%), linear-gradient(155deg, #1C3054, #0E1A30); }
   .ln-main { min-width:0; }
   .ln-bank { display:block; font-family:'Playfair Display', serif; font-size:17px; line-height:1.25; color:var(--white); }
   .ln-x { display:block; font-size:11.5px; color:var(--gold-light); margin-top:2px; }
@@ -250,6 +241,37 @@
   .ln-rate.none small { font-size:12px; color:#B9C5D5; letter-spacing:0; margin-top:4px; }
   .ln-foot { font-size:12px; color:var(--text-muted); line-height:1.7; margin:18px 4px 0; max-width:820px; }
   .ln-foot + .ln-foot { margin-top:8px; }
+
+  /* EMI CALCULATOR: follows the loan picked above (amount range, tenure and
+     the lowest published rate as the starting rate). Pure maths, no claims. */
+  .emi { display:grid; grid-template-columns:1.1fr .9fr; gap:18px; background:var(--navy-mid); border:1px solid rgba(201,168,76,0.15); border-radius:20px; padding:28px; }
+  .emi-f { margin-bottom:22px; }
+  .emi-f:last-child { margin-bottom:0; }
+  .emi-top { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:8px; }
+  .emi-top label { font-size:13px; font-weight:500; color:var(--text-muted); min-width:0; }
+  .emi-val { display:flex; align-items:center; gap:3px; flex:0 0 auto; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:6px 10px; min-height:40px; color:var(--gold-light); font-weight:600; font-size:15px; }
+  .emi-val:focus-within { border-color:var(--gold); }
+  .emi-val input { width:7.2em; background:none; border:none; outline:none; color:var(--white); font:inherit; text-align:right; padding:0; }
+  .emi-val input.sm { width:3.2em; }
+  .emi input[type=range] { width:100%; height:28px; accent-color:var(--gold); cursor:pointer; margin:0; }
+  .emi-out { background:rgba(10,22,40,.55); border:1px solid rgba(201,168,76,.18); border-radius:14px; padding:22px; display:flex; flex-direction:column; gap:14px; }
+  .emi-big small { display:block; font-size:12px; letter-spacing:.4px; color:var(--text-muted); margin-bottom:2px; }
+  .emi-big strong {
+    display:block; font-family:'Playfair Display', serif; font-size:clamp(34px, 6vw, 44px); font-weight:700; line-height:1.1; font-variant-numeric:tabular-nums;
+    background:linear-gradient(170deg, #F0D682 0%, #C9A84C 55%, #9A7A2E 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:var(--gold);
+  }
+  .emi-bar { display:flex; height:10px; border-radius:6px; overflow:hidden; background:rgba(255,255,255,.08); }
+  .emi-bar i { display:block; height:100%; transition:width .35s ease; }
+  .emi-bar .p { background:#3A5A8C; }
+  .emi-bar .r { background:var(--gold); }
+  .emi-dl { display:grid; grid-template-columns:1fr auto; gap:7px 12px; font-size:13.5px; margin:0; }
+  .emi-dl dt { color:var(--text-muted); display:flex; align-items:center; gap:8px; min-width:0; }
+  .emi-dl dt::before { content:''; flex:0 0 auto; width:9px; height:9px; border-radius:2px; background:var(--k, transparent); }
+  .emi-dl dd { margin:0; text-align:right; color:var(--white); font-weight:600; font-variant-numeric:tabular-nums; }
+  .emi-dl .tot { border-top:1px solid rgba(255,255,255,.08); padding-top:7px; }
+  .emi-note { font-size:11.5px; color:var(--text-muted); line-height:1.6; }
+  .emi-out .btn-primary { justify-content:center; padding:14px 18px; font-size:15px; text-align:center; }
+  @media (max-width:700px){ .emi { grid-template-columns:1fr; padding:20px 16px; } }
 
   /* FORM (as on index.html, without the rosette: that rhyme stays on the home page) */
   #help { text-align:center; }
@@ -290,9 +312,10 @@
 
   @media (max-width:768px){ .form-row { grid-template-columns:1fr; gap:0; } }
   @media (max-width:700px){
-    nav { padding:14px 16px; }
+    nav { padding:14px 16px; gap:12px; }
     .nav-link { display:none; }   /* phones: the logo already leads back home */
     .nav-logo { font-size:20px; }
+    .nav-cta { padding:10px 14px; font-size:13px; }
     section { padding-left:16px; padding-right:16px; }
     .hero { padding-left:16px; padding-right:16px; }
     .ln-list { grid-template-columns:1fr; }
@@ -303,11 +326,11 @@
   @media (prefers-reduced-motion: reduce){
     html { scroll-behavior:auto; }
     .badge, h1, .hero-sub, .hero-langs, .hero-btns { animation:none; }
-    .hc-card, .hc-gold::after, .lt-card.on::after, .ln-list.play .ln-row { animation:none; }
+    .hc-card, .hc-shine, .lt-card.on::after, .ln-list.play .ln-row { animation:none; }
     .hc-fan { transition:none; transform:none; }
     .lt-card, .lt-hand.dealing .lt-card { transition:none; }
     .js-motion .lt-hand:not(.dealt) .lt-card { opacity:1; transform:rotate(var(--tilt)); }
-    .js-motion .lt-hand:not(.dealt) .lt-card.on { transform:translateY(-11px) rotate(-2deg); }
+    .js-motion .lt-hand:not(.dealt) .lt-card.on { transform:translateY(-9px) rotate(-1.5deg); }
     .js-motion .ln-list:not(.play) .ln-row { opacity:1; }
   }
 </style>
@@ -347,22 +370,40 @@
   <div class="hero-grid"></div>
   <div class="badge"><span class="badge-dot"></span><span data-i18n="lBadge">Loans from 13 banks, side by side</span></div>
   <h1 data-i18n="h1"><span class="h1-lead">Same loan,</span><span class="gold">a different price at every bank</span></h1>
-  <!-- Decorative (aria-hidden). Unbranded on purpose, like the home page card:
-       we compare loans, we don't lend. -->
+  <!-- Decorative (aria-hidden): three price tags, the gold one is the lowest
+       price. No bank names and no numbers on them: we compare, we don't lend. -->
   <div class="hc-stage" aria-hidden="true">
     <div class="hc-fan">
       <div class="hc-card hc-back hc-back-l">
-        <svg viewBox="0 0 856 540" focusable="false"><rect x="86" y="176" width="126" height="96" rx="16" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="3"/><g fill="rgba(255,255,255,.14)"><rect x="86" y="370" width="420" height="16" rx="8"/><rect x="86" y="438" width="190" height="14" rx="7"/></g></svg>
+        <svg viewBox="0 0 600 300" focusable="false">
+          <defs><linearGradient id="hcTL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34507A"/><stop offset=".7" stop-color="#1C2F50"/><stop offset="1" stop-color="#16243E"/></linearGradient></defs>
+          <path fill="url(#hcTL)" fill-rule="evenodd" stroke="rgba(255,255,255,.14)" stroke-width="2" d="M150 24H566a16 16 0 0 1 16 16V260a16 16 0 0 1-16 16H150L28 150Z M86 150a20 20 0 1 0 40 0a20 20 0 1 0-40 0Z"/>
+          <text x="178" y="186" font-family="'Playfair Display', serif" font-weight="900" font-size="104" fill="rgba(255,255,255,.16)">%</text>
+          <g fill="rgba(255,255,255,.14)"><rect x="330" y="104" width="200" height="16" rx="8"/><rect x="330" y="146" width="140" height="14" rx="7"/><rect x="330" y="186" width="170" height="14" rx="7"/></g>
+        </svg>
       </div>
       <div class="hc-card hc-back hc-back-r">
-        <svg viewBox="0 0 856 540" focusable="false"><rect x="86" y="176" width="126" height="96" rx="16" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="3"/><g fill="rgba(255,255,255,.14)"><rect x="86" y="370" width="420" height="16" rx="8"/><rect x="86" y="438" width="190" height="14" rx="7"/></g></svg>
+        <svg viewBox="0 0 600 300" focusable="false">
+          <defs><linearGradient id="hcTR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3E3A57"/><stop offset=".7" stop-color="#24213A"/><stop offset="1" stop-color="#1B1A2C"/></linearGradient></defs>
+          <path fill="url(#hcTR)" fill-rule="evenodd" stroke="rgba(255,255,255,.14)" stroke-width="2" d="M150 24H566a16 16 0 0 1 16 16V260a16 16 0 0 1-16 16H150L28 150Z M86 150a20 20 0 1 0 40 0a20 20 0 1 0-40 0Z"/>
+          <text x="178" y="186" font-family="'Playfair Display', serif" font-weight="900" font-size="104" fill="rgba(255,255,255,.16)">%</text>
+          <g fill="rgba(255,255,255,.14)"><rect x="330" y="104" width="200" height="16" rx="8"/><rect x="330" y="146" width="140" height="14" rx="7"/><rect x="330" y="186" width="170" height="14" rx="7"/></g>
+        </svg>
       </div>
       <div class="hc-card hc-gold">
-        <svg viewBox="0 0 856 540" focusable="false">
-          <g class="hc-guilloche" fill="none" stroke="rgba(96,66,14,.30)" stroke-width="1.3"></g>
-          <text x="78" y="330" font-family="'Playfair Display', serif" font-weight="900" font-size="230" fill="rgba(84,58,10,.5)">%</text>
-          <rect x="86" y="398" width="330" height="16" rx="8" fill="rgba(74,50,8,.34)"/>
-          <rect x="86" y="446" width="190" height="14" rx="7" fill="rgba(74,50,8,.26)"/>
+        <svg viewBox="0 0 600 300" focusable="false">
+          <defs>
+            <linearGradient id="hcTG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7E09A"/><stop offset=".28" stop-color="#E3C066"/><stop offset=".6" stop-color="#C89D46"/><stop offset=".82" stop-color="#A9802F"/><stop offset="1" stop-color="#D9B65F"/></linearGradient>
+            <linearGradient id="hcTS" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFFBE8" stop-opacity="0"/><stop offset=".5" stop-color="#FFFBE8" stop-opacity=".6"/><stop offset="1" stop-color="#FFFBE8" stop-opacity="0"/></linearGradient>
+            <clipPath id="hcTC"><path d="M150 24H566a16 16 0 0 1 16 16V260a16 16 0 0 1-16 16H150L28 150Z"/></clipPath>
+          </defs>
+          <!-- the string, behind the tag, so it seems to come out of the hole -->
+          <path d="M106 150C70 122 44 70 60 -8" fill="none" stroke="#E8C96A" stroke-width="3" stroke-linecap="round" opacity=".85"/>
+          <path fill="url(#hcTG)" fill-rule="evenodd" stroke="rgba(110,78,18,.45)" stroke-width="2" d="M150 24H566a16 16 0 0 1 16 16V260a16 16 0 0 1-16 16H150L28 150Z M86 150a20 20 0 1 0 40 0a20 20 0 1 0-40 0Z"/>
+          <circle cx="106" cy="150" r="25" fill="none" stroke="rgba(110,78,18,.4)" stroke-width="3"/>
+          <g clip-path="url(#hcTC)"><g transform="skewX(-18)"><rect class="hc-shine" x="-300" y="-40" width="220" height="380" fill="url(#hcTS)"/></g></g>
+          <text x="170" y="196" font-family="'Playfair Display', serif" font-weight="900" font-size="132" fill="rgba(84,58,10,.55)">%</text>
+          <g fill="rgba(74,50,8,.32)"><rect x="350" y="104" width="190" height="16" rx="8"/><rect x="350" y="146" width="130" height="14" rx="7"/><rect x="350" y="186" width="160" height="14" rx="7"/></g>
         </svg>
       </div>
     </div>
@@ -410,6 +451,42 @@
   <ul class="ln-list" id="lnList" aria-live="polite"></ul>
   <p class="ln-foot" data-i18n="note1">This is the lowest rate the bank advertises on its own website. Most people are offered more, depending on credit score, income and loan amount. Where a bank's page shows two different starting rates, we show the higher one.</p>
   <p class="ln-foot" data-i18n="note2">Banks change rates often. The bank's own page is always final. Fees are shown in English exactly as each bank publishes them.</p>
+</section>
+
+<section id="emi">
+  <div class="section-tag" data-i18n="emiTag">EMI calculator</div>
+  <h2 class="section-title" data-i18n="emiTitle">What will it cost each month?</h2>
+  <p class="section-sub" data-i18n="emiSub">Move the sliders to see your monthly EMI. The rate starts at the lowest one published above for this loan.</p>
+  <div class="emi">
+    <div class="emi-in">
+      <div class="emi-f">
+        <div class="emi-top"><label id="emiAmtL" for="emiAmtN" data-i18n="emiAmt">Loan amount</label>
+          <span class="emi-val">&#8377;<input id="emiAmtN" type="text" inputmode="numeric" autocomplete="off"/></span></div>
+        <input id="emiAmtR" type="range" aria-labelledby="emiAmtL"/>
+      </div>
+      <div class="emi-f">
+        <div class="emi-top"><label id="emiRateL" for="emiRateN" data-i18n="emiRate">Interest rate (% a year)</label>
+          <span class="emi-val"><input id="emiRateN" class="sm" type="text" inputmode="decimal" autocomplete="off"/>%</span></div>
+        <input id="emiRateR" type="range" min="5" max="30" step="0.01" aria-labelledby="emiRateL"/>
+      </div>
+      <div class="emi-f">
+        <div class="emi-top"><label id="emiYrsL" for="emiYrsN" data-i18n="emiYears">Tenure (years)</label>
+          <span class="emi-val"><input id="emiYrsN" class="sm" type="text" inputmode="numeric" autocomplete="off"/></span></div>
+        <input id="emiYrsR" type="range" min="1" step="1" aria-labelledby="emiYrsL"/>
+      </div>
+    </div>
+    <div class="emi-out" aria-live="polite">
+      <div class="emi-big"><small data-i18n="emiMonthly">Monthly EMI</small><strong id="emiEmi">&#8377;0</strong></div>
+      <div class="emi-bar" aria-hidden="true"><i class="p" id="emiBarP"></i><i class="r" id="emiBarR"></i></div>
+      <dl class="emi-dl">
+        <dt style="--k:#3A5A8C" data-i18n="emiAmt">Loan amount</dt><dd id="emiP">&#8377;0</dd>
+        <dt style="--k:var(--gold)" data-i18n="emiInt">Total interest</dt><dd id="emiI">&#8377;0</dd>
+        <dt class="tot" data-i18n="emiTotal">Total you pay</dt><dd class="tot" id="emiT">&#8377;0</dd>
+      </dl>
+      <p class="emi-note" data-i18n="emiNote">An estimate only. The rate a bank offers you depends on your income, credit score and the bank's rules, and processing fees are extra.</p>
+      <a href="#help" class="btn-primary" onclick="emiToForm()" data-i18n="emiCta">Get help with this loan</a>
+    </div>
+  </div>
 </section>
 
 <section id="help">
@@ -514,14 +591,14 @@
     <a href="index.html#contact" data-keep-lang data-i18n="cfLink">Contact</a>
   </div>
   <div class="footer-bottom">
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.01b</span><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.01d</span><br/>
     &copy; 2026 Mahodaya Credit Solutions<br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
 </footer>
 
 <script>
-console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.01b", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.01d", "color:#C9A84C;font-weight:bold");
 
 // ===================================================================
 //  Leads go to the same two places as the card form on index.html.
@@ -747,6 +824,17 @@ T.te.langNote = 'మొత్తం పేజీని మార్చడాన�
 T.kn.langNote = 'ಸಂಪೂರ್ಣ ಪುಟವನ್ನು ಬದಲಾಯಿಸಲು ಯಾವುದೇ ಭಾಷೆಯನ್ನು ಒತ್ತಿ';
 T.hi.langNote = 'पूरा पेज बदलने के लिए किसी भी भाषा पर टैप करें';
 
+// EMI calculator words (v2026.11.01d).
+const T_EMI = {
+  en:{emiTag:'EMI calculator', emiTitle:'What will it cost each month?', emiSub:'Move the sliders to see your monthly EMI. The rate starts at the lowest one published above for this loan.', emiAmt:'Loan amount', emiRate:'Interest rate (% a year)', emiYears:'Tenure (years)', emiMonthly:'Monthly EMI', emiInt:'Total interest', emiTotal:'Total you pay', emiNote:'An estimate only. The rate a bank offers you depends on your income, credit score and the bank\'s rules, and processing fees are extra.', emiCta:'Get help with this loan'},
+  ml:{emiTag:'EMI കാൽക്കുലേറ്റർ', emiTitle:'ഓരോ മാസവും എത്ര അടയ്ക്കണം?', emiSub:'സ്ലൈഡറുകൾ നീക്കി നിങ്ങളുടെ പ്രതിമാസ EMI കാണുക. ഈ ലോണിന് മുകളിൽ കാണിച്ച ഏറ്റവും കുറഞ്ഞ നിരക്കിൽ നിന്നാണ് പലിശ നിരക്ക് തുടങ്ങുന്നത്.', emiAmt:'ലോൺ തുക', emiRate:'പലിശ നിരക്ക് (വർഷത്തിൽ %)', emiYears:'കാലാവധി (വർഷം)', emiMonthly:'പ്രതിമാസ EMI', emiInt:'ആകെ പലിശ', emiTotal:'ആകെ അടയ്ക്കുന്നത്', emiNote:'ഇതൊരു ഏകദേശ കണക്ക് മാത്രമാണ്. ബാങ്ക് നിങ്ങൾക്ക് നൽകുന്ന നിരക്ക് നിങ്ങളുടെ വരുമാനം, ക്രെഡിറ്റ് സ്കോർ, ബാങ്കിന്റെ നിയമങ്ങൾ എന്നിവയെ ആശ്രയിച്ചിരിക്കുന്നു. പ്രോസസ്സിംഗ് ഫീസ് വേറെയാണ്.', emiCta:'ഈ ലോണിന് സഹായം നേടുക'},
+  ta:{emiTag:'EMI கணக்கீடு', emiTitle:'மாதம் எவ்வளவு கட்ட வேண்டும்?', emiSub:'ஸ்லைடர்களை நகர்த்தி உங்கள் மாதாந்திர EMI-ஐப் பாருங்கள். இந்தக் கடனுக்கு மேலே காட்டப்பட்டுள்ள மிகக் குறைந்த விகிதத்திலிருந்து வட்டி விகிதம் தொடங்குகிறது.', emiAmt:'கடன் தொகை', emiRate:'வட்டி விகிதம் (ஆண்டுக்கு %)', emiYears:'கால அளவு (ஆண்டுகள்)', emiMonthly:'மாதாந்திர EMI', emiInt:'மொத்த வட்டி', emiTotal:'நீங்கள் செலுத்தும் மொத்தம்', emiNote:'இது ஒரு தோராயமான கணக்கு மட்டுமே. வங்கி உங்களுக்கு வழங்கும் விகிதம் உங்கள் வருமானம், கிரெடிட் ஸ்கோர் மற்றும் வங்கியின் விதிகளைப் பொறுத்தது. செயலாக்கக் கட்டணம் தனி.', emiCta:'இந்தக் கடனுக்கு உதவி பெறுங்கள்'},
+  te:{emiTag:'EMI కాలిక్యులేటర్', emiTitle:'నెలకు ఎంత కట్టాలి?', emiSub:'స్లైడర్లను జరిపి మీ నెలవారీ EMI చూడండి. ఈ లోన్‌కు పైన చూపిన అతి తక్కువ రేటు నుండి వడ్డీ రేటు మొదలవుతుంది.', emiAmt:'లోన్ మొత్తం', emiRate:'వడ్డీ రేటు (సంవత్సరానికి %)', emiYears:'కాల వ్యవధి (సంవత్సరాలు)', emiMonthly:'నెలవారీ EMI', emiInt:'మొత్తం వడ్డీ', emiTotal:'మీరు కట్టే మొత్తం', emiNote:'ఇది ఒక అంచనా మాత్రమే. బ్యాంకు మీకు ఇచ్చే రేటు మీ ఆదాయం, క్రెడిట్ స్కోర్ మరియు బ్యాంకు నియమాలపై ఆధారపడి ఉంటుంది. ప్రాసెసింగ్ ఫీజు అదనం.', emiCta:'ఈ లోన్‌కు సహాయం పొందండి'},
+  kn:{emiTag:'EMI ಕ್ಯಾಲ್ಕುಲೇಟರ್', emiTitle:'ಪ್ರತಿ ತಿಂಗಳು ಎಷ್ಟು ಕಟ್ಟಬೇಕು?', emiSub:'ಸ್ಲೈಡರ್‌ಗಳನ್ನು ಸರಿಸಿ ನಿಮ್ಮ ಮಾಸಿಕ EMI ನೋಡಿ. ಈ ಸಾಲಕ್ಕೆ ಮೇಲೆ ತೋರಿಸಿದ ಅತಿ ಕಡಿಮೆ ದರದಿಂದ ಬಡ್ಡಿ ದರ ಆರಂಭವಾಗುತ್ತದೆ.', emiAmt:'ಸಾಲದ ಮೊತ್ತ', emiRate:'ಬಡ್ಡಿ ದರ (ವರ್ಷಕ್ಕೆ %)', emiYears:'ಅವಧಿ (ವರ್ಷಗಳು)', emiMonthly:'ಮಾಸಿಕ EMI', emiInt:'ಒಟ್ಟು ಬಡ್ಡಿ', emiTotal:'ನೀವು ಕಟ್ಟುವ ಒಟ್ಟು ಮೊತ್ತ', emiNote:'ಇದು ಅಂದಾಜು ಮಾತ್ರ. ಬ್ಯಾಂಕ್ ನಿಮಗೆ ನೀಡುವ ದರ ನಿಮ್ಮ ಆದಾಯ, ಕ್ರೆಡಿಟ್ ಸ್ಕೋರ್ ಮತ್ತು ಬ್ಯಾಂಕಿನ ನಿಯಮಗಳನ್ನು ಅವಲಂಬಿಸಿರುತ್ತದೆ. ಪ್ರೊಸೆಸಿಂಗ್ ಶುಲ್ಕ ಪ್ರತ್ಯೇಕ.', emiCta:'ಈ ಸಾಲಕ್ಕೆ ಸಹಾಯ ಪಡೆಯಿರಿ'},
+  hi:{emiTag:'EMI कैलकुलेटर', emiTitle:'हर महीने कितना देना होगा?', emiSub:'स्लाइडर खिसकाकर अपनी मासिक EMI देखें। ब्याज दर इस लोन के लिए ऊपर दिखाई गई सबसे कम दर से शुरू होती है।', emiAmt:'लोन राशि', emiRate:'ब्याज दर (% सालाना)', emiYears:'अवधि (साल)', emiMonthly:'मासिक EMI', emiInt:'कुल ब्याज', emiTotal:'आप कुल कितना देंगे', emiNote:'यह सिर्फ एक अनुमान है। बैंक आपको जो दर देगा वह आपकी आय, क्रेडिट स्कोर और बैंक के नियमों पर निर्भर करती है, और प्रोसेसिंग फीस अलग से लगती है।', emiCta:'इस लोन के लिए मदद लें'}
+};
+Object.keys(T_EMI).forEach(l => { T[l] = Object.assign(T[l] || {}, T_EMI[l]); });
+
 let CUR = 'en', TYPE = 'pl';
 const TYPE_NAME = {pl:'Personal loan', hl:'Home loan', cl:'Car loan', bl:'Business loan'};
 
@@ -791,6 +879,7 @@ function setType(t){
   const sel = document.getElementById('lfLoan');
   if (sel && !sel.dataset.touched) sel.value = TYPE_NAME[t];
   renderLoans();
+  emiSetup();
   track('loan_type', {type: t, language: CUR});
 }
 
@@ -901,6 +990,81 @@ function handleLoanSubmit(){
   wrap.scrollIntoView({behavior: 'smooth', block: 'center'});
 }
 
+/* ╔═══════════ EMI CALCULATOR ═══════════╗
+   Standard reducing-balance EMI. Each loan type has its own amount range,
+   tenure and starting amount; the starting rate is the lowest published rate
+   in the list above (not "up to" figures). Whatever the visitor has moved
+   stays as it is when they switch loan type, within the new range. */
+var EMI_CFG = {
+  pl: {min:50000,  max:4000000,  step:1000,   amt:500000,  yMax:7,  yrs:5},
+  hl: {min:500000, max:50000000, step:10000,  amt:3000000, yMax:30, yrs:20},
+  cl: {min:100000, max:5000000,  step:1000,   amt:800000,  yMax:8,  yrs:5},
+  bl: {min:100000, max:10000000, step:1000,   amt:1000000, yMax:15, yrs:5}
+};
+function inr(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); }
+function emiEl(id){ return document.getElementById(id); }
+function lowestRate(t){
+  const rs = (LOANS[t] || []).filter(r => r.r != null && r.k !== 'upto').map(r => r.r);
+  return rs.length ? Math.min.apply(null, rs) : 10;
+}
+function emiSetup(){
+  const c = EMI_CFG[TYPE] || EMI_CFG.pl, aR = emiEl('emiAmtR'), rR = emiEl('emiRateR'), yR = emiEl('emiYrsR');
+  if (!aR) return;
+  aR.min = c.min; aR.max = c.max; aR.step = c.step; yR.max = c.yMax;
+  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+  aR.value = aR.dataset.touched ? clamp(+aR.value, c.min, c.max) : c.amt;
+  rR.value = rR.dataset.touched ? rR.value : lowestRate(TYPE);
+  yR.value = yR.dataset.touched ? clamp(+yR.value, 1, c.yMax) : c.yrs;
+  emiCalc(true);
+}
+// fromRange: copy the slider values into the boxes (not while someone types in a box)
+function emiCalc(fromRange){
+  const aR = emiEl('emiAmtR'), rR = emiEl('emiRateR'), yR = emiEl('emiYrsR');
+  const P = +aR.value, rate = +rR.value, n = +yR.value * 12, r = rate / 1200;
+  const emi = r ? P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1) : P / n;
+  const total = emi * n, interest = total - P;
+  if (fromRange) {
+    emiEl('emiAmtN').value = Math.round(P).toLocaleString('en-IN');
+    emiEl('emiRateN').value = (+rate.toFixed(2)).toString();
+    emiEl('emiYrsN').value = yR.value;
+  }
+  emiEl('emiEmi').textContent = inr(emi);
+  emiEl('emiP').textContent = inr(P);
+  emiEl('emiI').textContent = inr(interest);
+  emiEl('emiT').textContent = inr(total);
+  emiEl('emiBarP').style.width = (P / total * 100).toFixed(1) + '%';
+  emiEl('emiBarR').style.width = (interest / total * 100).toFixed(1) + '%';
+}
+// "Get help with this loan": carry the amount into the form's amount box.
+function emiToForm(){
+  const sel = emiEl('lfAmount'), P = +emiEl('emiAmtR').value;
+  if (!sel || sel.dataset.touched) return;
+  sel.value = P <= 100000 ? 'Up to 1 lakh' : P <= 500000 ? '1 to 5 lakh' : P <= 2500000 ? '5 to 25 lakh' : P <= 10000000 ? '25 lakh to 1 crore' : 'Above 1 crore';
+  track('emi_to_form', {type: TYPE, amount: P});
+}
+(function(){
+  const pairs = [['emiAmtR', 'emiAmtN'], ['emiRateR', 'emiRateN'], ['emiYrsR', 'emiYrsN']];
+  pairs.forEach(([rid, nid]) => {
+    const R = emiEl(rid), N = emiEl(nid);
+    if (!R || !N) return;
+    R.addEventListener('input', () => { R.dataset.touched = '1'; emiCalc(true); });
+    // Typing in a box moves the slider once the number is inside its range.
+    N.addEventListener('input', () => {
+      const v = parseFloat(N.value.replace(/[^0-9.]/g, ''));
+      if (!isNaN(v) && v >= +R.min && v <= +R.max) { R.value = v; R.dataset.touched = '1'; emiCalc(false); }
+    });
+    N.addEventListener('change', () => {
+      const v = parseFloat(N.value.replace(/[^0-9.]/g, ''));
+      if (!isNaN(v)) { R.value = Math.min(+R.max, Math.max(+R.min, v)); R.dataset.touched = '1'; }
+      emiCalc(true);
+    });
+  });
+  const amt = emiEl('lfAmount');
+  if (amt) amt.addEventListener('change', function(){ this.dataset.touched = '1'; });
+  emiSetup();
+})();
+/* ╚═══════════ EMI CALCULATOR END ═══════════╝ */
+
 (function init(){
   const lf = document.getElementById('lfLoan');
   if (lf) lf.addEventListener('change', function(){ this.dataset.touched = '1'; });
@@ -912,27 +1076,12 @@ function handleLoanSubmit(){
   else if (lf) lf.value = TYPE_NAME.pl;
 })();
 
-/* ╔═══════════ MOTION: hero cards, the dealt hand, the rows ═══════════╗ */
+/* ╔═══════════ MOTION: hero tags, the dealt tiles, the rows ═══════════╗ */
 (function(){
   const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hand = document.querySelector('.lt-hand'), list = document.getElementById('lnList');
 
-  // 1. The gold card's guilloche rosette, drawn here as on index.html.
-  function rosettePath(cx, cy, R, amp, lobes, rings, steps){
-    let d = '';
-    for (let i = 0; i < rings; i++) {
-      const ph = i * (Math.PI * 2 / lobes) / rings, Ri = R + i * 2;
-      for (let s = 0; s <= steps; s++) {
-        const t = s / steps * Math.PI * 2, r = Ri + amp * Math.sin(lobes * t + ph);
-        d += (s ? 'L' : 'M') + (cx + r * Math.cos(t)).toFixed(1) + ' ' + (cy + r * Math.sin(t)).toFixed(1);
-      }
-    }
-    return d;
-  }
-  const g = document.querySelector('.hc-guilloche');
-  if (g) g.innerHTML = '<path d="' + rosettePath(704, 170, 112, 30, 13, 11, 240) + '"/><circle cx="704" cy="170" r="78"/><circle cx="704" cy="170" r="168"/>';
-
-  // 2. Deal the hand once it is on screen; start the rows when the list is.
+  // 1. Deal the loan tiles once they are on screen; start the rows when the list is.
   function deal(){
     if (!hand || hand.classList.contains('dealt')) return;
     if (reduce) { hand.classList.add('dealt'); return; }
@@ -954,7 +1103,7 @@ function handleLoanSubmit(){
     watch(list, play, { rootMargin: '0px 0px -8% 0px' });
   }
 
-  // 3. On a computer the hero cards lean toward the mouse. Phones stay still.
+  // 2. On a computer the hero tags lean toward the mouse. Phones stay still.
   const hero = document.querySelector('.hero'), fan = document.querySelector('.hc-fan');
   if (hero && fan && !reduce && window.matchMedia && matchMedia('(pointer: fine)').matches) {
     let raf = 0, rx = 0, ry = 0;
