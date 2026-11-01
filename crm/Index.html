@@ -104,18 +104,26 @@ main{max-width:720px;margin:0 auto;padding:4px 16px 0}
 .sheet{
   position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:92vh;max-height:92dvh;overflow:auto;
   background:var(--ink);border-top:1px solid var(--line);border-radius:18px 18px 0 0;
-  padding:18px 16px calc(26px + env(safe-area-inset-bottom,0px));
+  padding:0 16px calc(26px + env(safe-area-inset-bottom,0px));
   transform:translateY(100%);transition:transform .26s cubic-bezier(.2,.8,.3,1);
+  overscroll-behavior:contain;
 }
+body.locked{overflow:hidden}
 .sheet.on{transform:none}
 @media(min-width:720px){
   .sheet{left:50%;right:auto;width:680px;transform:translate(-50%,100%);border-radius:18px 18px 0 0}
   .sheet.on{transform:translate(-50%,0)}
 }
 @media(prefers-reduced-motion:reduce){ .sheet{transition:none} }
-.shead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.shead h2{font:700 19px/1.2 'Playfair Display',serif}
-.x{font-size:26px;line-height:1;color:var(--mute);padding:0 6px}
+/* title and close stay on screen while the long form scrolls */
+.shead{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  position:sticky;top:0;z-index:3;background:var(--ink);
+  margin:0 -16px 14px;padding:14px 10px 12px 16px;border-bottom:1px solid var(--line)
+}
+.shead h2{font:700 19px/1.2 'Playfair Display',serif;min-width:0;overflow-wrap:anywhere}
+.x{font-size:28px;line-height:1;color:var(--mute);width:44px;height:44px;flex:0 0 auto;display:grid;place-items:center;border-radius:10px}
+.x:hover{color:var(--text);background:var(--panel)}
 
 .f{margin-bottom:13px}
 .f label{display:block;font-size:12.5px;color:var(--mute);margin-bottom:5px}
@@ -148,7 +156,12 @@ main{max-width:720px;margin:0 auto;padding:4px 16px 0}
 .fb p small{display:block;color:var(--mute);font-size:12px;margin-top:2px}
 .fb button{background:var(--gold);color:var(--ink);font-weight:600;font-size:13.5px;border-radius:8px;padding:9px 14px}
 
-.acts{display:flex;gap:9px;margin-top:20px;flex-wrap:wrap}
+/* Save stays within thumb reach at the bottom of the panel */
+.acts{
+  display:flex;gap:9px;flex-wrap:wrap;
+  position:sticky;bottom:calc(-26px - env(safe-area-inset-bottom,0px));z-index:3;background:var(--ink);
+  margin:20px -16px 0;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)
+}
 .btn{padding:12px 18px;border-radius:9px;font-weight:600;font-size:14.5px;border:1px solid var(--line);color:var(--text)}
 .btn.go{background:var(--gold);color:var(--ink);border-color:var(--gold);flex:1}
 .btn.go:hover{background:var(--gold-l)}
@@ -166,6 +179,23 @@ main{max-width:720px;margin:0 auto;padding:4px 16px 0}
   background:var(--raise);border-top:1px solid var(--line);font-size:13.5px;text-align:center
 }
 .bar.warn{background:#4A2320;color:#F3C8C3}
+
+/* ---------- phone comfort ----------
+   16px text in fields stops phones zooming in on every tap, and every
+   button is at least 40px tall so a thumb can hit it. */
+input,select,textarea{font-size:16px}
+.menu button,.menu a{display:inline-flex;align-items:center;min-height:40px;padding:0 12px;font-size:13.5px}
+.st{min-height:40px;padding:8px 14px}
+.fb button{min-height:42px}
+.btn{min-height:46px}
+@media(max-width:420px){
+  .hwrap{padding:10px 12px 0}
+  main{padding:4px 12px 0}
+  .brand h1{font-size:19px}
+  .menu{gap:6px}
+  .menu button,.menu a{padding:0 10px;font-size:13px}
+  .tools select{max-width:38%}
+}
 </style>
 </head>
 <body>
@@ -182,7 +212,7 @@ main{max-width:720px;margin:0 auto;padding:4px 16px 0}
     </div>
     <div class="pulse" id="pulse"></div>
     <div class="tools">
-      <input type="search" id="q" placeholder="Search name, mobile, city or bank" aria-label="Search leads"/>
+      <input type="search" id="q" placeholder="Search leads" aria-label="Search by name, mobile, city or bank"/>
       <select id="fStage" aria-label="Filter by stage"></select>
     </div>
   </div>
@@ -429,7 +459,9 @@ function leadRow(l){
       dueText(l) ? el('div',{class:'due '+(b==='overdue'?'over':b==='today'?'today':'')},dueText(l)) : null
     )
   );
-  if(wa) row.append(el('a',{class:'wa',href:`https://wa.me/91${wa}`,target:'_blank',rel:'noopener',
+  // Never put a web link inside backtick strings in this file: Google reads
+  // the double slash as a comment and the whole CRM stops working.
+  if(wa) row.append(el('a',{class:'wa',href:'https://wa.me/91'+wa,target:'_blank',rel:'noopener',
     title:`Message ${l.name||'lead'} on WhatsApp`,'aria-label':`Message ${l.name||'lead'} on WhatsApp`,
     html:'<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.5 14.2c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.2-.9-2.7-1.2-4.4-4-4.5-4.2-.1-.2-1-1.4-1-2.6s.6-1.8.9-2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.1.3.6 1.1 1.3 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l2 .9c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>'}));
   return row;
@@ -504,7 +536,8 @@ function openSheet(id){
       el('small',{}, l.feedbackAsked ? ('Asked on '+fmtDay(l.feedbackAsked)+'.') : 'Opens WhatsApp with a short message and the feedback link, in their language.')),
     el('button',{type:'button',onclick:()=>askFeedback(l)}, l.feedbackAsked ? 'Ask again' : 'Ask for feedback')) : null;
 
-  $('#sheet').replaceChildren(
+  // filter: a skipped part (null) would otherwise show up as the word "null"
+  $('#sheet').replaceChildren(...[
     el('div',{class:'shead'},
       el('h2',{id:'sTitle'}, id?(l.name||'Edit lead'):'New lead'),
       el('button',{class:'x',onclick:closeSheet,'aria-label':'Close'},'×')),
@@ -556,15 +589,15 @@ function openSheet(id){
       el('button',{class:'btn go',id:'bSave',onclick:saveLead}, id?'Save changes':'Add lead'),
       id?el('button',{class:'btn del',onclick:()=>removeLead(id)},'Delete'):null),
     el('p',{class:'hint'}, id ? 'Saved straight into the Leads sheet.' : 'Added as a new row in the Leads sheet.')
-  );
+  ].filter(Boolean));
   syncLoan();
-  $('#scrim').classList.add('on'); $('#sheet').classList.add('on');
+  $('#scrim').classList.add('on'); $('#sheet').classList.add('on'); document.body.classList.add('locked');
 }
 
 function closeSheet(){
   // Wipe the typed PAN out of the page on close, so the full number never lingers.
   const pan=$('#iPan'); if(pan) pan.value='';
-  $('#scrim').classList.remove('on'); $('#sheet').classList.remove('on'); editing=null;
+  $('#scrim').classList.remove('on'); $('#sheet').classList.remove('on'); document.body.classList.remove('locked'); editing=null;
 }
 
 function readSheet(){
@@ -662,7 +695,7 @@ function importSheet(){
     el('div',{class:'acts'}, el('button',{class:'btn go',onclick:()=>doImport($('#iCsv').value)},'Import')),
     el('p',{class:'hint'},'Use this once, to bring leads across from the old CRM (its Export button) or a Netlify CSV. New website leads arrive here by themselves. A mobile number already in the sheet is skipped, so importing twice is safe.')
   );
-  $('#scrim').classList.add('on'); $('#sheet').classList.add('on');
+  $('#scrim').classList.add('on'); $('#sheet').classList.add('on'); document.body.classList.add('locked');
 }
 
 /* ---------- wiring ---------- */

@@ -354,6 +354,17 @@
     try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch(e){}
   }
 </script>
+<style>
+/* PHONE FIELDS (v2026.11.01g): form fields use 16px text on phones. At 14px,
+   iPhones zoom the whole page in every time a field is tapped. */
+@media (max-width:600px){
+  input:not([type=checkbox]):not([type=radio]):not([type=range]), select, textarea { font-size:16px !important; }
+}
+/* EMI number boxes: the whole box is the tap target, not a 20px strip */
+.emi-val { padding:0 10px; }
+.emi-val input { align-self:stretch; }
+@media (max-width:600px){ .emi input[type=range] { height:36px; } }
+</style>
 </head>
 <body>
 
@@ -611,14 +622,14 @@
     <a href="index.html#contact" data-keep-lang data-i18n="cfLink">Contact</a>
   </div>
   <div class="footer-bottom">
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.01f</span><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.01g</span><br/>
     &copy; 2026 Mahodaya Credit Solutions<br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
 </footer>
 
 <script>
-console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.01f", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.01g", "color:#C9A84C;font-weight:bold");
 
 // ===================================================================
 //  Leads go to the same two places as the card form on index.html.
