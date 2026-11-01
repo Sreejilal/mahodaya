@@ -514,14 +514,14 @@
     <a href="index.html#contact" data-keep-lang data-i18n="cfLink">Contact</a>
   </div>
   <div class="footer-bottom">
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.01a</span><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.01b</span><br/>
     &copy; 2026 Mahodaya Credit Solutions<br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
 </footer>
 
 <script>
-console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.01a", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.01b", "color:#C9A84C;font-weight:bold");
 
 // ===================================================================
 //  Leads go to the same two places as the card form on index.html.
@@ -891,8 +891,8 @@ function handleLoanSubmit(){
     '</div><h3></h3><p></p></div>';
   wrap.querySelector('h3').textContent = d.okTitle;
   wrap.querySelector('p').textContent = d.okBody;
-  // Owner-only diagnostic, as on index.html. Delete once leads land properly.
-  setTimeout(function(){
+  // Owner-only diagnostic, as on index.html: only with ?debug in the address.
+  if (/[?&]debug\b/.test(location.search)) setTimeout(function(){
     const dbg = document.createElement('p');
     dbg.style.cssText = 'margin-top:18px;font-size:11px;opacity:.5;';
     dbg.textContent = 'sheet: ' + (window.__sheetState || 'unknown');
