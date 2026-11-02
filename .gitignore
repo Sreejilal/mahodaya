@@ -1,5 +1,7 @@
 # Private - never publish these
 .env
+# The leads script holds his email address and the form secret
+google-sheet-script.gs
 CLAUDE.md
 
 # dist/ IS committed on purpose: Netlify publishes it straight from GitHub
