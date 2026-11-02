@@ -379,6 +379,24 @@
 .fm-alt { background:none; color:var(--white); border:1px solid rgba(255,255,255,.2); }
 @keyframes fmIn { from { opacity:0; transform:translateY(-6px); } }
 @media (prefers-reduced-motion: reduce){ .fm-note { animation:none; } }
+/* CHIP PICKERS (v2026.11.02b): see the script below */
+.chips { display:flex; flex-wrap:wrap; gap:8px; }
+.form-wrap .chips { justify-content:center; }
+#loanForm .chips { justify-content:flex-start; }   /* loans labels sit on the left */
+.chip {
+  min-height:44px; max-width:100%; padding:9px 16px; border-radius:100px; cursor:pointer;
+  border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.04); color:var(--white);
+  font:500 14.5px/1.3 'DM Sans', sans-serif; display:inline-flex; align-items:center; gap:7px; text-align:left;
+  transition:background .18s, border-color .18s, color .18s;
+}
+.chip:hover { border-color:rgba(201,168,76,0.55); }
+.chip[aria-checked="true"] { background:rgba(201,168,76,0.16); border-color:var(--gold); color:var(--gold-light); }
+.chip[aria-checked="true"]::before { content:'\2713'; font-weight:700; font-size:13px; }
+.chip:focus-visible { outline:2px solid var(--gold-light); outline-offset:2px; }
+.chips-sm .chip { min-height:40px; padding:7px 13px; font-size:13.5px; }
+.chips.fm-bad { outline:1px solid #E0685F; outline-offset:6px; border-radius:14px; }
+select.chips-on { display:none !important; }
+@media (prefers-reduced-motion: reduce){ .chip { transition:none; } }
 </style>
 <script>
 /* FORM MESSAGES (v2026.11.02a): no browser popups. A problem shows in a panel
@@ -403,13 +421,15 @@ function fmShow(btn, kind, title, items, actions){
   box.hidden = false;
   return box;
 }
-function fmMark(el){ if (el) { el.classList.add('fm-bad'); el.setAttribute('aria-invalid', 'true'); } }
+function fmMark(el){ el = el && el._chips || el; if (el) { el.classList.add('fm-bad'); el.setAttribute('aria-invalid', 'true'); } }
 function fmClear(scope){
   if (!scope) return;
   scope.querySelectorAll('.fm-bad').forEach(function(e){ e.classList.remove('fm-bad'); e.removeAttribute('aria-invalid'); });
   var box = scope.querySelector('.fm-note'); if (box) box.hidden = true;
 }
 function fmGoTo(el, focusEl){
+  el = el && el._chips || el;   // a dropdown shown as chips: go to the chips
+  if (focusEl && focusEl._chips) focusEl = focusEl._chips.querySelector('.chip[tabindex="0"]');
   if (!el) return;
   var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   el.scrollIntoView({behavior: still ? 'auto' : 'smooth', block: 'center'});
@@ -420,6 +440,71 @@ function fmGoTo(el, focusEl){
     var t = e.target, bad = t && t.closest ? t.closest('.fm-bad') : null;
     if (bad) { bad.classList.remove('fm-bad'); bad.removeAttribute('aria-invalid'); }
   }, true);
+});
+
+/* CHIP PICKERS (v2026.11.02b): in the apply form, each dropdown becomes a row
+   of tappable choices (one tap, no list popping up). The real <select> stays in
+   the page, hidden, and still holds the answer, so the checks, the translations
+   (setLang) and the code that pre-fills it (loan type, EMI amount) work as before. */
+function chipify(sel){
+  if (!sel || sel._chips) return;
+  var keepFirst = sel.name === 'bank';            // "No preference" is a real answer; the others start with a "Select ..." line
+  var group = sel.closest('.form-group');
+  var lab = group && group.querySelector('label');
+  var box = document.createElement('div');
+  box.className = 'chips' + (sel.name === 'bank' ? ' chips-sm' : '');
+  box.setAttribute('role', 'radiogroup');
+  if (lab) { if (!lab.id) lab.id = 'chl-' + sel.name + '-' + Math.random().toString(36).slice(2, 7); box.setAttribute('aria-labelledby', lab.id); lab.removeAttribute('for'); }
+  sel.parentNode.insertBefore(box, sel.nextSibling);
+  sel.classList.add('chips-on');
+  sel._chips = box;
+  function pick(i){
+    sel.selectedIndex = i;
+    sel.dispatchEvent(new Event('change', {bubbles: true}));
+    box.classList.remove('fm-bad'); box.removeAttribute('aria-invalid');
+  }
+  function build(){
+    box.textContent = '';
+    for (var i = keepFirst ? 0 : 1; i < sel.options.length; i++) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.setAttribute('role', 'radio');
+      b.textContent = sel.options[i].textContent.trim();
+      b.dataset.i = i;
+      b.onclick = (function(i){ return function(){ pick(i); }; })(i);
+      box.appendChild(b);
+    }
+    sync();
+  }
+  function sync(){
+    var on = sel.selectedIndex, any = false;
+    box.querySelectorAll('.chip').forEach(function(b){
+      var c = +b.dataset.i === on; any = any || c;
+      b.setAttribute('aria-checked', c ? 'true' : 'false');
+      b.tabIndex = c ? 0 : -1;
+    });
+    if (!any && box.firstChild) box.firstChild.tabIndex = 0;
+  }
+  // arrow keys move between choices, like any radio group
+  box.addEventListener('keydown', function(e){
+    var k = e.key, list = [].slice.call(box.querySelectorAll('.chip')), at = list.indexOf(document.activeElement);
+    if (at < 0) return;
+    var to = k === 'ArrowRight' || k === 'ArrowDown' ? at + 1 : k === 'ArrowLeft' || k === 'ArrowUp' ? at - 1 : null;
+    if (to === null) return;
+    e.preventDefault(); to = (to + list.length) % list.length;
+    list[to].focus(); list[to].click();
+  });
+  // code that sets the select directly (sel.value = ..., selectedIndex = ...) also moves the gold chip
+  ['value', 'selectedIndex'].forEach(function(p){
+    var d = Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, p);
+    Object.defineProperty(sel, p, { configurable: true, get: function(){ return d.get.call(this); }, set: function(v){ d.set.call(this, v); sync(); } });
+  });
+  sel.addEventListener('change', sync);
+  // a language switch rewrites the option words: rewrite the chips to match
+  new MutationObserver(build).observe(sel, {subtree: true, childList: true, characterData: true});
+  build();
+}
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.form-wrap select, #loanForm select').forEach(chipify);
 });
 </script>
 </head>
@@ -679,14 +764,14 @@ function fmGoTo(el, focusEl){
     <a href="index.html#contact" data-keep-lang data-i18n="cfLink">Contact</a>
   </div>
   <div class="footer-bottom">
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.02a</span><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.02b</span><br/>
     &copy; 2026 Mahodaya Credit Solutions<br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
 </footer>
 
 <script>
-console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.02a", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.02b", "color:#C9A84C;font-weight:bold");
 
 // ===================================================================
 //  Leads go to the same two places as the card form on index.html.
