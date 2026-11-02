@@ -365,6 +365,63 @@
 .emi-val input { align-self:stretch; }
 @media (max-width:600px){ .emi input[type=range] { height:36px; } }
 </style>
+<style>
+/* FORM MESSAGES (v2026.11.02a): see the script below */
+.fm-bad { border-color:#E0685F !important; box-shadow:0 0 0 3px rgba(224,104,95,.2) !important; }
+.fm-note { margin:0 0 14px; padding:13px 15px; border-radius:12px; border:1px solid rgba(224,104,95,.5); background:rgba(224,104,95,.1); color:#F6D3CE; font-size:14px; line-height:1.6; text-align:left; animation:fmIn .25s ease; }
+.fm-note[hidden] { display:none; }
+.fm-note p { font-weight:600; }
+.fm-note ul { margin:6px 0 0; padding-left:20px; }
+.fm-note.ask { border-color:rgba(201,168,76,.5); background:rgba(201,168,76,.1); color:var(--cream); }
+.fm-acts { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.fm-acts button { min-height:44px; padding:8px 18px; border-radius:8px; font:600 14px/1.35 'DM Sans', sans-serif; cursor:pointer; }
+.fm-go { background:var(--gold); color:var(--navy); border:0; }
+.fm-alt { background:none; color:var(--white); border:1px solid rgba(255,255,255,.2); }
+@keyframes fmIn { from { opacity:0; transform:translateY(-6px); } }
+@media (prefers-reduced-motion: reduce){ .fm-note { animation:none; } }
+</style>
+<script>
+/* FORM MESSAGES (v2026.11.02a): no browser popups. A problem shows in a panel
+   just above the Send button, the fields concerned turn red, and the page
+   scrolls to the first one. A field stops being red as soon as it is changed. */
+function fmShow(btn, kind, title, items, actions){
+  var box = btn.parentNode.querySelector('.fm-note');
+  if (!box) { box = document.createElement('div'); box.setAttribute('role', 'alert'); btn.parentNode.insertBefore(box, btn); }
+  box.className = 'fm-note ' + kind;
+  box.textContent = '';
+  var p = document.createElement('p'); p.textContent = title; box.appendChild(p);
+  if (items && items.length) {
+    var ul = document.createElement('ul');
+    items.forEach(function(t){ var li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
+    box.appendChild(ul);
+  }
+  if (actions) {
+    var row = document.createElement('div'); row.className = 'fm-acts';
+    actions.forEach(function(a){ var b = document.createElement('button'); b.type = 'button'; b.textContent = a[0]; b.className = a[2] ? 'fm-go' : 'fm-alt'; b.onclick = a[1]; row.appendChild(b); });
+    box.appendChild(row);
+  }
+  box.hidden = false;
+  return box;
+}
+function fmMark(el){ if (el) { el.classList.add('fm-bad'); el.setAttribute('aria-invalid', 'true'); } }
+function fmClear(scope){
+  if (!scope) return;
+  scope.querySelectorAll('.fm-bad').forEach(function(e){ e.classList.remove('fm-bad'); e.removeAttribute('aria-invalid'); });
+  var box = scope.querySelector('.fm-note'); if (box) box.hidden = true;
+}
+function fmGoTo(el, focusEl){
+  if (!el) return;
+  var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  el.scrollIntoView({behavior: still ? 'auto' : 'smooth', block: 'center'});
+  if (focusEl) setTimeout(function(){ try { focusEl.focus({preventScroll: true}); } catch (e) {} }, still ? 0 : 400);
+}
+['input', 'change'].forEach(function(ev){
+  document.addEventListener(ev, function(e){
+    var t = e.target, bad = t && t.closest ? t.closest('.fm-bad') : null;
+    if (bad) { bad.classList.remove('fm-bad'); bad.removeAttribute('aria-invalid'); }
+  }, true);
+});
+</script>
 </head>
 <body>
 
@@ -622,14 +679,14 @@
     <a href="index.html#contact" data-keep-lang data-i18n="cfLink">Contact</a>
   </div>
   <div class="footer-bottom">
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.01g</span><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.02a</span><br/>
     &copy; 2026 Mahodaya Credit Solutions<br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
 </footer>
 
 <script>
-console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.01g", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.02a", "color:#C9A84C;font-weight:bold");
 
 // ===================================================================
 //  Leads go to the same two places as the card form on index.html.
@@ -953,19 +1010,30 @@ function handleLoanSubmit(){
   const wrap = document.getElementById('loanForm');
   const get = n => wrap.querySelector('[name="' + n + '"]');
   const val = n => { const el = get(n); return el ? el.value.trim() : ''; };
-  const errors = [];
-  if (val('name').length < 2) errors.push(d.fName);
+  // Problems show inside the form (FORM MESSAGES), never as a browser popup.
+  const sendBtn = wrap.querySelector('.form-submit');
+  fmClear(wrap);
+  const errors = [], bad = [];
+  const need = (ok, label, n) => { if (!ok) { errors.push(label); bad.push(get(n)); } };
+  need(val('name').length >= 2, d.fName, 'name');
   const digits = val('mobile').replace(/\D/g, '');
   const mob = digits.length === 12 && digits.startsWith('91') ? digits.slice(2) : digits;
-  if (!(mob.length === 10 && /^[6-9]/.test(mob))) errors.push(d.vMobile);
-  if (!val('loan')) errors.push(d.fLoan);
-  if (!val('amount')) errors.push(d.fAmount);
-  if (!val('income')) errors.push(d.fIncome);
-  if (!val('employment')) errors.push(d.fEmp);
-  if (val('city').length < 2) errors.push(d.fCity);
-  if (!val('language')) errors.push(d.fLang);
-  if (errors.length) { alert(d.vFill + '\n\n• ' + errors.join('\n• ')); return; }
-  if (!document.getElementById('lfConsent').checked) { alert(d.vConsent); return; }
+  need(mob.length === 10 && /^[6-9]/.test(mob), d.vMobile, 'mobile');
+  need(val('loan'), d.fLoan, 'loan');
+  need(val('amount'), d.fAmount, 'amount');
+  need(val('income'), d.fIncome, 'income');
+  need(val('employment'), d.fEmp, 'employment');
+  need(val('city').length >= 2, d.fCity, 'city');
+  need(val('language'), d.fLang, 'language');
+  if (errors.length) {
+    bad.forEach(fmMark); fmShow(sendBtn, 'err', d.vFill, errors); fmGoTo(bad[0], bad[0]);
+    return;
+  }
+  const consentBox = document.getElementById('lfConsent');
+  if (!consentBox.checked) {
+    fmMark(consentBox.closest('.consent')); fmShow(sendBtn, 'err', d.vConsent); fmGoTo(consentBox.closest('.consent'), consentBox);
+    return;
+  }
 
   // Same fields as the card form, so loan leads land in the same Netlify form
   // ("lead", defined in index.html) and the same Sheet columns. The loan and
