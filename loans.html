@@ -379,24 +379,37 @@
 .fm-alt { background:none; color:var(--white); border:1px solid rgba(255,255,255,.2); }
 @keyframes fmIn { from { opacity:0; transform:translateY(-6px); } }
 @media (prefers-reduced-motion: reduce){ .fm-note { animation:none; } }
-/* CHIP PICKERS (v2026.11.02b): see the script below */
-.chips { display:flex; flex-wrap:wrap; gap:8px; }
-.form-wrap .chips { justify-content:center; }
-#loanForm .chips { justify-content:flex-start; }   /* loans labels sit on the left */
-.chip {
-  min-height:44px; max-width:100%; padding:9px 16px; border-radius:100px; cursor:pointer;
-  border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.04); color:var(--white);
-  font:500 14.5px/1.3 'DM Sans', sans-serif; display:inline-flex; align-items:center; gap:7px; text-align:left;
-  transition:background .18s, border-color .18s, color .18s;
+/* DROPDOWNS (v2026.11.02e): see the script below */
+select.dd-on { display:none !important; }
+.dd { position:relative; }
+.dd-btn {
+  width:100%; min-height:46px; display:flex; align-items:center; justify-content:space-between; gap:10px;
+  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px;
+  padding:11px 14px 11px 16px; color:var(--white); font:400 14px/1.35 'DM Sans', sans-serif; text-align:left; cursor:pointer;
+  transition:border-color .2s;
 }
-.chip:hover { border-color:rgba(201,168,76,0.55); }
-.chip[aria-checked="true"] { background:rgba(201,168,76,0.16); border-color:var(--gold); color:var(--gold-light); }
-.chip[aria-checked="true"]::before { content:'\2713'; font-weight:700; font-size:13px; }
-.chip:focus-visible { outline:2px solid var(--gold-light); outline-offset:2px; }
-.chips-sm .chip { min-height:40px; padding:7px 13px; font-size:13.5px; }
-.chips.fm-bad { outline:1px solid #E0685F; outline-offset:6px; border-radius:14px; }
-select.chips-on { display:none !important; }
-@media (prefers-reduced-motion: reduce){ .chip { transition:none; } }
+.dd-btn:hover { border-color:rgba(201,168,76,0.4); }
+.dd-btn:focus-visible, .dd.open .dd-btn { border-color:var(--gold); outline:none; }
+.dd-btn.dd-empty .dd-txt { color:var(--text-muted); }
+.dd-txt { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.dd-arrow { flex:0 0 auto; width:9px; height:9px; border-right:2px solid var(--gold); border-bottom:2px solid var(--gold); transform:translateY(-3px) rotate(45deg); transition:transform .2s; }
+.dd.open .dd-arrow { transform:translateY(2px) rotate(225deg); }
+.dd-list {
+  position:absolute; left:0; right:0; top:calc(100% + 6px); z-index:40; max-height:288px; overflow-y:auto; overscroll-behavior:contain;
+  background:#162B4F; border:1px solid rgba(201,168,76,0.35); border-radius:12px; padding:6px;
+  box-shadow:0 18px 40px rgba(0,0,0,.5); animation:ddIn .16s ease;
+}
+.dd-list[hidden] { display:none; }
+.dd-opt {
+  display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:44px; padding:10px 12px; border-radius:8px;
+  color:var(--white); font:400 14.5px/1.35 'DM Sans', sans-serif; text-align:left; cursor:pointer;
+}
+.dd-opt:hover, .dd-opt:focus { background:rgba(201,168,76,0.12); outline:none; }
+.dd-opt[aria-selected="true"] { color:var(--gold-light); font-weight:600; }
+.dd-opt[aria-selected="true"]::after { content:'\2713'; color:var(--gold); font-weight:700; }
+@keyframes ddIn { from { opacity:0; transform:translateY(-4px); } }
+@media (max-width:600px){ .dd-btn, .dd-opt { font-size:16px; } }
+@media (prefers-reduced-motion: reduce){ .dd-list { animation:none; } .dd-btn, .dd-arrow { transition:none; } }
 </style>
 <script>
 /* FORM MESSAGES (v2026.11.02a): no browser popups. A problem shows in a panel
@@ -421,15 +434,15 @@ function fmShow(btn, kind, title, items, actions){
   box.hidden = false;
   return box;
 }
-function fmMark(el){ el = el && el._chips || el; if (el) { el.classList.add('fm-bad'); el.setAttribute('aria-invalid', 'true'); } }
+function fmMark(el){ el = el && el._ui || el; if (el) { el.classList.add('fm-bad'); el.setAttribute('aria-invalid', 'true'); } }
 function fmClear(scope){
   if (!scope) return;
   scope.querySelectorAll('.fm-bad').forEach(function(e){ e.classList.remove('fm-bad'); e.removeAttribute('aria-invalid'); });
   var box = scope.querySelector('.fm-note'); if (box) box.hidden = true;
 }
 function fmGoTo(el, focusEl){
-  el = el && el._chips || el;   // a dropdown shown as chips: go to the chips
-  if (focusEl && focusEl._chips) focusEl = focusEl._chips.querySelector('.chip[tabindex="0"]');
+  el = el && el._ui || el;   // a styled dropdown: go to the field people see
+  if (focusEl && focusEl._ui) focusEl = focusEl._ui;
   if (!el) return;
   var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   el.scrollIntoView({behavior: still ? 'auto' : 'smooth', block: 'center'});
@@ -442,69 +455,99 @@ function fmGoTo(el, focusEl){
   }, true);
 });
 
-/* CHIP PICKERS (v2026.11.02b): in the apply form, each dropdown becomes a row
-   of tappable choices (one tap, no list popping up). The real <select> stays in
-   the page, hidden, and still holds the answer, so the checks, the translations
+/* DROPDOWNS (v2026.11.02e): the apply form's dropdowns in the site's own style.
+   Tapping the field opens a list right under it (instead of the phone's plain
+   picker); the chosen answer gets a gold tick. The real <select> stays in the
+   page, hidden, and still holds the answer, so the checks, the translations
    (setLang) and the code that pre-fills it (loan type, EMI amount) work as before. */
-function chipify(sel){
-  if (!sel || sel._chips) return;
+function dropify(sel){
+  if (!sel || sel._ui) return;
   var keepFirst = sel.name === 'bank';            // "No preference" is a real answer; the others start with a "Select ..." line
   var group = sel.closest('.form-group');
   var lab = group && group.querySelector('label');
-  var box = document.createElement('div');
-  box.className = 'chips' + (sel.name === 'bank' ? ' chips-sm' : '');
-  box.setAttribute('role', 'radiogroup');
-  if (lab) { if (!lab.id) lab.id = 'chl-' + sel.name + '-' + Math.random().toString(36).slice(2, 7); box.setAttribute('aria-labelledby', lab.id); lab.removeAttribute('for'); }
-  sel.parentNode.insertBefore(box, sel.nextSibling);
-  sel.classList.add('chips-on');
-  sel._chips = box;
-  function pick(i){
-    sel.selectedIndex = i;
-    sel.dispatchEvent(new Event('change', {bubbles: true}));
-    box.classList.remove('fm-bad'); box.removeAttribute('aria-invalid');
+  var uid = 'dd-' + sel.name + '-' + Math.random().toString(36).slice(2, 7);
+  var wrap = document.createElement('div'); wrap.className = 'dd';
+  var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'dd-btn';
+  btn.setAttribute('aria-haspopup', 'listbox'); btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-controls', uid);
+  var txt = document.createElement('span'); txt.className = 'dd-txt'; txt.id = uid + '-v';
+  var arrow = document.createElement('span'); arrow.className = 'dd-arrow'; arrow.setAttribute('aria-hidden', 'true');
+  btn.appendChild(txt); btn.appendChild(arrow);
+  var list = document.createElement('div'); list.className = 'dd-list'; list.id = uid; list.setAttribute('role', 'listbox'); list.hidden = true;
+  if (lab) {
+    if (!lab.id) lab.id = uid + '-l';
+    btn.setAttribute('aria-labelledby', lab.id + ' ' + txt.id); list.setAttribute('aria-labelledby', lab.id);
+    lab.removeAttribute('for'); lab.addEventListener('click', function(){ btn.focus(); });
   }
+  wrap.appendChild(btn); wrap.appendChild(list);
+  sel.parentNode.insertBefore(wrap, sel.nextSibling);
+  sel.classList.add('dd-on');
+  sel._ui = btn;
+  var still = function(){ return window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches; };
+  var opts = function(){ return [].slice.call(list.querySelectorAll('.dd-opt')); };
+
   function build(){
-    box.textContent = '';
+    list.textContent = '';
     for (var i = keepFirst ? 0 : 1; i < sel.options.length; i++) {
-      var b = document.createElement('button');
-      b.type = 'button'; b.className = 'chip'; b.setAttribute('role', 'radio');
-      b.textContent = sel.options[i].textContent.trim();
-      b.dataset.i = i;
-      b.onclick = (function(i){ return function(){ pick(i); }; })(i);
-      box.appendChild(b);
+      var o = document.createElement('div');
+      o.className = 'dd-opt'; o.setAttribute('role', 'option'); o.tabIndex = -1; o.dataset.i = i;
+      o.textContent = sel.options[i].textContent.trim();
+      list.appendChild(o);
     }
     sync();
   }
   function sync(){
-    var on = sel.selectedIndex, any = false;
-    box.querySelectorAll('.chip').forEach(function(b){
-      var c = +b.dataset.i === on; any = any || c;
-      b.setAttribute('aria-checked', c ? 'true' : 'false');
-      b.tabIndex = c ? 0 : -1;
-    });
-    if (!any && box.firstChild) box.firstChild.tabIndex = 0;
+    var on = sel.selectedIndex;
+    txt.textContent = sel.options[on] ? sel.options[on].textContent.trim() : '';
+    btn.classList.toggle('dd-empty', on < 0 || (on === 0 && !keepFirst));
+    opts().forEach(function(o){ o.setAttribute('aria-selected', +o.dataset.i === on ? 'true' : 'false'); });
   }
-  // arrow keys move between choices, like any radio group
-  box.addEventListener('keydown', function(e){
-    var k = e.key, list = [].slice.call(box.querySelectorAll('.chip')), at = list.indexOf(document.activeElement);
-    if (at < 0) return;
-    var to = k === 'ArrowRight' || k === 'ArrowDown' ? at + 1 : k === 'ArrowLeft' || k === 'ArrowUp' ? at - 1 : null;
-    if (to === null) return;
-    e.preventDefault(); to = (to + list.length) % list.length;
-    list[to].focus(); list[to].click();
+  function open(){
+    if (!list.hidden) return;
+    ddCloseAll();
+    list.hidden = false; btn.setAttribute('aria-expanded', 'true'); wrap.classList.add('open');
+    var cur = list.querySelector('[aria-selected="true"]') || list.firstChild;
+    if (cur) { list.scrollTop = Math.max(0, cur.offsetTop - list.clientHeight / 2); cur.focus({preventScroll: true}); }
+    var r = list.getBoundingClientRect();                     // keep the whole list on screen
+    if (r.bottom > innerHeight) window.scrollBy({top: r.bottom - innerHeight + 12, behavior: still() ? 'auto' : 'smooth'});
+  }
+  function close(focusBtn){
+    if (list.hidden) return;
+    list.hidden = true; btn.setAttribute('aria-expanded', 'false'); wrap.classList.remove('open');
+    if (focusBtn) btn.focus({preventScroll: true});
+  }
+  function pick(i){
+    sel.selectedIndex = i;
+    sel.dispatchEvent(new Event('change', {bubbles: true}));
+    btn.classList.remove('fm-bad'); btn.removeAttribute('aria-invalid');
+    close(true);
+  }
+  wrap._close = close;
+  btn.addEventListener('click', function(){ list.hidden ? open() : close(false); });
+  btn.addEventListener('keydown', function(e){ if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); open(); } });
+  list.addEventListener('click', function(e){ var o = e.target.closest('.dd-opt'); if (o) pick(+o.dataset.i); });
+  list.addEventListener('keydown', function(e){
+    var all = opts(), at = all.indexOf(document.activeElement), k = e.key;
+    if (k === 'ArrowDown' || k === 'ArrowUp') { e.preventDefault(); all[Math.min(all.length - 1, Math.max(0, at + (k === 'ArrowDown' ? 1 : -1)))].focus(); }
+    else if (k === 'Home' || k === 'End') { e.preventDefault(); all[k === 'Home' ? 0 : all.length - 1].focus(); }
+    else if (k === 'Enter' || k === ' ') { e.preventDefault(); if (at > -1) pick(+all[at].dataset.i); }
+    else if (k === 'Escape') { e.preventDefault(); close(true); }
+    else if (k === 'Tab') { close(false); }
   });
-  // code that sets the select directly (sel.value = ..., selectedIndex = ...) also moves the gold chip
+  wrap.addEventListener('focusout', function(e){ if (e.relatedTarget && !wrap.contains(e.relatedTarget)) close(false); });
+  // code that sets the select directly (sel.value = ..., selectedIndex = ...) also updates the field
   ['value', 'selectedIndex'].forEach(function(p){
     var d = Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, p);
     Object.defineProperty(sel, p, { configurable: true, get: function(){ return d.get.call(this); }, set: function(v){ d.set.call(this, v); sync(); } });
   });
   sel.addEventListener('change', sync);
-  // a language switch rewrites the option words: rewrite the chips to match
+  // a language switch rewrites the option words: rewrite the list to match
   new MutationObserver(build).observe(sel, {subtree: true, childList: true, characterData: true});
   build();
 }
+function ddCloseAll(){ document.querySelectorAll('.dd.open').forEach(function(w){ w._close(false); }); }
+document.addEventListener('pointerdown', function(e){ if (!(e.target.closest && e.target.closest('.dd'))) ddCloseAll(); });
 document.addEventListener('DOMContentLoaded', function(){
-  document.querySelectorAll('.form-wrap select, #loanForm select').forEach(chipify);
+  document.querySelectorAll('.form-wrap select, #loanForm select').forEach(dropify);
 });
 </script>
 </head>
@@ -764,14 +807,14 @@ document.addEventListener('DOMContentLoaded', function(){
     <a href="index.html#contact" data-keep-lang data-i18n="cfLink">Contact</a>
   </div>
   <div class="footer-bottom">
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.02d</span><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.02e</span><br/>
     &copy; 2026 Mahodaya Credit Solutions<br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
 </footer>
 
 <script>
-console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.02d", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.02e", "color:#C9A84C;font-weight:bold");
 
 // ===================================================================
 //  Leads go to the same two places as the card form on index.html.
