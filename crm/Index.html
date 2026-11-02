@@ -174,11 +174,37 @@ body.locked{overflow:hidden}
 }
 .grp:first-of-type{margin-top:4px}
 
+/* messages float in the same spot as the Undo bar, clear of New lead */
 .bar{
-  position:fixed;left:0;right:0;bottom:0;z-index:50;padding:11px 16px;
-  background:var(--raise);border-top:1px solid var(--line);font-size:13.5px;text-align:center
+  position:fixed;left:50%;transform:translateX(-50%);bottom:calc(86px + env(safe-area-inset-bottom,0px));z-index:50;
+  width:min(420px,calc(100% - 24px));padding:13px 16px;border-radius:14px;
+  background:var(--raise);border:1px solid var(--line);box-shadow:0 16px 40px rgba(0,0,0,.55);
+  font-size:14.5px;text-align:center
 }
 .bar.warn{background:#4A2320;color:#F3C8C3}
+
+/* ---------- undo toast: floats above New lead, a gold line runs down ---------- */
+.toast{
+  position:fixed;left:50%;bottom:calc(86px + env(safe-area-inset-bottom,0px));z-index:45;
+  width:min(420px,calc(100% - 24px));display:flex;align-items:center;gap:8px;overflow:hidden;
+  background:var(--raise);border:1px solid rgba(201,168,76,.28);border-radius:14px;
+  padding:5px 5px 5px 16px;box-shadow:0 16px 40px rgba(0,0,0,.55);
+  transform:translate(-50%,18px);opacity:0;pointer-events:none;
+  transition:transform .24s cubic-bezier(.2,.8,.3,1),opacity .2s;
+}
+.toast.on{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+.toast p{flex:1;min-width:0;font-size:14.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.toast button{flex:0 0 auto;min-height:44px;padding:0 18px;border-radius:10px;color:var(--gold-l);font-weight:600;font-size:15px}
+.toast button:hover{background:rgba(201,168,76,.12)}
+.toast i{position:absolute;left:0;bottom:0;width:100%;height:3px;background:var(--gold);transform-origin:left}
+.toast.on i{animation:drain var(--dur,6s) linear forwards}
+@keyframes drain{to{transform:scaleX(0)}}
+/* the deleted lead folds away; an undone one glows back in */
+.lead.gone{height:0 !important;min-height:0;margin-bottom:0;padding-top:0;padding-bottom:0;border-width:0;opacity:0;overflow:hidden;
+  transform:translateX(-28px);transition:all .28s ease}
+.lead.back{animation:back 1.4s ease}
+@keyframes back{from{border-color:var(--gold);background:var(--raise)}}
+@media(prefers-reduced-motion:reduce){ .toast{transition:none} .toast.on i{animation:none;display:none} .lead.back{animation:none} }
 
 /* ---------- phone comfort ----------
    16px text in fields stops phones zooming in on every tap, and every
@@ -226,6 +252,7 @@ input,select,textarea{font-size:16px}
 <section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sTitle"></section>
 
 <div class="bar" id="bar" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 /* ------------------------------------------------------------------
@@ -381,24 +408,25 @@ function dueText(l){
 
 /* ---------- render ---------- */
 function render(){
+  const ALL = LEADS.filter(l=>!PENDING.has(l.id));   // a lead waiting to be deleted is already gone from view
   const q=$('#q').value.trim().toLowerCase();
   const fs=$('#fStage').value;
-  const rows = LEADS.filter(l=>{
+  const rows = ALL.filter(l=>{
     if(fs && l.stage!==fs) return false;
     if(!q) return true;
     return [l.name,l.mobile,l.city,l.card,l.bank,l.product].some(v=>String(v||'').toLowerCase().includes(q));
   });
 
-  const open    = LEADS.filter(l=>SM[l.stage]?.open);
+  const open    = ALL.filter(l=>SM[l.stage]?.open);
   const overdue = open.filter(l=>l.followUp && days(l.followUp)<0).length;
   const dueToday= open.filter(l=>l.followUp && days(l.followUp)===0).length;
-  const fresh   = LEADS.filter(l=>l.stage==='new' && !l.followUp).length;
+  const fresh   = ALL.filter(l=>l.stage==='new' && !l.followUp).length;
   const noDate  = open.filter(l=>!l.followUp).length;
-  const bonusDue= LEADS.filter(l=>l.bonus==='due').length;
+  const bonusDue= ALL.filter(l=>l.bonus==='due').length;
 
   // The daily refresher: what today actually asks of you, in one line.
   let brief;
-  if(!LEADS.length)            brief = READY ? 'Nothing in the pipeline yet.' : 'Loading your leads.';
+  if(!ALL.length)            brief = READY ? 'Nothing in the pipeline yet.' : 'Loading your leads.';
   else if(overdue+dueToday+fresh===0) brief = noDate
       ? `Nothing due today. ${noDate} lead${noDate===1?'':'s'} still need a follow-up date.`
       : 'Nothing due today. You are clear.';
@@ -414,13 +442,13 @@ function render(){
     el('div',{class:'brief'+(overdue||fresh?' hot':'')}, brief),
     el('div',{class:'tally'},
       el('span',{}, el('b',{},String(open.length)), ' in progress'),
-      el('span',{}, el('b',{},String(LEADS.filter(l=>l.stage==='payout').length)), ' paid out'),
+      el('span',{}, el('b',{},String(ALL.filter(l=>l.stage==='payout').length)), ' paid out'),
       bonusDue ? el('span',{}, el('b',{},'₹'+(bonusDue*REFER_BONUS)), ' referral bonus to pay') : null)
   );
 
   const main=$('#list'); main.replaceChildren();
 
-  if(!LEADS.length){
+  if(!ALL.length){
     main.append(el('div',{class:'empty'},
       el('h3',{},READY?'No leads yet':'Loading your leads'),
       el('p',{},READY
@@ -451,7 +479,7 @@ function leadRow(l){
   const b=band(l);
   const wa=digits10(l.mobile);
   const bits=[s.t, l.product||null, l.card||l.bank||null, l.city||null].filter(Boolean).join(' · ');
-  const row = el('div',{class:'lead',style:`--stage:${s.c}`},
+  const row = el('div',{class:'lead','data-id':l.id,style:`--stage:${s.c}`},
     el('button',{class:'body',onclick:()=>openSheet(l.id),'aria-label':`Open ${l.name||'lead'}`},
       el('div',{class:'top'}, el('span',{class:'nm'},l.name||'Unnamed', l.stage==='new'&&!l.followUp?el('span',{class:'new'},'NEW'):null),
                               el('span',{class:'pl'}, wa?('+91 '+wa):'')),
@@ -632,12 +660,46 @@ async function saveLead(){
     closeSheet(); load(true);
   }catch(e){ note('Could not save: '+errText(e),true); if(btn) btn.disabled=false; }
 }
-async function removeLead(id){
-  const l=LEADS.find(x=>x.id===id);
-  if(!confirm(`Delete ${l?.name||'this lead'}? This removes the row from the Leads sheet and cannot be undone.`)) return;
-  try{ await api('deleteLead', id); note('Deleted.'); closeSheet(); load(true); }
-  catch(e){ note('Could not delete: '+errText(e),true); }
+/* ---------- delete with undo ----------
+   No "are you sure?" popup. The lead slides out of the list at once and the
+   row is only removed from the sheet after 6 seconds, so a wrong tap costs
+   one tap on Undo. Leaving the page finishes any delete still waiting. */
+const UNDO_MS = 6000;
+const PENDING = new Map();   // id -> timer; 0 once the delete is on its way to the sheet
+function toast(msg, action, fn){
+  const t=$('#toast'); $('#bar').hidden=true;
+  t.replaceChildren(el('p',{},msg), el('button',{type:'button',onclick:fn},action), el('i',{}));
+  t.style.setProperty('--dur', UNDO_MS+'ms');
+  t.classList.remove('on'); void t.offsetWidth; t.classList.add('on');
+  clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('on'), UNDO_MS);
 }
+const rowOf = id => [...document.querySelectorAll('.lead')].find(r=>r.dataset.id===id);
+function removeLead(id){
+  const l=LEADS.find(x=>x.id===id);
+  closeSheet();
+  PENDING.set(id, setTimeout(()=>commitDelete(id), UNDO_MS));
+  const row=rowOf(id);
+  if(row && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    row.style.height=row.offsetHeight+'px'; void row.offsetHeight; row.classList.add('gone');
+    setTimeout(render, 300);
+  } else render();
+  toast((l&&l.name ? l.name : 'Lead')+' deleted', 'Undo', ()=>undoDelete(id));
+}
+function undoDelete(id){
+  if(!PENDING.get(id)) return;            // already gone to the sheet
+  clearTimeout(PENDING.get(id)); PENDING.delete(id);
+  $('#toast').classList.remove('on');
+  render();
+  const row=rowOf(id);
+  if(row){ row.classList.add('back'); row.scrollIntoView({block:'nearest'}); }
+}
+async function commitDelete(id){
+  if(!PENDING.get(id)) return;            // undone, or already sending
+  clearTimeout(PENDING.get(id)); PENDING.set(id, 0);
+  try{ await api('deleteLead', id); LEADS=LEADS.filter(x=>x.id!==id); PENDING.delete(id); render(); }
+  catch(e){ PENDING.delete(id); render(); note('Could not delete: '+errText(e),true); }
+}
+document.addEventListener('visibilitychange',()=>{ if(document.hidden) [...PENDING.keys()].forEach(commitDelete); });
 
 /* ---------- import: bring in old leads (old CRM export, Netlify CSV) ---------- */
 function parseCSV(text){
