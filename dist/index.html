@@ -2117,9 +2117,9 @@ document.addEventListener('DOMContentLoaded', function(){
         <label data-i18n="fEmp">Employment Type</label>
         <select name="employment">
           <option data-i18n="o_typ">Select type</option>
-          <option data-i18n="o_sal">Salaried</option>
-          <option data-i18n="o_self">Self Employed</option>
-          <option data-i18n="o_biz">Business Owner</option>
+          <option value="Salaried" data-i18n="o_sal">Salaried</option>
+          <option value="Self Employed" data-i18n="o_self">Self Employed</option>
+          <option value="Business Owner" data-i18n="o_biz">Business Owner</option>
         </select>
       </div>
     </div>
@@ -2150,12 +2150,12 @@ document.addEventListener('DOMContentLoaded', function(){
       <label data-i18n="fSpend">I spend most on</label>
       <select name="spend">
         <option data-i18n="o_cat">Select category</option>
-        <option data-i18n="o_online">Online Shopping</option>
-        <option data-i18n="o_fuel">Fuel</option>
-        <option data-i18n="o_trav">Travel &amp; Flights</option>
-        <option data-i18n="o_dine">Dining &amp; Food Delivery</option>
-        <option data-i18n="o_groc">Groceries</option>
-        <option data-i18n="o_eq">Everything equally</option>
+        <option value="Online Shopping" data-i18n="o_online">Online Shopping</option>
+        <option value="Fuel" data-i18n="o_fuel">Fuel</option>
+        <option value="Travel &amp; Flights" data-i18n="o_trav">Travel &amp; Flights</option>
+        <option value="Dining &amp; Food Delivery" data-i18n="o_dine">Dining &amp; Food Delivery</option>
+        <option value="Groceries" data-i18n="o_groc">Groceries</option>
+        <option value="Everything equally" data-i18n="o_eq">Everything equally</option>
       </select>
     </div>
     <!-- Optional: not in handleSubmit's required list. Bank names stay in English. -->
@@ -2269,7 +2269,7 @@ document.addEventListener('DOMContentLoaded', function(){
     <span style="opacity:.3;margin:0 6px;">|</span>
     <button class="link-btn" onclick="openContact()" data-i18n="cfLink">Contact</button>
     <br/><br/>
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.02b</span><br/><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.02c</span><br/><br/>
     <span data-i18n="ftCopy">&copy; 2026 &middot; Authorised DSA Partner</span><br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
@@ -2628,7 +2628,7 @@ function showSubmitted(){
 </script>
 
 <script>
-console.log("%cMahodaya Credit Solutions, build v2026.11.02b", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, build v2026.11.02c", "color:#C9A84C;font-weight:bold");
 const T = {
 en:{
 langNote:"Tap any language above to switch the whole page",
