@@ -228,6 +228,7 @@
   .ln-bank { display:block; font-family:'Playfair Display', serif; font-size:17px; line-height:1.25; color:var(--white); }
   .ln-x { display:block; font-size:11.5px; color:var(--gold-light); margin-top:2px; }
   .ln-fee { display:block; font-size:12.5px; color:#B9C5D5; line-height:1.55; margin-top:6px; }
+  .ln-note { display:block; margin-top:8px; padding:8px 11px; border-radius:8px; border:1px solid rgba(201,168,76,.3); background:rgba(201,168,76,.07); color:rgba(255,255,255,.82); font-size:12px; line-height:1.55; }
   .ln-fee i { display:block; font-style:normal; font-size:10.5px; letter-spacing:.6px; text-transform:uppercase; color:var(--text-muted); }
   .ln-link { display:inline-flex; align-items:center; min-height:40px; margin-top:2px; font-size:12.5px; color:var(--gold-light); text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(232,201,106,.45); }
   .ln-link:hover { color:var(--gold); }
@@ -850,14 +851,14 @@ document.addEventListener('DOMContentLoaded', function(){
     <a href="index.html#contact" data-keep-lang data-i18n="cfLink">Contact</a>
   </div>
   <div class="footer-bottom">
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.04a</span><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.04b</span><br/>
     &copy; 2026 Mahodaya Credit Solutions<br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
 </footer>
 
 <script>
-console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.04a", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.04b", "color:#C9A84C;font-weight:bold");
 
 // ===================================================================
 //  Leads go to the same two places as the card form on index.html.
@@ -1114,6 +1115,18 @@ const T_AMT = {
   hi:{o_typeAmt:'रकम खुद लिखें', ph_incTyped:'महीने की आय ₹ में, जैसे 12,000', ph_amtTyped:'लोन की रकम ₹ में, जैसे 1,50,000'}
 };
 Object.keys(T_AMT).forEach(l => { T[l] = Object.assign(T[l] || {}, T_AMT[l]); });
+// Banks whose website blocks the daily bank watch (tools/bank-watch.js, GitHub run of 4 Nov 2026).
+// Their rows say so; same words as index.html. Take a bank off once the watch can read its pages again.
+const NO_WATCH = ['sbi', 'yes'];
+const T_WATCH = {
+  en:{noWatch:"We can't check this bank's website every day, so a change may show here late. Confirm the latest details on the bank's own website before you apply."},
+  ml:{noWatch:'ഈ ബാങ്കിന്റെ വെബ്സൈറ്റ് ഞങ്ങൾക്ക് ദിവസവും പരിശോധിക്കാൻ കഴിയില്ല, അതിനാൽ മാറ്റങ്ങൾ ഇവിടെ കാണാൻ വൈകിയേക്കാം. അപേക്ഷിക്കുന്നതിന് മുമ്പ് ബാങ്കിന്റെ സ്വന്തം വെബ്സൈറ്റിൽ ഏറ്റവും പുതിയ വിവരങ്ങൾ ഉറപ്പാക്കുക.'},
+  ta:{noWatch:'இந்த வங்கியின் இணையதளத்தை எங்களால் தினமும் சரிபார்க்க முடியாது, எனவே மாற்றங்கள் இங்கே தாமதமாகத் தெரியலாம். விண்ணப்பிக்கும் முன் வங்கியின் சொந்த இணையதளத்தில் சமீபத்திய விவரங்களை உறுதிசெய்யுங்கள்.'},
+  te:{noWatch:'ఈ బ్యాంక్ వెబ్‌సైట్‌ను మేము ప్రతిరోజూ తనిఖీ చేయలేము, కాబట్టి మార్పులు ఇక్కడ ఆలస్యంగా కనిపించవచ్చు. దరఖాస్తు చేసే ముందు బ్యాంక్ స్వంత వెబ్‌సైట్‌లో తాజా వివరాలను నిర్ధారించుకోండి.'},
+  kn:{noWatch:'ಈ ಬ್ಯಾಂಕಿನ ವೆಬ್‌ಸೈಟ್ ಅನ್ನು ನಾವು ಪ್ರತಿದಿನ ಪರಿಶೀಲಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಆದ್ದರಿಂದ ಬದಲಾವಣೆಗಳು ಇಲ್ಲಿ ತಡವಾಗಿ ಕಾಣಬಹುದು. ಅರ್ಜಿ ಸಲ್ಲಿಸುವ ಮೊದಲು ಬ್ಯಾಂಕಿನ ಸ್ವಂತ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಇತ್ತೀಚಿನ ವಿವರಗಳನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.'},
+  hi:{noWatch:'हम इस बैंक की वेबसाइट रोज़ नहीं जाँच पाते, इसलिए बदलाव यहाँ देर से दिख सकते हैं। आवेदन करने से पहले बैंक की अपनी वेबसाइट पर ताज़ा जानकारी पक्की कर लें।'}
+};
+Object.keys(T_WATCH).forEach(l => { T[l] = Object.assign(T[l] || {}, T_WATCH[l]); });
 
 let CUR = 'en', TYPE = 'pl';
 const TYPE_NAME = {pl:'Personal loan', hl:'Home loan', cl:'Car loan', bl:'Business loan'};
@@ -1139,6 +1152,7 @@ function renderLoans(){
         <b class="ln-bank">${esc(bk.n)}</b>${row.x ? `<span class="ln-x">${esc(row.x)}</span>` : ''}
         <span class="ln-fee"><i>${d.feeLbl}</i>${row.fee ? esc(row.fee) : d.feeNone}</span>
         <a class="ln-link" href="${esc(safeUrl(row.u))}" target="_blank" rel="noopener">${d.bankLink} &#8599;</a>
+        ${NO_WATCH.includes(row.b) ? `<span class="ln-note">${d.noWatch || T.en.noWatch}</span>` : ''}
       </div>
       ${rate}
     </li>`;

@@ -588,6 +588,7 @@
 .bank-block.open .bank-arw{transform:rotate(180deg);}
 .bank-block .cc-grid{display:none;padding:18px 20px 20px;}
 .bank-block.open .cc-grid{display:grid;}
+.bank-note{grid-column:1/-1;margin:0;padding:10px 14px;border-radius:10px;border:1px solid rgba(201,168,76,0.3);background:rgba(201,168,76,0.07);color:rgba(255,255,255,0.82);font-size:13px;line-height:1.6;}
 .bank-block.open .cc{animation:ccIn 0.34s ease both;}
 .bank-block.open .cc:nth-child(1){animation-delay:.02s}
 .bank-block.open .cc:nth-child(2){animation-delay:.05s}
@@ -2352,7 +2353,7 @@ document.addEventListener('DOMContentLoaded', function(){
     <span style="opacity:.3;margin:0 6px;">|</span>
     <button class="link-btn" onclick="openContact()" data-i18n="cfLink">Contact</button>
     <br/><br/>
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.04a</span><br/><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.04b</span><br/><br/>
     <span data-i18n="ftCopy">&copy; 2026 &middot; Authorised DSA Partner</span><br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
@@ -2715,7 +2716,7 @@ function showSubmitted(){
 </script>
 
 <script>
-console.log("%cMahodaya Credit Solutions, build v2026.11.04a", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, build v2026.11.04b", "color:#C9A84C;font-weight:bold");
 const T = {
 en:{
 langNote:"Tap any language above to switch the whole page",
@@ -3069,6 +3070,18 @@ const T_AMT = {
   hi:{o_typeAmt:'रकम खुद लिखें', ph_incTyped:'महीने की आय ₹ में, जैसे 12,000', tagJoin:'जॉइनिंग शुल्क'}
 };
 Object.keys(T_AMT).forEach(l => { T[l] = Object.assign(T[l]||{}, T_AMT[l]); });
+// Banks whose website blocks the daily bank watch (tools/bank-watch.js, GitHub run of 4 Nov 2026).
+// Their card list says so. Take a bank off this list once the watch can read its page again.
+const NO_WATCH = ['SBI Card', 'Yes Bank', 'Federal Bank / Scapia'];
+const T_WATCH = {
+  en:{noWatch:"We can't check this bank's website every day, so a change may show here late. Confirm the latest details on the bank's own website before you apply."},
+  ml:{noWatch:'ഈ ബാങ്കിന്റെ വെബ്സൈറ്റ് ഞങ്ങൾക്ക് ദിവസവും പരിശോധിക്കാൻ കഴിയില്ല, അതിനാൽ മാറ്റങ്ങൾ ഇവിടെ കാണാൻ വൈകിയേക്കാം. അപേക്ഷിക്കുന്നതിന് മുമ്പ് ബാങ്കിന്റെ സ്വന്തം വെബ്സൈറ്റിൽ ഏറ്റവും പുതിയ വിവരങ്ങൾ ഉറപ്പാക്കുക.'},
+  ta:{noWatch:'இந்த வங்கியின் இணையதளத்தை எங்களால் தினமும் சரிபார்க்க முடியாது, எனவே மாற்றங்கள் இங்கே தாமதமாகத் தெரியலாம். விண்ணப்பிக்கும் முன் வங்கியின் சொந்த இணையதளத்தில் சமீபத்திய விவரங்களை உறுதிசெய்யுங்கள்.'},
+  te:{noWatch:'ఈ బ్యాంక్ వెబ్‌సైట్‌ను మేము ప్రతిరోజూ తనిఖీ చేయలేము, కాబట్టి మార్పులు ఇక్కడ ఆలస్యంగా కనిపించవచ్చు. దరఖాస్తు చేసే ముందు బ్యాంక్ స్వంత వెబ్‌సైట్‌లో తాజా వివరాలను నిర్ధారించుకోండి.'},
+  kn:{noWatch:'ಈ ಬ್ಯಾಂಕಿನ ವೆಬ್‌ಸೈಟ್ ಅನ್ನು ನಾವು ಪ್ರತಿದಿನ ಪರಿಶೀಲಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಆದ್ದರಿಂದ ಬದಲಾವಣೆಗಳು ಇಲ್ಲಿ ತಡವಾಗಿ ಕಾಣಬಹುದು. ಅರ್ಜಿ ಸಲ್ಲಿಸುವ ಮೊದಲು ಬ್ಯಾಂಕಿನ ಸ್ವಂತ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಇತ್ತೀಚಿನ ವಿವರಗಳನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.'},
+  hi:{noWatch:'हम इस बैंक की वेबसाइट रोज़ नहीं जाँच पाते, इसलिए बदलाव यहाँ देर से दिख सकते हैं। आवेदन करने से पहले बैंक की अपनी वेबसाइट पर ताज़ा जानकारी पक्की कर लें।'}
+};
+Object.keys(T_WATCH).forEach(l => { T[l] = Object.assign(T[l]||{}, T_WATCH[l]); });
 
 
 let CUR = 'en';
@@ -3305,7 +3318,7 @@ function renderCards(){
       </div>
       <div class="bank-ct">${fc.length} ${fc.length>1?(d.cardsWord||'cards'):(d.cardWord||'card')}</div>
       <span class="bank-arw">&#9662;</span>
-    </button><div class="cc-grid">`;
+    </button><div class="cc-grid">${NO_WATCH.includes(bk.name) ? `<p class="bank-note">${d.noWatch||T.en.noWatch}</p>` : ''}`;
     fc.forEach(c=>{
       const tg  = c.inv ? 't-inv' : (c.ltf ? 't-ltf' : 't-paid');
       const tt  = c.inv ? (d.tagInv||'Invite Only') : (c.ltf ? (d.tagLtf||'Lifetime Free')
