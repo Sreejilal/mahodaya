@@ -1,535 +1,523 @@
-Bank,Card,Best for,"Annual fee (rupees a year, number only)",Lifetime free (yes/no),Invite only (yes/no),Network,"Categories (any of: shopping, travel, cashback, lifestyle, upi, fuel, premium, student)",Eligibility,Fee waiver,Features (one per line),Learn more link,Checked on
-HDFC Bank,Infinia Metal Edition,Unlimited Lounge · Max Rewards,12500,no,yes,Visa/Diners,"premium, travel, invite",Invite only · Min salary ₹3L/month,,"5 pts per ₹150 (₹1/pt on SmartBuy travel)
+Bank,Card,Best for,"Annual fee (rupees a year, number only)","Joining fee (one-time rupees, number only, optional)",Lifetime free (yes/no),Invite only (yes/no),Network,"Categories (any of: shopping, travel, cashback, lifestyle, upi, fuel, premium, student)",Eligibility,Fee waiver,Features (one per line),Learn more link,Checked on
+HDFC Bank,Infinia Metal Edition,Unlimited Lounge · Max Rewards,12500,,no,yes,Visa/Diners,"premium, travel, invite",Invite only · Min salary ₹3L/month,,"5 pts per ₹150 (₹1/pt on SmartBuy travel)
 Unlimited domestic + intl lounge (Priority Pass)
 Club Marriott, Times Prime, Amazon Prime memberships
 50 complimentary golf rounds worldwide per year
 ₹3 crore air accident insurance cover",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,Diners Club Black Metal,High Rewards · Travel · Golf,10000,no,no,Diners,"premium, travel",Min ₹1.75L/month,Waived on ₹5L annual spend,"5 pts per ₹150 (₹1/pt via SmartBuy)
+HDFC Bank,Diners Club Black Metal,High Rewards · Travel · Golf,10000,,no,no,Diners,"premium, travel",Min ₹1.75L/month,Waived on ₹5L annual spend,"5 pts per ₹150 (₹1/pt via SmartBuy)
 Unlimited domestic + international lounge
 SmartBuy 10X rewards on flights & hotels
 50 complimentary golf rounds per year
 Club Marriott, Times Prime, MMT Black memberships",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,Regalia Gold,Travel · Dining · Premium,2500,no,no,Visa,"travel, lifestyle, premium",Min ₹1L/month,Waived on ₹5L annual spend,"4 reward pts per ₹150 spent
+HDFC Bank,Regalia Gold,Travel · Dining · Premium,2500,,no,no,Visa,"travel, lifestyle, premium",Min ₹1L/month,Waived on ₹5L annual spend,"4 reward pts per ₹150 spent
 Priority Pass membership (intl lounge access)
 Unlimited domestic lounge access
 Club Marriott membership included
 2% forex markup on international spends",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,Diners Club Privilege,Mid-Premium Rewards,2500,no,no,Diners,"lifestyle, travel","Min ₹75,000/month",Waived on ₹3L annual spend,"4 pts per ₹150 on all Diners spends
+HDFC Bank,Diners Club Privilege,Mid-Premium Rewards,2500,,no,no,Diners,"lifestyle, travel","Min ₹75,000/month",Waived on ₹3L annual spend,"4 pts per ₹150 on all Diners spends
 Lounge access on spend milestone
 Movie & dining privileges
 Golf access at partner courses
 Lower forex markup",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,Millennia,5% Cashback on Top Apps,1000,no,no,Visa/MC/RuPay,"cashback, shopping, lifestyle","Min ₹35,000/month",Waived on ₹1L annual spend,"5% cashback: Amazon, Flipkart, Myntra, Swiggy
+HDFC Bank,Millennia,5% Cashback on Top Apps,1000,,no,no,Visa/MC/RuPay,"cashback, shopping, lifestyle","Min ₹35,000/month",Waived on ₹1L annual spend,"5% cashback: Amazon, Flipkart, Myntra, Swiggy
 5% on Zomato, Uber, BookMyShow, Sony LIV
 1% cashback on all other spends
 Capped at ₹1,000/month total
 2 lounge visits/quarter on ₹1L quarterly spend",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,Tata Neu Infinity HDFC,Tata Brands · UPI Rewards,1499,no,no,RuPay/Visa,"shopping, lifestyle, upi, travel","Min ₹35,000/month",,"Up to 10% NeuCoins on Tata Neu app spends
+HDFC Bank,Tata Neu Infinity HDFC,Tata Brands · UPI Rewards,1499,,no,no,RuPay/Visa,"shopping, lifestyle, upi, travel","Min ₹35,000/month",,"Up to 10% NeuCoins on Tata Neu app spends
 Air India, BigBasket, Tanishq, Croma rewards
 1.5% NeuCoins on UPI spends (RuPay variant)
 Domestic + international lounge access
 1% forex markup on international spends",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,Tata Neu Plus HDFC,Tata Brands Entry Level,499,no,no,RuPay/Visa,"shopping, lifestyle, upi","Min ₹25,000/month",Waived on ₹1L annual spend,"2% NeuCoins on Tata Neu app
+HDFC Bank,Tata Neu Plus HDFC,Tata Brands Entry Level,499,,no,no,RuPay/Visa,"shopping, lifestyle, upi","Min ₹25,000/month",Waived on ₹1L annual spend,"2% NeuCoins on Tata Neu app
 1% NeuCoins on UPI spends (RuPay variant)
 1% on all other spends
 1% fuel surcharge waiver
 Welcome NeuCoins on card activation",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,Swiggy HDFC Bank,Food Delivery Cashback,500,no,no,Visa,"cashback, lifestyle","Min ₹25,000/month",Waived on ₹2L annual spend,"10% cashback on Swiggy (food, Instamart, Dineout)
+HDFC Bank,Swiggy HDFC Bank,Food Delivery Cashback,500,,no,no,Visa,"cashback, lifestyle","Min ₹25,000/month",Waived on ₹2L annual spend,"10% cashback on Swiggy (food, Instamart, Dineout)
 5% on online spends at top partners
 1% on all other eligible spends
 3-month Swiggy One membership on joining
 Capped at ₹1,500/month on Swiggy",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,6E Rewards XL IndiGo HDFC,IndiGo Air Miles,1500,no,no,Visa,travel,"Min ₹25,000/month",,"5% value back as 6E Rewards on IndiGo bookings
+HDFC Bank,6E Rewards XL IndiGo HDFC,IndiGo Air Miles,1500,,no,no,Visa,travel,"Min ₹25,000/month",,"5% value back as 6E Rewards on IndiGo bookings
 2.5% on dining & grocery spends
 1.5% on all other eligible spends
 IndiGo 6E Prime Add-on (speed boarding)
 Free IndiGo flight ticket as welcome benefit",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,HDFC MoneyBack+,Everyday CashPoints,500,no,no,Visa/MC,"cashback, shopping","Min ₹20,000/month","Waived on ₹50,000 annual spend","10X CashPoints on Flipkart, Amazon, Swiggy
+HDFC Bank,HDFC MoneyBack+,Everyday CashPoints,500,,no,no,Visa/MC,"cashback, shopping","Min ₹20,000/month","Waived on ₹50,000 annual spend","10X CashPoints on Flipkart, Amazon, Swiggy
 2X on all other online spends
 1X on all offline spends
 1% fuel surcharge waiver
 Good entry-level HDFC card",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,IndianOil HDFC Bank,IOCL Fuel Savings,500,no,no,Visa,"fuel, cashback","Min ₹15,000/month","Waived on ₹50,000 annual spend","5% fuel points at IndianOil pumps
+HDFC Bank,IndianOil HDFC Bank,IOCL Fuel Savings,500,,no,no,Visa,"fuel, cashback","Min ₹15,000/month","Waived on ₹50,000 annual spend","5% fuel points at IndianOil pumps
 5% on groceries & utility bill payments
 1% on all other eligible spends
 1% fuel surcharge waiver at all pumps
 Welcome fuel reward points on joining",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,IRCTC HDFC Bank,Rail Travel Savings,500,no,no,RuPay,"travel, upi","Min ₹15,000/month",Waived on ₹1L annual spend,"5% value back on IRCTC train ticket bookings
+HDFC Bank,IRCTC HDFC Bank,Rail Travel Savings,500,,no,no,RuPay,"travel, upi","Min ₹15,000/month",Waived on ₹1L annual spend,"5% value back on IRCTC train ticket bookings
 1% on all other eligible spends
 UPI-enabled RuPay network card
 Railway lounge access at select stations
 1% fuel surcharge waiver",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,Marriott Bonvoy HDFC Bank,Marriott Hotel Loyalty Points,3000,no,no,Visa,"travel, lifestyle","Min ₹75,000/month",,"8 Marriott Bonvoy points per ₹150 spent
+HDFC Bank,Marriott Bonvoy HDFC Bank,Marriott Hotel Loyalty Points,3000,,no,no,Visa,"travel, lifestyle","Min ₹75,000/month",,"8 Marriott Bonvoy points per ₹150 spent
 Silver Elite status on card joining
 Free night award on card anniversary
 Domestic + intl lounge access
 Welcome 10,000 Bonvoy points",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,HDFC Freedom,Entry-Level CashPoints,500,no,no,Visa/MC,"cashback, shopping","Min ₹10,000/month · Age 21-60 yrs","Waived on ₹50,000 annual spend. NOT a lifetime free card","10X CashPoints on BigBasket, BookMyShow, Swiggy
+HDFC Bank,HDFC Freedom,Entry-Level CashPoints,500,,no,no,Visa/MC,"cashback, shopping","Min ₹10,000/month · Age 21-60 yrs","Waived on ₹50,000 annual spend. NOT a lifetime free card","10X CashPoints on BigBasket, BookMyShow, Swiggy
 5X CashPoints on EMI spends at merchants
 1 CashPoint per ₹150 on other spends
 0.99% interest for first 90 days on non-EMI spends
 1% fuel surcharge waiver · 15% off dining via Dineout",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-HDFC Bank,HDFC Pixel Play,Customisable Cashback · Digital,500,no,no,Visa/RuPay,"cashback, shopping, lifestyle","Min ₹25,000/month salaried · ₹6L ITR self-employed",Waived on ₹1L annual spend,"5% cashback on any 2 chosen category packs (dining, travel, grocery, electronics, fashion)
+HDFC Bank,HDFC Pixel Play,Customisable Cashback · Digital,500,,no,no,Visa/RuPay,"cashback, shopping, lifestyle","Min ₹25,000/month salaried · ₹6L ITR self-employed",Waived on ₹1L annual spend,"5% cashback on any 2 chosen category packs (dining, travel, grocery, electronics, fashion)
 3% cashback on 1 chosen e-commerce merchant (Amazon, Flipkart or PayZapp)
 1% unlimited cashback on ALL other eligible spends
 1% cashback on UPI spends (RuPay variant only)
 No lounge access · Managed entirely via PayZapp app",https://www.hdfcbank.com/personal/pay/cards/credit-cards,
-ICICI Bank,Times Black,Ultra Premium · Klook Cashback,20000,no,yes,Visa Infinite,"premium, invite, lifestyle, travel",Invite only · Ultra HNI customers,,"10% cashback on Klook experiences
+ICICI Bank,Times Black,Ultra Premium · Klook Cashback,20000,,no,yes,Visa Infinite,"premium, invite, lifestyle, travel",Invite only · Ultra HNI customers,,"10% cashback on Klook experiences
 Unlimited global lounge via Priority Pass
 Luxury airport transfers included
 Personal relationship manager
 Exclusive hotel & dining privileges",https://www.icicibank.com/personal-banking/cards/credit-card,
-ICICI Bank,Emeralde Private Metal,Super Premium · 3% Rewards,12499,no,no,Visa,"premium, travel, lifestyle",Min ₹3L/month,,"3% reward rate on all eligible spends
+ICICI Bank,Emeralde Private Metal,Super Premium · 3% Rewards,12499,,no,no,Visa,"premium, travel, lifestyle",Min ₹3L/month,,"3% reward rate on all eligible spends
 100% reward point redemption for travel
 Unlimited domestic + intl lounge
 Marriott Bonvoy Gold Elite status
 Airport transfers included",https://www.icicibank.com/personal-banking/cards/credit-card,
-ICICI Bank,Amazon Pay ICICI,Amazon Cashback · Lifetime Free,0,yes,no,Visa,"ltf, shopping, cashback","Min ₹25,000/month · Apply via Amazon app",,"5% cashback on Amazon.in (Prime members)
+ICICI Bank,Amazon Pay ICICI,Amazon Cashback · Lifetime Free,0,,yes,no,Visa,"ltf, shopping, cashback","Min ₹25,000/month · Apply via Amazon app",,"5% cashback on Amazon.in (Prime members)
 3% cashback on Amazon.in (Non-Prime)
 2% at 100+ Amazon Pay partner merchants
 1% on all other eligible spends
 Rewards credited as Amazon Pay balance, with no expiry",https://www.icicibank.com/personal-banking/cards/credit-card,
-ICICI Bank,Sapphiro,Travel · Premium Rewards,3500,no,no,Visa/MC,"travel, lifestyle, premium","Joining ₹6,500 · Annual ₹3,500 · Min ₹1L/month",Waived on ₹6L annual spend,"4 pts/₹100 international · 2 pts/₹100 domestic
+ICICI Bank,Sapphiro,Travel · Premium Rewards,3500,,no,no,Visa/MC,"travel, lifestyle, premium","Joining ₹6,500 · Annual ₹3,500 · Min ₹1L/month",Waived on ₹6L annual spend,"4 pts/₹100 international · 2 pts/₹100 domestic
 4 domestic lounge visits/quarter (on ₹75K quarterly spend)
 2 intl lounge visits/year via DreamFolks membership
 BOGO movie tickets twice/month (BookMyShow/INOX)
 Up to 4 free golf rounds/month on spend milestone",https://www.icicibank.com/personal-banking/cards/credit-card,
-ICICI Bank,Rubyx,All-Round Rewards · Lounge,3000,no,no,Visa/MC,"lifestyle, travel","Min ₹50,000/month",Waived on ₹3L annual spend,"2 reward pts per ₹100 on domestic spends
+ICICI Bank,Rubyx,All-Round Rewards · Lounge,3000,,no,no,Visa/MC,"lifestyle, travel","Min ₹50,000/month",Waived on ₹3L annual spend,"2 reward pts per ₹100 on domestic spends
 2 domestic airport lounge/quarter (on ₹75K spend)
 2 railway lounge visits/quarter
 BOGO movie discount (on ₹25K quarterly spend)
 Up to 2 free golf rounds/month on spend milestone",https://www.icicibank.com/personal-banking/cards/credit-card,
-ICICI Bank,MakeMyTrip ICICI Bank,Travel Bookings Rewards,999,no,no,Visa,"travel, lifestyle","Min ₹50,000/month",Waived on ₹3L annual spend,"6% back on MMT hotel bookings as myCash
+ICICI Bank,MakeMyTrip ICICI Bank,Travel Bookings Rewards,999,,no,no,Visa,"travel, lifestyle","Min ₹50,000/month",Waived on ₹3L annual spend,"6% back on MMT hotel bookings as myCash
 3% on MMT flights, bus & cab bookings
 1 myCash per ₹100 on all other spends
 1 domestic lounge visit/quarter via DreamFolks
 ₹300/month movie discount (BookMyShow/INOX)",https://www.icicibank.com/personal-banking/cards/credit-card,
-ICICI Bank,Coral,Entry Lifestyle Rewards,500,no,no,Visa/MC/RuPay,"lifestyle, cashback","Min ₹25,000/month",Waived on ₹3L annual spend,"2 reward pts per ₹100 on retail spends
+ICICI Bank,Coral,Entry Lifestyle Rewards,500,,no,no,Visa/MC/RuPay,"lifestyle, cashback","Min ₹25,000/month",Waived on ₹3L annual spend,"2 reward pts per ₹100 on retail spends
 1 domestic lounge/quarter (on ₹75K spend)
 25% off movies on BookMyShow (2 tickets/month)
 15% off at partner restaurants
 1% fuel surcharge waiver",https://www.icicibank.com/personal-banking/cards/credit-card,
-ICICI Bank,Platinum Chip,Entry-Level Lifetime Free,0,yes,no,Visa,"ltf, cashback","Min ₹20,000/month",,"2 reward pts per ₹100 on all eligible spends
+ICICI Bank,Platinum Chip,Entry-Level Lifetime Free,0,,yes,no,Visa,"ltf, cashback","Min ₹20,000/month",,"2 reward pts per ₹100 on all eligible spends
 1 free movie ticket/month via BookMyShow
 15% off at partner dining restaurants
 Chip & PIN security
 No annual fee, ever",https://www.icicibank.com/personal-banking/cards/credit-card,
-ICICI Bank,HPCL Super Saver,HPCL Fuel Cashback,500,no,no,Visa/RuPay,"fuel, cashback","Min ₹20,000/month",Waived on ₹1.5L annual spend,"Up to 6.5% value back at HPCL petrol pumps
+ICICI Bank,HPCL Super Saver,HPCL Fuel Cashback,500,,no,no,Visa/RuPay,"fuel, cashback","Min ₹20,000/month",Waived on ₹1.5L annual spend,"Up to 6.5% value back at HPCL petrol pumps
 5% on grocery & utility bill payments
 1% on all other eligible spends
 1% fuel surcharge waiver at all stations
 UPI-enabled RuPay variant available",https://www.icicibank.com/personal-banking/cards/credit-card,
-ICICI Bank,Insta Platinum (FD-Backed),Instant Approval · No Income Proof,0,yes,no,Visa,"ltf, student",Against ICICI Bank Fixed Deposit,,"Instant approval, no income proof needed
+ICICI Bank,Insta Platinum (FD-Backed),Instant Approval · No Income Proof,0,,yes,no,Visa,"ltf, student",Against ICICI Bank Fixed Deposit,,"Instant approval, no income proof needed
 Fixed deposit as collateral
 1 reward pt per ₹100 spent
 Build credit history safely
 1% fuel surcharge waiver",https://www.icicibank.com/personal-banking/cards/credit-card,
-ICICI Bank,Coral RuPay,LTF RuPay UPI Card,0,yes,no,RuPay,"ltf, upi, cashback","Min ₹20,000/month",,"UPI-enabled: works on GPay, PhonePe
+ICICI Bank,Coral RuPay,LTF RuPay UPI Card,0,,yes,no,RuPay,"ltf, upi, cashback","Min ₹20,000/month",,"UPI-enabled: works on GPay, PhonePe
 2 pts per ₹100 on all spends
 1 domestic lounge visit/quarter
 15% off at partner restaurants
 No annual fee, ever",https://www.icicibank.com/personal-banking/cards/credit-card,
-SBI Card,SBI Card AURUM,Super Premium · Unlimited Lounge,9999,no,no,Visa Signature,"premium, travel, lifestyle",Min ₹2L/month,,"Unlimited domestic + international lounge
+SBI Card,SBI Card AURUM,Super Premium · Unlimited Lounge,9999,,no,no,Visa Signature,"premium, travel, lifestyle",Min ₹2L/month,,"Unlimited domestic + international lounge
 10X reward pts on dining, travel & grocery
 Complimentary Taj Epicure Plus membership
 Golf access at premium partner courses
 Priority concierge service 24/7",https://www.sbicard.com/en/personal/credit-cards.page,
-SBI Card,SBI Card ELITE,Premium All-Round Card,4999,no,no,Visa/MC/RuPay,"premium, lifestyle, travel",Min ₹1L/month,Waived on ₹10L annual spend,"5X on dining, grocery, departmental stores
+SBI Card,SBI Card ELITE,Premium All-Round Card,4999,,no,no,Visa/MC/RuPay,"premium, lifestyle, travel",Min ₹1L/month,Waived on ₹10L annual spend,"5X on dining, grocery, departmental stores
 6 intl + 2 domestic lounge visits/year
 ₹3,000 movie & dining vouchers every year
 1% fuel surcharge waiver
 Milestone e-vouchers on annual spend",https://www.sbicard.com/en/personal/credit-cards.page,
-SBI Card,SBI Card PRIME,Rewards + Lounge Access,2999,no,no,Visa/MC/RuPay,"lifestyle, travel","Min ₹50,000/month",Waived on ₹3L annual spend,"10X on dining, movies & grocery
+SBI Card,SBI Card PRIME,Rewards + Lounge Access,2999,,no,no,Visa/MC/RuPay,"lifestyle, travel","Min ₹50,000/month",Waived on ₹3L annual spend,"10X on dining, movies & grocery
 6 airport lounge visits/year
 ₹3,000 welcome e-gift vouchers on joining
 1% fuel surcharge waiver
 Complimentary Club Vistara Silver membership",https://www.sbicard.com/en/personal/credit-cards.page,
-SBI Card,SBI Cashback Card,5% on ALL Online Shopping,999,no,no,Visa,"cashback, shopping","Min ₹25,000/month · LTF for ₹30K+ salary*",*LTF may be offered to applicants with ₹30K+ salary,"5% cashback on ALL online transactions (no merchant restriction)
+SBI Card,SBI Cashback Card,5% on ALL Online Shopping,999,,no,no,Visa,"cashback, shopping","Min ₹25,000/month · LTF for ₹30K+ salary*",*LTF may be offered to applicants with ₹30K+ salary,"5% cashback on ALL online transactions (no merchant restriction)
 1% cashback on all offline transactions
 Auto-credited to statement, no manual redemption
 No brand restrictions for online cashback
 Capped at ₹5,000/month total cashback",https://www.sbicard.com/en/personal/credit-cards.page,
-SBI Card,SBI SimplyCLICK,Online Shopping Rewards,499,no,no,Visa,"shopping, cashback","Min ₹20,000/month",Waived on ₹1L annual spend,"10X on Amazon, BookMyShow, Cleartrip
+SBI Card,SBI SimplyCLICK,Online Shopping Rewards,499,,no,no,Visa,"shopping, cashback","Min ₹20,000/month",Waived on ₹1L annual spend,"10X on Amazon, BookMyShow, Cleartrip
 5X on Lenskart, Netmeds, EazyDiner
 1X on all other online spends
 ₹500 Amazon e-gift card on joining
 e-voucher on ₹1L & ₹2L annual milestones",https://www.sbicard.com/en/personal/credit-cards.page,
-SBI Card,SBI SimplySAVE,Grocery & Dining Rewards,499,no,no,Visa/MC/RuPay,"lifestyle, cashback","Min ₹15,000/month","Waived on ₹90,000 annual spend","10X on dining, movies, grocery, departmental
+SBI Card,SBI SimplySAVE,Grocery & Dining Rewards,499,,no,no,Visa/MC/RuPay,"lifestyle, cashback","Min ₹15,000/month","Waived on ₹90,000 annual spend","10X on dining, movies, grocery, departmental
 1X on all other eligible spends
 1% fuel surcharge waiver
 Welcome bonus reward pts on activation
 Entry-level SBI card for beginners",https://www.sbicard.com/en/personal/credit-cards.page,
-SBI Card,BPCL SBI Octane,BPCL Fuel Savings,1499,no,no,Visa,"fuel, cashback","Min ₹25,000/month",Waived on ₹2L annual spend,"7.25% value back at BPCL petrol stations
+SBI Card,BPCL SBI Octane,BPCL Fuel Savings,1499,,no,no,Visa,"fuel, cashback","Min ₹25,000/month",Waived on ₹2L annual spend,"7.25% value back at BPCL petrol stations
 25 reward pts per ₹100 at BPCL pumps
 10 pts per ₹100 on dining & movies
 1% fuel surcharge waiver at all stations
 Complimentary domestic lounge access",https://www.sbicard.com/en/personal/credit-cards.page,
-SBI Card,IRCTC SBI Platinum,Train Travel Savings,500,no,no,Visa/RuPay,travel,"Min ₹15,000/month",Waived on ₹1L annual spend,"10% value back on IRCTC train tickets
+SBI Card,IRCTC SBI Platinum,Train Travel Savings,500,,no,no,Visa/RuPay,travel,"Min ₹15,000/month",Waived on ₹1L annual spend,"10% value back on IRCTC train tickets
 1% on all other eligible spends
 Complimentary railway lounge access
 1% fuel surcharge waiver
 Welcome 350 bonus reward points",https://www.sbicard.com/en/personal/credit-cards.page,
-SBI Card,Paytm SBI Select,Paytm Ecosystem Cashback,1499,no,no,Visa,"cashback, shopping","Min ₹25,000/month",,"5% cashback on Paytm recharges & food
+SBI Card,Paytm SBI Select,Paytm Ecosystem Cashback,1499,,no,no,Visa,"cashback, shopping","Min ₹25,000/month",,"5% cashback on Paytm recharges & food
 2% on Paytm Mall & movie bookings
 1.5% on all other eligible spends
 ₹750 Paytm cashback on joining
 Domestic airport lounge access",https://www.sbicard.com/en/personal/credit-cards.page,
-SBI Card,SBI Unnati,LTF for SBI Account Holders,0,yes,no,Visa,"ltf, cashback",Must have SBI savings account,,"1 reward pt per ₹100 on all eligible spends
+SBI Card,SBI Unnati,LTF for SBI Account Holders,0,,yes,no,Visa,"ltf, cashback",Must have SBI savings account,,"1 reward pt per ₹100 on all eligible spends
 No annual fee for 4 years on activation
 1% fuel surcharge waiver
 Chip & PIN security enabled
 Basic card for SBI savings customers",https://www.sbicard.com/en/personal/credit-cards.page,
-SBI Card,SBI Shaurya,LTF for Armed Forces,0,yes,no,RuPay,"ltf, cashback, upi",Indian Armed Forces personnel only,,"10X pts on defence canteen spends
+SBI Card,SBI Shaurya,LTF for Armed Forces,0,,yes,no,RuPay,"ltf, cashback, upi",Indian Armed Forces personnel only,,"10X pts on defence canteen spends
 5X on grocery & dining
 1% fuel surcharge waiver
 No annual fee, for defence personnel only
 RuPay UPI-enabled",https://www.sbicard.com/en/personal/credit-cards.page,
-Axis Bank,Axis Bank Reserve,Ultra Premium · Luxury,50000,no,yes,Visa Infinite,"premium, travel, invite, lifestyle",Invite only · Ultra HNI customers,,"Unlimited intl + domestic lounge access
+Axis Bank,Axis Bank Reserve,Ultra Premium · Luxury,50000,,no,yes,Visa Infinite,"premium, travel, invite, lifestyle",Invite only · Ultra HNI customers,,"Unlimited intl + domestic lounge access
 Personal concierge service 24/7 worldwide
 Unlimited golf access globally
 Hotel upgrades, spa credits & dining perks
 ₹50,000+ welcome benefit package",https://www.axisbank.com/retail/cards/credit-card,
-Axis Bank,Magnus Burgundy,Highest Value · Burgundy Only,30000,no,no,Visa,"premium, travel",Axis Burgundy account holders only,Waived on ₹30L annual spend,"60 EDGE miles per ₹200 on Axis Travel EDGE
+Axis Bank,Magnus Burgundy,Highest Value · Burgundy Only,30000,,no,no,Visa,"premium, travel",Axis Burgundy account holders only,Waived on ₹30L annual spend,"60 EDGE miles per ₹200 on Axis Travel EDGE
 Unlimited intl lounge (Priority Pass)
 Unlimited domestic lounge access
 Up to 24% value on travel portal spends
 ₹5,000 welcome voucher",https://www.axisbank.com/retail/cards/credit-card,
-Axis Bank,Magnus,Air Miles · Travel Rewards,12500,no,no,Visa,"premium, travel",Min ₹2L/month,Waived on ₹15L annual spend,"35 EDGE miles per ₹200 on Axis Travel EDGE
+Axis Bank,Magnus,Air Miles · Travel Rewards,12500,,no,no,Visa,"premium, travel",Min ₹2L/month,Waived on ₹15L annual spend,"35 EDGE miles per ₹200 on Axis Travel EDGE
 Unlimited intl lounge via Priority Pass
 Unlimited domestic lounge access
 Transfer to 10+ airline loyalty programmes
 ₹5,000 welcome voucher on joining",https://www.axisbank.com/retail/cards/credit-card,
-Axis Bank,Atlas,Airline-Agnostic Air Miles,5000,no,no,Visa,"travel, premium",Min ₹1.5L/month,Waived on ₹7.5L annual spend,"EDGE miles redeemable across all airlines
+Axis Bank,Atlas,Airline-Agnostic Air Miles,5000,,no,no,Visa,"travel, premium",Min ₹1.5L/month,Waived on ₹7.5L annual spend,"EDGE miles redeemable across all airlines
 6 free international lounge visits/year
 Transfer to IndiGo, Air India & more
 1% forex markup on international spends
 Comprehensive travel insurance",https://www.axisbank.com/retail/cards/credit-card,
-Axis Bank,Horizon,Travel + Low Forex,3000,no,no,Visa,"travel, lifestyle","Min ₹75,000/month",Waived on ₹6L annual spend,"3.33% reward rate on travel spends
+Axis Bank,Horizon,Travel + Low Forex,3000,,no,no,Visa,"travel, lifestyle","Min ₹75,000/month",Waived on ₹6L annual spend,"3.33% reward rate on travel spends
 16 domestic + intl lounge visits/year
 1% forex markup on international spends
 Movie benefits + dining discounts
 Comprehensive travel insurance",https://www.axisbank.com/retail/cards/credit-card,
-Axis Bank,Select,Mid-Premium Lifestyle,3000,no,no,Visa,"lifestyle, travel","Min ₹75,000/month",Waived on ₹6L annual spend,"5X on dining, entertainment & travel
+Axis Bank,Select,Mid-Premium Lifestyle,3000,,no,no,Visa,"lifestyle, travel","Min ₹75,000/month",Waived on ₹6L annual spend,"5X on dining, entertainment & travel
 2 domestic lounge visits/quarter
 Movie offers via BookMyShow
 Golf access at partner courses
 1% fuel surcharge waiver",https://www.axisbank.com/retail/cards/credit-card,
-Axis Bank,ACE,5% on Utility Bills · Cashback,499,no,no,Visa,"cashback, shopping","Min ₹20,000/month · *LTF may be available",Waived on ₹2L annual spend,"5% cashback on utility bill payments via Google Pay
+Axis Bank,ACE,5% on Utility Bills · Cashback,499,,no,no,Visa,"cashback, shopping","Min ₹20,000/month · *LTF may be available",Waived on ₹2L annual spend,"5% cashback on utility bill payments via Google Pay
 4% cashback on Swiggy, Zomato & Ola
 1.5% on all other eligible spends
 4 domestic lounge visits/year on ₹2L quarterly spend
 Direct cashback to statement, no points conversion",https://www.axisbank.com/retail/cards/credit-card,
-Axis Bank,Flipkart Axis Bank,Flipkart Shopping Cashback,500,no,no,Visa,"shopping, cashback","Min ₹20,000/month",Waived on ₹2L annual spend,"5% unlimited cashback on Flipkart purchases
+Axis Bank,Flipkart Axis Bank,Flipkart Shopping Cashback,500,,no,no,Visa,"shopping, cashback","Min ₹20,000/month",Waived on ₹2L annual spend,"5% unlimited cashback on Flipkart purchases
 4% on Swiggy, Myntra, PVR, Uber
 1.5% on all other eligible spends
 Direct cashback to statement monthly
 Welcome voucher ₹500 on first spend",https://www.axisbank.com/retail/cards/credit-card,
-Axis Bank,Airtel Axis Bank,Airtel Ecosystem Savings,500,no,no,Visa,"cashback, lifestyle","Min ₹20,000/month",Waived on ₹2L annual spend,"25% cashback on Airtel mobile, broadband & DTH
+Axis Bank,Airtel Axis Bank,Airtel Ecosystem Savings,500,,no,no,Visa,"cashback, lifestyle","Min ₹20,000/month",Waived on ₹2L annual spend,"25% cashback on Airtel mobile, broadband & DTH
 10% on Swiggy, Zomato & BigBasket
 1% on all other eligible spends
 4 domestic lounge visits/year
 Airtel Thanks premium benefits",https://www.axisbank.com/retail/cards/credit-card,
-Axis Bank,IndianOil Axis Bank,IOCL Fuel Savings,500,no,no,Visa,"fuel, cashback","Min ₹15,000/month",Waived on ₹2L annual spend,"4% value back at IndianOil (IOCL) pumps
+Axis Bank,IndianOil Axis Bank,IOCL Fuel Savings,500,,no,no,Visa,"fuel, cashback","Min ₹15,000/month",Waived on ₹2L annual spend,"4% value back at IndianOil (IOCL) pumps
 5% on grocery & utility bill payments
 1% on all other eligible spends
 1% fuel surcharge waiver at all stations
 100% cashback on first fuel transaction (welcome)",https://www.axisbank.com/retail/cards/credit-card,
-Axis Bank,Neo,Budget Entry Card,250,no,no,RuPay/Visa,"cashback, lifestyle","Min ₹15,000/month","Waived on ₹50,000 annual spend","10% cashback on Zomato & Swiggy
+Axis Bank,Neo,Budget Entry Card,250,,no,no,RuPay/Visa,"cashback, lifestyle","Min ₹15,000/month","Waived on ₹50,000 annual spend","10% cashback on Zomato & Swiggy
 5% on BigBasket grocery shopping
 1% on all other eligible spends
 UPI-enabled (RuPay variant)
 Very low ₹250 annual fee",https://www.axisbank.com/retail/cards/credit-card,
-Axis Bank,Freecharge Plus Axis,LTF Digital Card,0,yes,no,Visa,"ltf, cashback","Min ₹15,000/month",,"2% cashback on Freecharge platform
+Axis Bank,Freecharge Plus Axis,LTF Digital Card,0,,yes,no,Visa,"ltf, cashback","Min ₹15,000/month",,"2% cashback on Freecharge platform
 1% on all other eligible spends
 No annual fee, ever
 Instant virtual card on approval
 Entry-level credit card",https://www.axisbank.com/retail/cards/credit-card,
-IDFC FIRST Bank,IDFC FIRST Wealth,LTF · Best Free Lifestyle Card,0,yes,no,Visa,"ltf, lifestyle, travel, premium","Min ₹50,000/month",,"10X rewards on dining, travel & international spends
+IDFC FIRST Bank,IDFC FIRST Wealth,LTF · Best Free Lifestyle Card,0,,yes,no,Visa,"ltf, lifestyle, travel, premium","Min ₹50,000/month",,"10X rewards on dining, travel & international spends
 BOGO movie ticket 2x/month via District (on ₹20K spend)
 2 domestic + 2 intl lounge visits/quarter
 Roadside assistance + travel insurance
 Reward points NEVER expire",https://www.idfcfirstbank.com/credit-card,
-IDFC FIRST Bank,IDFC FIRST Select,LTF · Lifestyle + Lounge,0,yes,no,Visa/RuPay,"ltf, lifestyle, travel","Min ₹35,000/month",,"10X rewards on dining, travel & intl from 1st spend
+IDFC FIRST Bank,IDFC FIRST Select,LTF · Lifestyle + Lounge,0,,yes,no,Visa/RuPay,"ltf, lifestyle, travel","Min ₹35,000/month",,"10X rewards on dining, travel & intl from 1st spend
 BOGO movie 2x/month (on ₹20K monthly spend)
 1 domestic lounge/quarter (on ₹20K monthly spend)
 Roadside assistance included
 Reward points never expire",https://www.idfcfirstbank.com/credit-card,
-IDFC FIRST Bank,IDFC FIRST Millennia,LTF · Movies & UPI,0,yes,no,Visa/RuPay,"ltf, lifestyle, upi","Min ₹25,000/month",,"10X on dining, travel & international spends
+IDFC FIRST Bank,IDFC FIRST Millennia,LTF · Movies & UPI,0,,yes,no,Visa/RuPay,"ltf, lifestyle, upi","Min ₹25,000/month",,"10X on dining, travel & international spends
 25% off on movies via District
 Rewards on utility, insurance & education spends
 RuPay variant for UPI payments
 Welcome benefits worth ₹1,500",https://www.idfcfirstbank.com/credit-card,
-IDFC FIRST Bank,IDFC FIRST Classic,LTF · Entry Level,0,yes,no,Visa/RuPay,"ltf, cashback","Min ₹15,000/month",,"3X reward pts on online spends
+IDFC FIRST Bank,IDFC FIRST Classic,LTF · Entry Level,0,,yes,no,Visa/RuPay,"ltf, cashback","Min ₹15,000/month",,"3X reward pts on online spends
 1.5X on offline spends
 Interest-free ATM cash withdrawal (short period)
 Reward points never expire
 No annual fee, ever",https://www.idfcfirstbank.com/credit-card,
-IDFC FIRST Bank,IDFC FIRST WOW,LTF · FD-Backed · No Credit Score,0,yes,no,Visa,"ltf, student","Fixed deposit ₹5,000+ · No credit score needed",,"No credit score or income proof required
+IDFC FIRST Bank,IDFC FIRST WOW,LTF · FD-Backed · No Credit Score,0,,yes,no,Visa,"ltf, student","Fixed deposit ₹5,000+ · No credit score needed",,"No credit score or income proof required
 FD as collateral: your money stays safe
 1.5X reward pts on all spends
 1% fuel surcharge waiver
 No annual fee, ever",https://www.idfcfirstbank.com/credit-card,
-IDFC FIRST Bank,IDFC FIRST HPCL Power+,LTF · HPCL Fuel Card,0,yes,no,RuPay,"ltf, fuel, upi","Min ₹15,000/month",,"6.5% value back at HPCL petrol pumps
+IDFC FIRST Bank,IDFC FIRST HPCL Power+,LTF · HPCL Fuel Card,0,,yes,no,RuPay,"ltf, fuel, upi","Min ₹15,000/month",,"6.5% value back at HPCL petrol pumps
 4% on grocery & utility bills
 1% fuel surcharge waiver everywhere
 RuPay UPI-enabled for QR payments
 No annual fee, ever",https://www.idfcfirstbank.com/credit-card,
-IDFC FIRST Bank,IDFC Mayura,Zero Forex · High Rewards,7499,no,no,Visa,"travel, premium",Min ₹1.5L/month,Waived on ₹12L annual spend,"0% forex markup on all international spends
+IDFC FIRST Bank,IDFC Mayura,Zero Forex · High Rewards,7499,,no,no,Visa,"travel, premium",Min ₹1.5L/month,Waived on ₹12L annual spend,"0% forex markup on all international spends
 5X rewards on premium spend categories
 Unlimited domestic lounge access
 Transfer pts to KrisFlyer & InterMiles at 1:1
 10X rewards when monthly spend exceeds ₹1L",https://www.idfcfirstbank.com/credit-card,
-Kotak Mahindra Bank,811 #DreamDifferent,LTF · FD-Backed · Build Credit,0,yes,no,Visa,"ltf, student, cashback","Fixed deposit ₹5,000+ · No income proof",,"No income proof needed
+Kotak Mahindra Bank,811 #DreamDifferent,LTF · FD-Backed · Build Credit,0,,yes,no,Visa,"ltf, student, cashback","Fixed deposit ₹5,000+ · No income proof",,"No income proof needed
 1% cashback on all eligible spends
 Build credit history from zero
 100% digital application
 No annual fee, ever",https://www.kotak.com/en/personal-banking/cards/credit-cards.html,
-Kotak Mahindra Bank,League Platinum,LTF · Entry Rewards,0,yes,no,Visa/MC,"ltf, cashback","Min ₹25,000/month",,"4 reward pts per ₹200 on retail spends
+Kotak Mahindra Bank,League Platinum,LTF · Entry Rewards,0,,yes,no,Visa/MC,"ltf, cashback","Min ₹25,000/month",,"4 reward pts per ₹200 on retail spends
 1% fuel surcharge waiver
 Welcome bonus reward points
 Movie discounts at partner platforms
 No annual fee, ever",https://www.kotak.com/en/personal-banking/cards/credit-cards.html,
-Kotak Mahindra Bank,Essentia Platinum,LTF · Grocery Savings,0,yes,no,Visa,"ltf, cashback, lifestyle","Min ₹20,000/month",,"10% off at grocery partner stores
+Kotak Mahindra Bank,Essentia Platinum,LTF · Grocery Savings,0,,yes,no,Visa,"ltf, cashback, lifestyle","Min ₹20,000/month",,"10% off at grocery partner stores
 4 reward pts per ₹200 on other spends
 1% fuel surcharge waiver
 Welcome bonus on activation
 No annual fee, ever",https://www.kotak.com/en/personal-banking/cards/credit-cards.html,
-Kotak Mahindra Bank,Myntra Kotak,Fashion Cashback,500,no,no,Visa,"shopping, cashback","Min ₹25,000/month",Waived on ₹1L annual spend,"7.5% cashback on Myntra fashion purchases
+Kotak Mahindra Bank,Myntra Kotak,Fashion Cashback,500,,no,no,Visa,"shopping, cashback","Min ₹25,000/month",Waived on ₹1L annual spend,"7.5% cashback on Myntra fashion purchases
 2.5% on other fashion & lifestyle platforms
 1% on all other eligible spends
 Welcome Myntra gift voucher on joining
 Good for Myntra frequent shoppers",https://www.kotak.com/en/personal-banking/cards/credit-cards.html,
-Kotak Mahindra Bank,IndiGo 6E Rewards XL,IndiGo Air Miles,1000,no,no,Visa,travel,"Min ₹30,000/month",,"8% value back on IndiGo flight bookings
+Kotak Mahindra Bank,IndiGo 6E Rewards XL,IndiGo Air Miles,1000,,no,no,Visa,travel,"Min ₹30,000/month",,"8% value back on IndiGo flight bookings
 2% on all other eligible spends
 IndiGo 6E Prime Add-on benefits
 Complimentary IndiGo seat upgrade perks
 1% fuel surcharge waiver",https://www.kotak.com/en/personal-banking/cards/credit-cards.html,
-Kotak Mahindra Bank,IndianOil Kotak,IOCL Fuel Savings,449,no,no,Visa,"fuel, cashback","Min ₹20,000/month",Waived on ₹1L annual spend,"4% value back at IndianOil (IOCL) pumps
+Kotak Mahindra Bank,IndianOil Kotak,IOCL Fuel Savings,449,,no,no,Visa,"fuel, cashback","Min ₹20,000/month",Waived on ₹1L annual spend,"4% value back at IndianOil (IOCL) pumps
 2% on grocery & utility bill payments
 1% on all other eligible spends
 1% fuel surcharge waiver
 Low ₹449 annual fee",https://www.kotak.com/en/personal-banking/cards/credit-cards.html,
-Kotak Mahindra Bank,PVR Platinum,Movie Lovers Card,499,no,no,Visa,"lifestyle, cashback","Min ₹20,000/month","Waived on ₹75,000 annual spend","1 free PVR movie ticket every month
+Kotak Mahindra Bank,PVR Platinum,Movie Lovers Card,499,,no,no,Visa,"lifestyle, cashback","Min ₹20,000/month","Waived on ₹75,000 annual spend","1 free PVR movie ticket every month
 25% off on PVR snacks & food
 4 reward pts per ₹200 on other spends
 1% fuel surcharge waiver
 Dining discounts at partner restaurants",https://www.kotak.com/en/personal-banking/cards/credit-cards.html,
-Kotak Mahindra Bank,Royale Signature,Mid-Tier Rewards,1499,no,no,Visa Signature,"lifestyle, travel","Min ₹75,000/month",Waived on ₹1.5L annual spend,"4 reward pts per ₹150 on all retail spends
+Kotak Mahindra Bank,Royale Signature,Mid-Tier Rewards,1499,,no,no,Visa Signature,"lifestyle, travel","Min ₹75,000/month",Waived on ₹1.5L annual spend,"4 reward pts per ₹150 on all retail spends
 Airport lounge access (domestic India)
 Movie benefits via BookMyShow/PVR
 Golf access at select partner courses
 1% fuel surcharge waiver",https://www.kotak.com/en/personal-banking/cards/credit-cards.html,
-Kotak Mahindra Bank,White Reserve,Super Premium,12500,no,no,Visa Infinite,"premium, travel, lifestyle",Min ₹2L/month,Waived on ₹25L annual spend,"Unlimited domestic + international lounge
+Kotak Mahindra Bank,White Reserve,Super Premium,12500,,no,no,Visa Infinite,"premium, travel, lifestyle",Min ₹2L/month,Waived on ₹25L annual spend,"Unlimited domestic + international lounge
 Personal concierge service 24/7
 Golf privileges worldwide
 Premium hotel loyalty memberships
 Highest reward rate in Kotak portfolio",https://www.kotak.com/en/personal-banking/cards/credit-cards.html,
-IndusInd Bank,Pinnacle,LTF · Premium Free Card,0,yes,no,Visa,"ltf, travel, premium","Min ₹50,000/month",,"1.5% reward rate on all eligible spends
-Domestic lounge access at select airports
-Travel insurance included
-Milestone rewards on annual spend
-No annual fee, ever",https://www.indusind.com/in/en/personal/cards/credit-card.html,
-IndusInd Bank,Legend,LTF · Lifestyle Rewards,0,yes,no,Visa,"ltf, lifestyle, cashback","Min ₹35,000/month",,"1.5 pts per ₹100 on all eligible spends
-Domestic lounge access included
-Movie discounts via BookMyShow
-Dining discounts via EazyDiner
-No annual fee, ever",https://www.indusind.com/in/en/personal/cards/credit-card.html,
-IndusInd Bank,Tiger,LTF · International Lounge,0,yes,no,Visa,"ltf, travel","Min ₹25,000/month",,"1.5% reward rate on all eligible spends
-International lounge access (rare for LTF card)
-Travel insurance included
-1% fuel surcharge waiver
-No annual fee, ever",https://www.indusind.com/in/en/personal/cards/credit-card.html,
-IndusInd Bank,Duo,LTF · Dual Credit+Debit Card,0,yes,no,RuPay,"ltf, upi, cashback","Min ₹20,000/month",,"Credit + debit on single card
-UPI-enabled RuPay network
-1% cashback on all eligible spends
-Contactless payment enabled
-No annual fee, ever",https://www.indusind.com/in/en/personal/cards/credit-card.html,
-IndusInd Bank,EazyDiner Signature,Dining Rewards Card,1999,no,no,Visa Signature,lifestyle,"Min ₹75,000/month",Waived on ₹3L annual spend,"25% off at 2,000+ EazyDiner restaurants
-2X reward pts on all dining spends
-1X on all other eligible spends
-Complimentary domestic lounge access
-EazyDiner Prime membership included",https://www.indusind.com/in/en/personal/cards/credit-card.html,
-IndusInd Bank,Iconia,Premium Rewards,10000,no,no,Visa Infinite,"premium, travel, lifestyle",Min ₹1.5L/month,Waived on ₹10L annual spend,"3.33% reward rate on all eligible spends
-Unlimited domestic lounge access
-2 intl lounge visits/quarter
-Golf access at select global courses
-Premium hotel partnerships",https://www.indusind.com/in/en/personal/cards/credit-card.html,
-IndusInd Bank,Pioneer Heritage Metal,Super Premium Metal Card,30000,no,no,Visa,"premium, travel",Min ₹3L/month,Waived on ₹30L annual spend,"4 reward pts per ₹100 on all spends
-Unlimited domestic + intl lounge
-Golf privileges worldwide
-Premium concierge service 24/7
-Premium metal card",https://www.indusind.com/in/en/personal/cards/credit-card.html,
-IndusInd Bank,Celesta Metal,Ultra Premium · Invite Only,50000,no,yes,Visa Infinite,"premium, invite, travel",Invite only · Ultra HNI customers,,"Unlimited domestic + intl lounge
-Dedicated relationship manager
-Luxury airport transfers
-Exclusive concierge worldwide
-Ultra-premium lifestyle & travel privileges",https://www.indusind.com/in/en/personal/cards/credit-card.html,
-RBL Bank,Shoprite,LTF · Grocery & Movies,0,yes,no,Visa/MC,"ltf, cashback, lifestyle","Min ₹15,000/month",,"5% cashback at supermarkets & grocery stores
+IndusInd Bank,Tiger,LTF · Rewards + Lounge,0,,yes,no,Visa Signature,"ltf, travel",Not published by the bank,,"Reward points per ₹100 grow from 1 to 6 as your yearly spend grows
+2 domestic lounge visits a quarter, 2 international a year (Priority Pass)
+1 golf game or lesson every quarter
+1 movie ticket (up to ₹500) on BookMyShow every 6 months
+1.5% mark-up on foreign currency spends",https://www.indusind.bank.in/in/en/personal/cards/credit-card/tiger-credit-card.html,2 Nov 2026
+IndusInd Bank,Legend,Weekend Rewards · No Annual Fee,0,5000,no,no,Visa,lifestyle,Not published by the bank,,"1 reward point per ₹100 on weekdays, 2 on weekends
+3,000 bonus points on ₹5L spend in the first year
+Buy one, get one movie ticket on BookMyShow (1 free ticket a month, up to ₹200)
+1.8% mark-up on foreign currency spends
+No lounge access (stopped from 7 March 2025)",https://www.indusind.bank.in/in/en/personal/cards/credit-card/legend-credit-card.html,2 Nov 2026
+IndusInd Bank,Pinnacle,Premium · Golf + Movies,0,15000,no,no,Mastercard,"premium, travel, lifestyle",Salaried ₹10L/year · Self-employed ₹12L/year,,"2.5 reward points per ₹100 online, 1.5 on travel and airline sites, 1 in shops
+1 golf game and 1 golf lesson every month
+Buy one, get one movie ticket on BookMyShow (up to 3 free a month, up to ₹200 each)
+1 international lounge visit a quarter (Priority Pass); domestic visits depend on your spends from July 2026
+Travel insurance: lost baggage cover up to ₹1L",https://www.indusind.bank.in/in/en/personal/cards/credit-card/pinnacle-world-credit-card.html,2 Nov 2026
+IndusInd Bank,EazyDiner Signature,Dining Discounts,2999,2999,no,no,Visa Signature,"lifestyle, shopping",Not published by the bank,,"1 year EazyDiner Prime: 25% to 50% off at 2,000+ restaurants and bars
+Extra 25% off (up to ₹1,000) when you pay the bill on the EazyDiner app
+10 reward points per ₹100 on hotels, travel, shopping and entertainment
+4 reward points per ₹100 on other spends (not fuel or dining)
+Prime renewed and 2,000 EazyPoints each year you pay the fee",https://www.indusind.bank.in/in/en/personal/cards/credit-card/eazydiner-credit-card.html,2 Nov 2026
+IndusInd Bank,Celesta,Premium · Golf + Rewards,5000,25000,no,no,Visa Infinite,"premium, travel",Not published by the bank,Annual fee waived on ₹10L spend in the year,"1.5 reward points per ₹100 spent
+1 golf game and 1 golf lesson every month
+Domestic lounge visits depend on your spends (from July 2026)",https://www.indusind.bank.in/in/en/personal/cards/credit-card/celesta-credit-card.html,2 Nov 2026
+IndusInd Bank,Pioneer Heritage,Super Premium · Lounge + Golf,25000,100000,no,no,Visa/MC,"premium, travel",Not published by the bank,Annual fee waived on ₹10L spend in the year,"International lounges with Priority Pass and LoungeKey
+Domestic lounge access
+4 free movie tickets a quarter on BookMyShow (up to ₹1,000 each)
+No mark-up on foreign currency spends
+Golf games and lessons in 7 cities; ₹3,000 off dining bills a year",https://www.indusind.bank.in/in/en/personal/cards/credit-card/pioneer-heritage-credit-card.html,2 Nov 2026
+RBL Bank,Shoprite,LTF · Grocery & Movies,0,,yes,no,Visa/MC,"ltf, cashback, lifestyle","Min ₹15,000/month",,"5% cashback at supermarkets & grocery stores
 10 reward pts per ₹100 on weekend dining
 2 free movie tickets per month
 1 reward pt per ₹100 on all other spends
 No annual fee, ever",https://www.rbl.bank.in/personal-banking/cards/credit-cards,
-RBL Bank,Cookies,LTF · Student / First-Timer,0,yes,no,Visa,"ltf, student, cashback",Students & first-time applicants,,"1 reward pt per ₹100 on all eligible spends
+RBL Bank,Cookies,LTF · Student / First-Timer,0,,yes,no,Visa,"ltf, student, cashback",Students & first-time applicants,,"1 reward pt per ₹100 on all eligible spends
 5% cashback on grocery & entertainment
 Simple rewards structure
 Build credit history from scratch
 No annual fee, ever",https://www.rbl.bank.in/personal-banking/cards/credit-cards,
-RBL Bank,IndianOil XTRA+,IOCL Fuel Savings,1500,no,no,Visa,"fuel, cashback","Min ₹25,000/month",Waived on ₹2L annual spend,"6.5% value back at IndianOil (IOCL) pumps
+RBL Bank,IndianOil XTRA+,IOCL Fuel Savings,1500,,no,no,Visa,"fuel, cashback","Min ₹25,000/month",Waived on ₹2L annual spend,"6.5% value back at IndianOil (IOCL) pumps
 2 reward pts per ₹100 on other spends
 1% fuel surcharge waiver
 Welcome fuel pts on joining
 Lounge access included",https://www.rbl.bank.in/personal-banking/cards/credit-cards,
-RBL Bank,Platinum Maxima,Mid-Tier Rewards,2000,no,no,Visa,"lifestyle, cashback","Min ₹35,000/month",Waived on ₹2L annual spend,"2 reward pts per ₹100 on all retail spends
+RBL Bank,Platinum Maxima,Mid-Tier Rewards,2000,,no,no,Visa,"lifestyle, cashback","Min ₹35,000/month",Waived on ₹2L annual spend,"2 reward pts per ₹100 on all retail spends
 Movie discounts + dining at partners
 2 domestic lounge visits/quarter
 1% fuel surcharge waiver
 Decent all-round mid-tier card",https://www.rbl.bank.in/personal-banking/cards/credit-cards,
-RBL Bank,World Safari,Travel Rewards Card,3000,no,no,Visa,travel,"Min ₹75,000/month",Waived on ₹5L annual spend,"3 reward pts per ₹100 on travel spends
+RBL Bank,World Safari,Travel Rewards Card,3000,,no,no,Visa,travel,"Min ₹75,000/month",Waived on ₹5L annual spend,"3 reward pts per ₹100 on travel spends
 6 intl lounge visits/year via Priority Pass
 6 domestic lounge visits/year
 1.5% forex markup on international spends
 Comprehensive travel insurance",https://www.rbl.bank.in/personal-banking/cards/credit-cards,
-RBL Bank,Icon,Mid-Premium Rewards,3000,no,no,Visa,"lifestyle, travel, premium","Min ₹75,000/month",Waived on ₹5L annual spend,"3.33% reward rate on eligible spends
+RBL Bank,Icon,Mid-Premium Rewards,3000,,no,no,Visa,"lifestyle, travel, premium","Min ₹75,000/month",Waived on ₹5L annual spend,"3.33% reward rate on eligible spends
 4 domestic lounge visits/quarter
 Golf access at partner courses
 Premium dining discounts
 1.5% forex markup",https://www.rbl.bank.in/personal-banking/cards/credit-cards,
-RBL Bank,Insignia,Super Premium · Invite Only,10000,no,yes,Visa Infinite,"premium, invite, travel",Invite only · HNI customers,,"Unlimited domestic + intl lounge
+RBL Bank,Insignia,Super Premium · Invite Only,10000,,no,yes,Visa Infinite,"premium, invite, travel",Invite only · HNI customers,,"Unlimited domestic + intl lounge
 Concierge service 24/7
 Premium hotel memberships worldwide
 Golf access globally
 Ultra-premium lifestyle benefits",https://www.rbl.bank.in/personal-banking/cards/credit-cards,
-AU Small Finance Bank,AU LIT,LTF · Customisable Benefits,0,yes,no,Visa,"ltf, cashback, lifestyle","Min ₹20,000/month",,"Choose your own benefit category (travel/dining/shopping)
+AU Small Finance Bank,AU LIT,LTF · Customisable Benefits,0,,yes,no,Visa,"ltf, cashback, lifestyle","Min ₹20,000/month",,"Choose your own benefit category (travel/dining/shopping)
 Toggle rewards on/off via mobile app
 Airport lounge access on spend milestone
 1% on all other eligible spends
 No annual fee, ever",https://www.au.bank.in/personal-banking/credit-cards,
-AU Small Finance Bank,AU Xcite,LTF · Entry Rewards,0,yes,no,Visa,"ltf, cashback","Min ₹15,000/month",,"1% reward rate on all eligible spends
+AU Small Finance Bank,AU Xcite,LTF · Entry Rewards,0,,yes,no,Visa,"ltf, cashback","Min ₹15,000/month",,"1% reward rate on all eligible spends
 1% fuel surcharge waiver
 No annual fee, ever
 Basic rewards for entry-level users
 Contactless payment enabled",https://www.au.bank.in/personal-banking/credit-cards,
-AU Small Finance Bank,AU Xcite ACE,LTF · 2% Rewards,0,yes,no,Visa,"ltf, cashback, lifestyle","Min ₹20,000/month",,"2% reward rate on all eligible spends
+AU Small Finance Bank,AU Xcite ACE,LTF · 2% Rewards,0,,yes,no,Visa,"ltf, cashback, lifestyle","Min ₹20,000/month",,"2% reward rate on all eligible spends
 1 domestic lounge/quarter on spend milestone
 1% fuel surcharge waiver
 Milestone-based bonus rewards
 No annual fee, ever",https://www.au.bank.in/personal-banking/credit-cards,
-AU Small Finance Bank,AU Ixigo RuPay,LTF · Train & Flight Savings,0,yes,no,RuPay,"ltf, travel, upi","Min ₹15,000/month",,"Airport lounge + railway lounge access
+AU Small Finance Bank,AU Ixigo RuPay,LTF · Train & Flight Savings,0,,yes,no,RuPay,"ltf, travel, upi","Min ₹15,000/month",,"Airport lounge + railway lounge access
 10% off on ixigo train ticket bookings
 UPI-enabled RuPay for all QR payments
 1% on all other eligible spends
 No annual fee, ever",https://www.au.bank.in/personal-banking/credit-cards,
-AU Small Finance Bank,AU Zenith,Mid-Premium Rewards,2999,no,no,Visa,"lifestyle, travel, premium","Min ₹75,000/month",Waived on ₹5L annual spend,"2.5% reward rate on all eligible spends
+AU Small Finance Bank,AU Zenith,Mid-Premium Rewards,2999,,no,no,Visa,"lifestyle, travel, premium","Min ₹75,000/month",Waived on ₹5L annual spend,"2.5% reward rate on all eligible spends
 2 domestic + 1 intl lounge/quarter
 Golf access at select courses
 1.99% forex markup
 Movie & dining benefits",https://www.au.bank.in/personal-banking/credit-cards,
-AU Small Finance Bank,AU Zenith+,Super Premium,4999,no,no,Visa,"premium, travel",Min ₹1.5L/month,Waived on ₹10L annual spend,"3% reward rate on all eligible spends
+AU Small Finance Bank,AU Zenith+,Super Premium,4999,,no,no,Visa,"premium, travel",Min ₹1.5L/month,Waived on ₹10L annual spend,"3% reward rate on all eligible spends
 Unlimited domestic lounge access
 4 intl lounge visits/quarter (Priority Pass)
 0.99% forex markup (very low)
 Comprehensive travel insurance",https://www.au.bank.in/personal-banking/credit-cards,
-Yes Bank,Yes Marquee,Premium Rewards,4999,no,no,Visa,"premium, lifestyle, travel",Min ₹1L/month,Waived on ₹10L annual spend,"10 reward pts per ₹100 on all eligible spends
+Yes Bank,Yes Marquee,Premium Rewards,4999,,no,no,Visa,"premium, lifestyle, travel",Min ₹1L/month,Waived on ₹10L annual spend,"10 reward pts per ₹100 on all eligible spends
 Unlimited domestic lounge access
 4 intl lounge visits/year
 Golf access at partner clubs
 Complimentary premium memberships",https://www.yesbank.in/personal-banking/yes-individual/cards/credit-cards,
-Yes Bank,Yes RESERV,Mid-Premium Travel,1999,no,no,Visa,"travel, lifestyle","Min ₹50,000/month",Waived on ₹3L annual spend,"3 reward pts per ₹100 on all retail spends
+Yes Bank,Yes RESERV,Mid-Premium Travel,1999,,no,no,Visa,"travel, lifestyle","Min ₹50,000/month",Waived on ₹3L annual spend,"3 reward pts per ₹100 on all retail spends
 2 domestic lounge visits/quarter
 1 intl lounge visit/quarter
 Dining discounts at partner restaurants
 1% fuel surcharge waiver",https://www.yesbank.in/personal-banking/yes-individual/cards/credit-cards,
-Yes Bank,Yes Elite Plus,Everyday Rewards,999,no,no,Visa,"cashback, lifestyle","Min ₹35,000/month",Waived on ₹1L annual spend,"2 reward pts per ₹100 on retail spends
+Yes Bank,Yes Elite Plus,Everyday Rewards,999,,no,no,Visa,"cashback, lifestyle","Min ₹35,000/month",Waived on ₹1L annual spend,"2 reward pts per ₹100 on retail spends
 Movie discounts via BookMyShow
 Dining benefits at partner restaurants
 1% fuel surcharge waiver
 Welcome bonus points on activation",https://www.yesbank.in/personal-banking/yes-individual/cards/credit-cards,
-Yes Bank,Finbooster RuPay (Yes Bank),LTF · RuPay UPI Card,0,yes,no,RuPay,"ltf, cashback, upi","Min ₹15,000/month",,"UPI-enabled RuPay card
+Yes Bank,Finbooster RuPay (Yes Bank),LTF · RuPay UPI Card,0,,yes,no,RuPay,"ltf, cashback, upi","Min ₹15,000/month",,"UPI-enabled RuPay card
 Reward points on all eligible spends
 No annual fee, ever
 Credit score monitoring feature
 Good entry-level beginner card",https://www.yesbank.in/personal-banking/yes-individual/cards/credit-cards,
-Yes Bank,Kiwi RuPay (Yes Bank),LTF · Best UPI Cashback,0,yes,no,RuPay,"ltf, upi, cashback","Min ₹15,000/month",,"Up to 5% real cashback on UPI spends
+Yes Bank,Kiwi RuPay (Yes Bank),LTF · Best UPI Cashback,0,,yes,no,RuPay,"ltf, upi, cashback","Min ₹15,000/month",,"Up to 5% real cashback on UPI spends
 Works on GPay, PhonePe, Paytm, BHIM
 Real cashback, not reward points
 Best for daily QR code payments
 No annual fee, ever",https://www.yesbank.in/personal-banking/yes-individual/cards/credit-cards,
-American Express,Platinum Charge,Ultra Premium · Global Concierge,60000,no,no,Amex,"premium, travel, lifestyle",Min ₹5L+/month,,"Unlimited Priority Pass lounge access worldwide
+American Express,Platinum Charge,Ultra Premium · Global Concierge,60000,,no,no,Amex,"premium, travel, lifestyle",Min ₹5L+/month,,"Unlimited Priority Pass lounge access worldwide
 Taj Hotels & Marriott membership benefits
 24/7 personal concierge service globally
 Global travel credits & luxury benefits
 High welcome bonus Membership Rewards",https://www.americanexpress.com/in/credit-cards/,
-American Express,Platinum Travel,Travel Miles · Taj Vouchers,5000,no,no,Amex,"travel, premium",Min ₹1L/month,,"Milestone Membership Reward Points on spends
+American Express,Platinum Travel,Travel Miles · Taj Vouchers,5000,,no,no,Amex,"travel, premium",Min ₹1L/month,,"Milestone Membership Reward Points on spends
 Taj hotel stay vouchers on annual spend
 Domestic lounge access included
 1% forex markup on international spends
 Comprehensive travel insurance",https://www.americanexpress.com/in/credit-cards/,
-American Express,Gold Charge,Dining & Rewards,4500,no,no,Amex,"lifestyle, premium","Min ₹75,000/month",,"1 Membership Reward per ₹50 spent
+American Express,Gold Charge,Dining & Rewards,4500,,no,no,Amex,"lifestyle, premium","Min ₹75,000/month",,"1 Membership Reward per ₹50 spent
 Bonus pts on dining & travel
 Gold status at partner hotels
 Transfer to airline miles programmes
 Premium Amex customer service",https://www.americanexpress.com/in/credit-cards/,
-American Express,MRCC (Membership Rewards),Membership Rewards Card,4500,no,no,Amex,"cashback, lifestyle","Min ₹50,000/month",,"1 Membership Reward per ₹50 spent
+American Express,MRCC (Membership Rewards),Membership Rewards Card,4500,,no,no,Amex,"cashback, lifestyle","Min ₹50,000/month",,"1 Membership Reward per ₹50 spent
 1,000 bonus pts on 4+ transactions/month
 Reward points NEVER expire
 Redeem at 100+ brand partners
 Dining & lifestyle privileges",https://www.americanexpress.com/in/credit-cards/,
-American Express,SmartEarn,Entry-Level Amex,495,no,no,Amex,"cashback, shopping","Min ₹25,000/month",,"10X Membership Rewards on Amazon, Flipkart, Uber
+American Express,SmartEarn,Entry-Level Amex,495,,no,no,Amex,"cashback, shopping","Min ₹25,000/month",,"10X Membership Rewards on Amazon, Flipkart, Uber
 5X on all other online spends
 1X on offline spends
 Reward points never expire
 Low ₹495 annual fee",https://www.americanexpress.com/in/credit-cards/,
-Standard Chartered,SC Platinum Rewards,LTF · Entry Rewards,0,yes,no,Visa,"ltf, cashback","Min ₹20,000/month · Select cities",,"5 reward pts per ₹150 at dining & fuel
+Standard Chartered,SC Platinum Rewards,LTF · Entry Rewards,0,,yes,no,Visa,"ltf, cashback","Min ₹20,000/month · Select cities",,"5 reward pts per ₹150 at dining & fuel
 1 reward pt per ₹150 on all other spends
 No annual fee, ever
 1% fuel surcharge waiver
 Good entry-level SC card",https://www.sc.com/in/credit-cards/,
-Standard Chartered,SC Smart Credit Card,Cashback on All Spends,499,no,no,Visa,cashback,"Min ₹25,000/month",Waived on ₹1.2L annual spend,"2% cashback on all online spends
+Standard Chartered,SC Smart Credit Card,Cashback on All Spends,499,,no,no,Visa,cashback,"Min ₹25,000/month",Waived on ₹1.2L annual spend,"2% cashback on all online spends
 1% cashback on all offline spends
 No merchant or category restrictions
 Direct cashback to statement
 Low ₹499 annual fee",https://www.sc.com/in/credit-cards/,
-Standard Chartered,SC EaseMyTrip,Travel Discounts,350,no,no,Visa,"travel, cashback","Min ₹25,000/month",,"25% off on EaseMyTrip flights
+Standard Chartered,SC EaseMyTrip,Travel Discounts,350,,no,no,Visa,"travel, cashback","Min ₹25,000/month",,"25% off on EaseMyTrip flights
 15% off on hotels via EaseMyTrip
 1 reward pt per ₹100 on other spends
 Complimentary domestic lounge access
 Very low ₹350 annual fee",https://www.sc.com/in/credit-cards/,
-Standard Chartered,SC Rewards+,Premium Rewards,1000,no,no,Visa,"lifestyle, travel","Min ₹50,000/month",Waived on ₹1.5L annual spend,"3X rewards on dining & travel spends
+Standard Chartered,SC Rewards+,Premium Rewards,1000,,no,no,Visa,"lifestyle, travel","Min ₹50,000/month",Waived on ₹1.5L annual spend,"3X rewards on dining & travel spends
 1.5X on all other eligible spends
 2 domestic lounge visits/quarter
 Reward points transferable to miles
 Movie & dining discounts",https://www.sc.com/in/credit-cards/,
-Standard Chartered,SC Ultimate,Super Premium · Zero Forex,5000,no,no,Visa,"premium, travel",Min ₹1.5L/month,Waived on ₹10L annual spend,"3.33% reward rate on all eligible spends
+Standard Chartered,SC Ultimate,Super Premium · Zero Forex,5000,,no,no,Visa,"premium, travel",Min ₹1.5L/month,Waived on ₹10L annual spend,"3.33% reward rate on all eligible spends
 Unlimited domestic lounge access
 4 intl lounge visits/quarter
 0% forex markup on international spends
 Travel & purchase insurance",https://www.sc.com/in/credit-cards/,
-HSBC Bank,HSBC Visa Platinum,LTF · Entry Cashback,0,yes,no,Visa,"ltf, cashback","Min ₹25,000/month · Select cities only",,"2.5X reward pts on dining & travel spends
+HSBC Bank,HSBC Visa Platinum,LTF · Entry Cashback,0,,yes,no,Visa,"ltf, cashback","Min ₹25,000/month · Select cities only",,"2.5X reward pts on dining & travel spends
 1X on all other eligible spends
 No annual fee, ever
 Dining discounts at partner restaurants
 1% fuel surcharge waiver",https://www.hsbc.co.in/credit-cards/,
-HSBC Bank,HSBC Live+,Dining & Entertainment Cashback,999,no,no,Visa,"lifestyle, cashback","Min ₹35,000/month",Waived on ₹2L annual spend,"10% cashback on dining (up to ₹1,000/month)
+HSBC Bank,HSBC Live+,Dining & Entertainment Cashback,999,,no,no,Visa,"lifestyle, cashback","Min ₹35,000/month",Waived on ₹2L annual spend,"10% cashback on dining (up to ₹1,000/month)
 5% cashback on grocery & pharmacy
 1.5% on all other eligible spends
 Movie benefits included
 Low ₹999 annual fee",https://www.hsbc.co.in/credit-cards/,
-HSBC Bank,HSBC TravelOne,Travel Miles · Zero Forex,4999,no,no,Visa,"travel, premium",Min ₹1L/month,Waived on ₹10L annual spend,"Earn miles redeemable across airlines
+HSBC Bank,HSBC TravelOne,Travel Miles · Zero Forex,4999,,no,no,Visa,"travel, premium",Min ₹1L/month,Waived on ₹10L annual spend,"Earn miles redeemable across airlines
 0% forex markup on all intl spends
 4 intl + unlimited domestic lounge visits
 Transfer to 10+ airline loyalty programmes
 Comprehensive travel insurance",https://www.hsbc.co.in/credit-cards/,
-HSBC Bank,HSBC Premier,Premier Banking Customers Only,14160,no,no,Visa,"premium, travel, lifestyle",HSBC Premier account holders only,No renewal fee for Premier customers,"Unlimited domestic + intl lounge
+HSBC Bank,HSBC Premier,Premier Banking Customers Only,14160,,no,no,Visa,"premium, travel, lifestyle",HSBC Premier account holders only,No renewal fee for Premier customers,"Unlimited domestic + intl lounge
 Dedicated Premier relationship manager
 Golf access at global courses
 Premium hotel partnerships
 Priority banking + lifestyle privileges",https://www.hsbc.co.in/credit-cards/,
-Federal Bank / Scapia,Federal Bank Scapia,LTF · Zero Forex · Travel,0,yes,no,Visa,"ltf, travel","Min ₹25,000/month · Not for existing Federal/BoB cardholders",,"ZERO forex markup on all international spends
+Federal Bank / Scapia,Federal Bank Scapia,LTF · Zero Forex · Travel,0,,yes,no,Visa,"ltf, travel","Min ₹25,000/month · Not for existing Federal/BoB cardholders",,"ZERO forex markup on all international spends
 Unlimited domestic airport lounge (on monthly spend target)
 10 Scapia coins per ₹100 on all spends
 20 Scapia coins per ₹100 via Scapia app
 Redeem coins for flights & hotels in Scapia app",https://www.federalbank.co.in/credit-card,
-Federal Bank / Scapia,Federal Bank FedRewards,LTF · Entry Rewards,0,yes,no,Visa,"ltf, cashback","Min ₹20,000/month · Federal Bank customers",,"Reward points on all eligible transactions
+Federal Bank / Scapia,Federal Bank FedRewards,LTF · Entry Rewards,0,,yes,no,Visa,"ltf, cashback","Min ₹20,000/month · Federal Bank customers",,"Reward points on all eligible transactions
 1% fuel surcharge waiver
 No annual fee, ever
 Basic rewards for entry-level users

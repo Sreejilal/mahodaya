@@ -45,7 +45,6 @@ const COLS = {
   eligibility: ['Eligibility'],
   salary:      ['Net salary'],
   panLast4:    ['PAN last 4'],
-  fee:         ['Processing fee'],
   payout:      ['Payout received'],
   referredBy:  ['Referred by'],
   bonus:       ['Referral bonus'],
@@ -57,7 +56,7 @@ const COLS = {
 // website (income, language, spends on, when it arrived) is kept as sent.
 const EDITABLE = ['name', 'mobile', 'age', 'city', 'employment', 'stage', 'followUp', 'notes',
   'product', 'bank', 'bankCat', 'card', 'loanAmount', 'tenure', 'eligibility', 'salary',
-  'panLast4', 'fee', 'payout', 'referredBy', 'bonus', 'feedbackAsked'];
+  'panLast4', 'payout', 'referredBy', 'bonus', 'feedbackAsked'];
 const DATE_ONLY = ['followUp', 'feedbackAsked'];
 
 function doGet() {

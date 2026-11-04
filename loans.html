@@ -410,6 +410,9 @@ select.dd-on { display:none !important; }
 @keyframes ddIn { from { opacity:0; transform:translateY(-4px); } }
 @media (max-width:600px){ .dd-btn, .dd-opt { font-size:16px; } }
 @media (prefers-reduced-motion: reduce){ .dd-list { animation:none; } .dd-btn, .dd-arrow { transition:none; } }
+/* TYPED AMOUNT (v2026.11.04a): see the script below */
+.amt-in { margin-top:8px; }
+.amt-in[hidden] { display:none !important; }
 </style>
 <script>
 /* FORM MESSAGES (v2026.11.02a): no browser popups. A problem shows in a panel
@@ -519,7 +522,8 @@ function dropify(sel){
     sel.selectedIndex = i;
     sel.dispatchEvent(new Event('change', {bubbles: true}));
     btn.classList.remove('fm-bad'); btn.removeAttribute('aria-invalid');
-    close(true);
+    var at = document.activeElement;              // the change may have moved focus on (TYPED AMOUNT): leave it there
+    close(!at || at === document.body || wrap.contains(at));
   }
   wrap._close = close;
   btn.addEventListener('click', function(){ list.hidden ? open() : close(false); });
@@ -548,6 +552,39 @@ function ddCloseAll(){ document.querySelectorAll('.dd.open').forEach(function(w)
 document.addEventListener('pointerdown', function(e){ if (!(e.target.closest && e.target.closest('.dd'))) ddCloseAll(); });
 document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('.form-wrap select, #loanForm select').forEach(dropify);
+});
+
+/* TYPED AMOUNT (v2026.11.04a): an amount dropdown (monthly income, loan amount)
+   ends with "Type the exact amount". Picking it opens a box under the field for
+   an amount that fits none of the ranges: lower, higher or exact. That amount
+   is sent instead of a range, e.g. "₹12,000". The option's value is "typed". */
+function amtBox(sel){ var g = sel && sel.closest('.form-group'); return g ? g.querySelector('.amt-in') : null; }
+function amtNum(sel){ var b = amtBox(sel); return b ? parseInt(b.value.replace(/\D/g, ''), 10) || 0 : 0; }
+function amtShow(sel, focus){
+  var box = amtBox(sel); if (!box) return;
+  box.hidden = sel.value !== 'typed';
+  if (!box.hidden && focus) box.focus();
+}
+// what to send: the range picked, or the typed amount
+function amtValue(sel){
+  if (!sel) return '';
+  if (sel.value !== 'typed') return sel.value;
+  var n = amtNum(sel);
+  return n ? '₹' + n.toLocaleString('en-IN') : '';
+}
+// "Type the exact amount" picked, but no amount of at least ₹1,000 typed
+function amtMissing(sel){ return !!sel && sel.value === 'typed' && amtNum(sel) < 1000; }
+function amtFormat(box){
+  var d = box.value.replace(/\D/g, '').replace(/^0+/, '').slice(0, 9);
+  box.value = d ? (+d).toLocaleString('en-IN') : '';
+}
+document.addEventListener('change', function(e){ var t = e.target; if (t.tagName === 'SELECT' && amtBox(t)) amtShow(t, true); });
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.amt-in').forEach(function(box){
+    var g = box.closest('.form-group'), lab = g.querySelector('label');
+    if (lab && lab.id) box.setAttribute('aria-labelledby', lab.id);
+    amtShow(g.querySelector('select'), false);   // the browser may restore "typed" on Back
+  });
 });
 </script>
 </head>
@@ -720,7 +757,10 @@ document.addEventListener('DOMContentLoaded', function(){
           <option value="5 to 25 lakh" data-i18n="amt3">₹5 lakh to ₹25 lakh</option>
           <option value="25 lakh to 1 crore" data-i18n="amt4">₹25 lakh to ₹1 crore</option>
           <option value="Above 1 crore" data-i18n="amt5">Above ₹1 crore</option>
+          <option value="typed" data-i18n="o_typeAmt">Type the exact amount</option>
         </select>
+        <input class="amt-in" type="text" inputmode="numeric" autocomplete="off" hidden
+               placeholder="Loan amount in ₹, e.g. 1,50,000" data-ph="ph_amtTyped" oninput="amtFormat(this)"/>
       </div>
     </div>
     <!-- Optional (not checked in handleLoanSubmit). Bank names stay in English. -->
@@ -752,7 +792,10 @@ document.addEventListener('DOMContentLoaded', function(){
           <option>₹30,000 – ₹50,000</option>
           <option>₹50,000 – ₹1,00,000</option>
           <option>₹1,00,000+</option>
+          <option value="typed" data-i18n="o_typeAmt">Type the exact amount</option>
         </select>
+        <input class="amt-in" type="text" inputmode="numeric" autocomplete="off" hidden
+               placeholder="Monthly income in ₹, e.g. 12,000" data-ph="ph_incTyped" oninput="amtFormat(this)"/>
       </div>
       <div class="form-group">
         <label for="lfEmp" data-i18n="fEmp">Employment Type</label>
@@ -807,14 +850,14 @@ document.addEventListener('DOMContentLoaded', function(){
     <a href="index.html#contact" data-keep-lang data-i18n="cfLink">Contact</a>
   </div>
   <div class="footer-bottom">
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.02e</span><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.04a</span><br/>
     &copy; 2026 Mahodaya Credit Solutions<br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
 </footer>
 
 <script>
-console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.02e", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.04a", "color:#C9A84C;font-weight:bold");
 
 // ===================================================================
 //  Leads go to the same two places as the card form on index.html.
@@ -1061,6 +1104,16 @@ const T_BANK = {
   hi:{fBank:'आपको कौन सा बैंक चाहिए (वैकल्पिक)', o_bankAny:'कोई खास पसंद नहीं'}
 };
 Object.keys(T_BANK).forEach(l => { T[l] = Object.assign(T[l] || {}, T_BANK[l]); });
+// "Type the exact amount" for income and loan amount (TYPED AMOUNT, v2026.11.04a), same words as index.html.
+const T_AMT = {
+  en:{o_typeAmt:'Type the exact amount', ph_incTyped:'Monthly income in ₹, e.g. 12,000', ph_amtTyped:'Loan amount in ₹, e.g. 1,50,000'},
+  ml:{o_typeAmt:'തുക ടൈപ്പ് ചെയ്യുക', ph_incTyped:'മാസ വരുമാനം ₹-ൽ, ഉദാ. 12,000', ph_amtTyped:'ലോൺ തുക ₹-ൽ, ഉദാ. 1,50,000'},
+  ta:{o_typeAmt:'தொகையை டைப் செய்யவும்', ph_incTyped:'மாத வருமானம் ₹-ல், எ.கா. 12,000', ph_amtTyped:'கடன் தொகை ₹-ல், எ.கா. 1,50,000'},
+  te:{o_typeAmt:'మొత్తం టైప్ చేయండి', ph_incTyped:'నెల ఆదాయం ₹లో, ఉదా. 12,000', ph_amtTyped:'రుణ మొత్తం ₹లో, ఉదా. 1,50,000'},
+  kn:{o_typeAmt:'ಮೊತ್ತ ಟೈಪ್ ಮಾಡಿ', ph_incTyped:'ತಿಂಗಳ ಆದಾಯ ₹ನಲ್ಲಿ, ಉದಾ. 12,000', ph_amtTyped:'ಸಾಲದ ಮೊತ್ತ ₹ನಲ್ಲಿ, ಉದಾ. 1,50,000'},
+  hi:{o_typeAmt:'रकम खुद लिखें', ph_incTyped:'महीने की आय ₹ में, जैसे 12,000', ph_amtTyped:'लोन की रकम ₹ में, जैसे 1,50,000'}
+};
+Object.keys(T_AMT).forEach(l => { T[l] = Object.assign(T[l] || {}, T_AMT[l]); });
 
 let CUR = 'en', TYPE = 'pl';
 const TYPE_NAME = {pl:'Personal loan', hl:'Home loan', cl:'Car loan', bl:'Business loan'};
@@ -1149,7 +1202,10 @@ function handleLoanSubmit(){
   need(mob.length === 10 && /^[6-9]/.test(mob), d.vMobile, 'mobile');
   need(val('loan'), d.fLoan, 'loan');
   need(val('amount'), d.fAmount, 'amount');
+  // "Type the exact amount" picked: the box under the field needs an amount (TYPED AMOUNT)
+  if (amtMissing(get('amount'))) { errors.push(d.fAmount); bad.push(amtBox(get('amount'))); }
   need(val('income'), d.fIncome, 'income');
+  if (amtMissing(get('income'))) { errors.push(d.fIncome); bad.push(amtBox(get('income'))); }
   need(val('employment'), d.fEmp, 'employment');
   need(val('city').length >= 2, d.fCity, 'city');
   need(val('language'), d.fLang, 'language');
@@ -1171,10 +1227,10 @@ function handleLoanSubmit(){
     mobile: mob,             // plain 10 digits: a leading + shows as #ERROR! in Sheets
     age: val('age'),
     city: val('city'),
-    income: val('income'),
+    income: amtValue(get('income')),     // the range, or the amount they typed
     employment: val('employment'),
     language: val('language'),
-    spend: 'LOAN: ' + val('loan') + ', ' + val('amount') + (val('bank') ? ' | Bank: ' + val('bank') : ''),
+    spend: 'LOAN: ' + val('loan') + ', ' + amtValue(get('amount')) + (val('bank') ? ' | Bank: ' + val('bank') : ''),
     bank: val('bank'),
     page_language: CUR
   };
@@ -1274,11 +1330,13 @@ function emiCalc(fromRange){
   emiEl('emiBarP').style.width = (P / total * 100).toFixed(1) + '%';
   emiEl('emiBarR').style.width = (interest / total * 100).toFixed(1) + '%';
 }
-// "Get help with this loan": carry the amount into the form's amount box.
+// "Get help with this loan": carry the calculator's exact amount into the form (TYPED AMOUNT).
 function emiToForm(){
   const sel = emiEl('lfAmount'), P = +emiEl('emiAmtR').value;
   if (!sel || sel.dataset.touched) return;
-  sel.value = P <= 100000 ? 'Up to 1 lakh' : P <= 500000 ? '1 to 5 lakh' : P <= 2500000 ? '5 to 25 lakh' : P <= 10000000 ? '25 lakh to 1 crore' : 'Above 1 crore';
+  sel.value = 'typed';
+  amtBox(sel).value = Math.round(P).toLocaleString('en-IN');
+  amtShow(sel, false);
   track('emi_to_form', {type: TYPE, amount: P});
 }
 (function(){

@@ -14,3 +14,5 @@ index (20).html
 # System
 .DS_Store
 Thumbs.db
+.bank-watch/
+.bank-watch-out/

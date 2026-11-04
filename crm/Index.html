@@ -152,6 +152,7 @@ body.locked{overflow:hidden}
 .st[aria-pressed=true]{border-color:var(--c);color:var(--text);background:rgba(255,255,255,.05)}
 
 .fb{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:10px;padding:11px 12px;margin-bottom:13px}
+.fb[hidden]{display:none}
 .fb p{flex:1;min-width:180px;font-size:13px;color:var(--text)}
 .fb p small{display:block;color:var(--mute);font-size:12px;margin-top:2px}
 .fb button{background:var(--gold);color:var(--ink);font-weight:600;font-size:13.5px;border-radius:8px;padding:9px 14px}
@@ -503,7 +504,8 @@ function leadLang(l){
   const p = String(l.pageLang||'').toLowerCase();
   return /^(ml|ta|te|kn|hi|en)$/.test(p) ? p : 'en';
 }
-async function askFeedback(l){
+// stage: the one tapped in the open lead. If it is not saved yet, it is saved with the date asked.
+async function askFeedback(l, stage){
   const wa = digits10(l.mobile);
   if(!wa){ note('This lead has no mobile number.',true); return; }
   const lang = leadLang(l), first = String(l.name||'').trim().split(/\s+/)[0] || '';
@@ -511,7 +513,9 @@ async function askFeedback(l){
   const link = SITE + 'feedback.html?' + new URLSearchParams({lang, n:first, m:wa, got}).toString();
   const text = ASK[lang].replace('{name}', first).replace('{link}', link);
   window.open('https://wa.me/91' + wa + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
-  try { await api('saveLead', l.id, {feedbackAsked: todayISO()}); load(true); }
+  const save = {feedbackAsked: todayISO()};
+  if (stage && stage !== l.stage) save.stage = stage;
+  try { await api('saveLead', l.id, save); load(true); }
   catch(e){ note('WhatsApp opened, but the date was not saved: '+errText(e),true); }
 }
 
@@ -524,7 +528,7 @@ function openSheet(id){
   STAGES.forEach(s=>{
     const b=el('button',{class:'st',style:`--c:${s.c}`,type:'button','aria-pressed':String((l.stage||'new')===s.k),
       onclick:()=>{ stageBtns.querySelectorAll('.st').forEach(x=>x.setAttribute('aria-pressed','false'));
-                    b.setAttribute('aria-pressed','true'); }},
+                    b.setAttribute('aria-pressed','true'); syncFb(); }},
       el('i',{}), s.t);
     b.dataset.k=s.k; stageBtns.append(b);
   });
@@ -559,10 +563,14 @@ function openSheet(id){
   if (l.income)    web.push(['Income', l.income]);
   if (l.spend)     web.push(['Asked for', l.spend]);
 
-  const fbBox = (id && FEEDBACK_STAGES.includes(l.stage) && digits10(l.mobile)) ? el('div',{class:'fb'},
+  // Sits under Stage and shows the moment Approved, Disbursed or Payout is tapped, not only after saving.
+  const pickedStage = ()=>stageBtns.querySelector('.st[aria-pressed=true]')?.dataset.k;
+  const fbBox = (id && digits10(l.mobile)) ? el('div',{class:'fb'},
     el('p',{}, 'They have it. Ask how it went.',
       el('small',{}, l.feedbackAsked ? ('Asked on '+fmtDay(l.feedbackAsked)+'.') : 'Opens WhatsApp with a short message and the feedback link, in their language.')),
-    el('button',{type:'button',onclick:()=>askFeedback(l)}, l.feedbackAsked ? 'Ask again' : 'Ask for feedback')) : null;
+    el('button',{type:'button',onclick:()=>askFeedback(l, pickedStage())}, l.feedbackAsked ? 'Ask again' : 'Ask for feedback')) : null;
+  const syncFb = ()=>{ if (fbBox) fbBox.hidden = !FEEDBACK_STAGES.includes(pickedStage()); };
+  syncFb();
 
   // filter: a skipped part (null) would otherwise show up as the word "null"
   $('#sheet').replaceChildren(...[
@@ -570,7 +578,6 @@ function openSheet(id){
       el('h2',{id:'sTitle'}, id?(l.name||'Edit lead'):'New lead'),
       el('button',{class:'x',onclick:closeSheet,'aria-label':'Close'},'×')),
 
-    fbBox,
     web.length ? head('From the website') : null,
     web.length ? el('dl',{class:'web'}, ...web.map(([k,v])=>[el('dt',{},k), el('dd',{},v)])) : null,
 
@@ -602,13 +609,12 @@ function openSheet(id){
 
     head('Progress'),
     f('Stage', stageBtns),
+    fbBox,
     f('Next follow-up', inp('iFu',l.followUp,{type:'date'})),
     f('Notes', el('textarea',{id:'iNotes',placeholder:'What was said, what they need next'},l.notes||'')),
 
     head('Money'),
-    el('div',{class:'row'},
-      f('Processing fee', inp('iFee',l.fee,{placeholder:'Charged to customer',inputmode:'decimal'})),
-      f('Payout received', inp('iPay',l.payout,{placeholder:'Your commission',inputmode:'decimal'}))),
+    f('Payout received', inp('iPay',l.payout,{placeholder:'Your commission',inputmode:'decimal'})),
     el('div',{class:'row'},
       f('Referred by', inp('iRef',l.referredBy,{placeholder:'Name or mobile'})),
       f('Referral bonus', sel('iBonus', BONUS, l.bonus))),
@@ -637,7 +643,7 @@ function readSheet(){
     product:g('iProd'), bankCat:g('iCat'), bank:g('iBank'), card:g('iCard'),
     loanAmount:g('iAmt'), tenure:g('iTen'), eligibility:g('iElig'),
     stage, followUp:g('iFu'), notes:g('iNotes'),
-    fee:g('iFee'), payout:g('iPay'), referredBy:g('iRef'), bonus:g('iBonus')
+    payout:g('iPay'), referredBy:g('iRef'), bonus:g('iBonus')
   };
   // Only the last four characters of a PAN are kept. See the note in the form.
   const pan=g('iPan');
@@ -722,7 +728,7 @@ const PICK={name:['name','full name','your name'],mobile:['mobile','phone','numb
   referredBy:['referred by','referrer','refer','referredby'],language:['language','preferred language'],
   spend:['spend','spends on'],stage:['stage'],followUp:['followup','follow-up','next follow-up'],
   panLast4:['panlast4','pan last 4'],bankCat:['bankcat','bank category'],loanAmount:['loanamount','loan amount'],
-  tenure:['tenure','tenure (months)'],eligibility:['eligibility'],fee:['fee','processing fee'],
+  tenure:['tenure','tenure (months)'],eligibility:['eligibility'],
   payout:['payout','payout received'],bonus:['bonus','referral bonus']};
 async function doImport(text){
   const rows=parseCSV(text);
