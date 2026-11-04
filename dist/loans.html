@@ -851,14 +851,14 @@ document.addEventListener('DOMContentLoaded', function(){
     <a href="index.html#contact" data-keep-lang data-i18n="cfLink">Contact</a>
   </div>
   <div class="footer-bottom">
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.04c</span><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.04d</span><br/>
     &copy; 2026 Mahodaya Credit Solutions<br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
 </footer>
 
 <script>
-console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.04c", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.04d", "color:#C9A84C;font-weight:bold");
 
 // ===================================================================
 //  Leads go to the same two places as the card form on index.html.
@@ -1311,6 +1311,9 @@ var EMI_CFG = {
   bl: {min:100000, max:10000000, step:1000,   amt:1000000, yMax:15, yrs:5}
 };
 function inr(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); }
+// The exact amount typed in the amount box. The slider only holds steps of ₹1,000 (₹10,000 for
+// home loans), so a typed ₹1,23,456 is kept here and used as it is; moving the slider clears it.
+let EMI_AMT = null;
 function emiEl(id){ return document.getElementById(id); }
 function lowestRate(t){
   const rs = (LOANS[t] || []).filter(r => r.r != null && r.k !== 'upto').map(r => r.r);
@@ -1322,6 +1325,7 @@ function emiSetup(){
   aR.min = c.min; aR.max = c.max; aR.step = c.step; yR.max = c.yMax;
   const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
   aR.value = aR.dataset.touched ? clamp(+aR.value, c.min, c.max) : c.amt;
+  if (EMI_AMT != null) { EMI_AMT = clamp(EMI_AMT, c.min, c.max); aR.value = EMI_AMT; }
   rR.value = rR.dataset.touched ? rR.value : lowestRate(TYPE);
   yR.value = yR.dataset.touched ? clamp(+yR.value, 1, c.yMax) : c.yrs;
   emiCalc(true);
@@ -1329,7 +1333,7 @@ function emiSetup(){
 // fromRange: copy the slider values into the boxes (not while someone types in a box)
 function emiCalc(fromRange){
   const aR = emiEl('emiAmtR'), rR = emiEl('emiRateR'), yR = emiEl('emiYrsR');
-  const P = +aR.value, rate = +rR.value, n = +yR.value * 12, r = rate / 1200;
+  const P = EMI_AMT != null ? EMI_AMT : +aR.value, rate = +rR.value, n = +yR.value * 12, r = rate / 1200;
   const emi = r ? P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1) : P / n;
   const total = emi * n, interest = total - P;
   if (fromRange) {
@@ -1346,7 +1350,7 @@ function emiCalc(fromRange){
 }
 // "Get help with this loan": carry the calculator's exact amount into the form (TYPED AMOUNT).
 function emiToForm(){
-  const sel = emiEl('lfAmount'), P = +emiEl('emiAmtR').value;
+  const sel = emiEl('lfAmount'), P = EMI_AMT != null ? EMI_AMT : +emiEl('emiAmtR').value;
   if (!sel || sel.dataset.touched) return;
   sel.value = 'typed';
   amtBox(sel).value = Math.round(P).toLocaleString('en-IN');
@@ -1358,15 +1362,16 @@ function emiToForm(){
   pairs.forEach(([rid, nid]) => {
     const R = emiEl(rid), N = emiEl(nid);
     if (!R || !N) return;
-    R.addEventListener('input', () => { R.dataset.touched = '1'; emiCalc(true); });
+    const exact = v => { if (rid === 'emiAmtR') EMI_AMT = Math.round(v); };   // amount only: keep what was typed
+    R.addEventListener('input', () => { R.dataset.touched = '1'; if (rid === 'emiAmtR') EMI_AMT = null; emiCalc(true); });
     // Typing in a box moves the slider once the number is inside its range.
     N.addEventListener('input', () => {
       const v = parseFloat(N.value.replace(/[^0-9.]/g, ''));
-      if (!isNaN(v) && v >= +R.min && v <= +R.max) { R.value = v; R.dataset.touched = '1'; emiCalc(false); }
+      if (!isNaN(v) && v >= +R.min && v <= +R.max) { R.value = v; R.dataset.touched = '1'; exact(v); emiCalc(false); }
     });
     N.addEventListener('change', () => {
       const v = parseFloat(N.value.replace(/[^0-9.]/g, ''));
-      if (!isNaN(v)) { R.value = Math.min(+R.max, Math.max(+R.min, v)); R.dataset.touched = '1'; }
+      if (!isNaN(v)) { const c = Math.min(+R.max, Math.max(+R.min, v)); R.value = c; R.dataset.touched = '1'; exact(c); }
       emiCalc(true);
     });
   });

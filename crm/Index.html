@@ -515,7 +515,7 @@ async function askFeedback(l, stage){
   window.open('https://wa.me/91' + wa + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
   const save = {feedbackAsked: todayISO()};
   if (stage && stage !== l.stage) save.stage = stage;
-  try { await api('saveLead', l.id, save); load(true); }
+  try { await api('saveLead', l.id, toRow(save)); load(true); }   // toRow: the Sheet gets "Approved", not "approved"
   catch(e){ note('WhatsApp opened, but the date was not saved: '+errText(e),true); }
 }
 

@@ -133,16 +133,21 @@ function section(p, added, removed) {
 
   const day = new Date().toLocaleDateString('en-IN', {day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata'});
   const list = ps => ps.map(p => `- ${p.what.join(' / ')}: ${p.url}`).join('\n');
+  const n = (k, one, many) => k === 1 ? one : many.replace('#', k);   // "This page is" / "These 3 pages are"
+  const refused = pages.filter(p => !read.includes(p));
   let title = '', body = '';
   if (first) {
     title = `Bank watch is on (${day})`;
     body = `${OWNER} the bank watch is running. Every morning it reads ${pages.length} bank pages the site links to, and opens an issue like this one (GitHub emails it to you) when a fee, rate, offer or card list changes.\n\n` +
       `It never changes the site by itself. When it reports a change, open the bank's page, and if a card or rate changed, tell Claude to update it.\n\n` +
-      `**Read today: ${read.length - thin.length} pages.**\n\n` +
-      (thin.length ? `**These ${thin.length} pages are built by the bank's own code in the browser, so the watch sees nothing on them** (check them yourself now and then):\n${list(thin)}\n\n` : '') +
-      (pages.length - read.length ? `**These ${pages.length - read.length} pages refused the watch today** (some banks block automatic visits; it keeps trying):\n${list(pages.filter(p => !read.includes(p)))}\n` : '');
+      `**Read today: ${n(read.length - thin.length, '1 page', '# pages')}.**\n\n` +
+      (thin.length ? `**${n(thin.length, 'This page is', 'These # pages are')} built by the bank's own code in the browser, so the watch sees nothing on ${n(thin.length, 'it', 'them')}** (check ${n(thin.length, 'it', 'them')} yourself now and then):\n${list(thin)}\n\n` : '') +
+      (refused.length ? `**${n(refused.length, 'This page', 'These # pages')} refused the watch today** (some banks block automatic visits; it keeps trying):\n${list(refused)}\n` : '');
   } else if (changed.length || unreadable.length) {
-    title = `Bank pages changed (${day}): ${changed.length} page${changed.length === 1 ? '' : 's'}`;
+    // the title is the email subject: say what actually happened
+    title = changed.length
+      ? `Bank pages changed (${day}): ${n(changed.length, '1 page', '# pages')}` + (unreadable.length ? `, ${unreadable.length} could not be read` : '')
+      : `Bank watch (${day}): ${n(unreadable.length, '1 page', '# pages')} could not be read`;
     body = `${OWNER} ${changed.length ? 'these bank pages changed since the last check' : 'nothing changed, but some pages could not be read'}. **The site has not been changed.** ` +
       `Open each page, and if a fee, rate or card really changed, tell Claude "update the cards from the bank watch issue".\n\n` +
       changed.join('\n') +
