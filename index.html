@@ -1379,6 +1379,7 @@ function fmShow(btn, kind, title, items, actions){
   var box = btn.parentNode.querySelector('.fm-note');
   if (!box) { box = document.createElement('div'); box.setAttribute('role', 'alert'); btn.parentNode.insertBefore(box, btn); }
   box.className = 'fm-note ' + kind;
+  if (kind === 'err' && window.SND) SND.play('err');   // the low note (SOUND)
   box.textContent = '';
   var p = document.createElement('p'); p.textContent = title; box.appendChild(p);
   if (items && items.length) {
@@ -1543,6 +1544,82 @@ document.addEventListener('DOMContentLoaded', function(){
     amtShow(g.querySelector('select'), false);   // the browser may restore "typed" on Back
   });
 });
+</script>
+<!-- SOUND (v2026.11.06b): small, quiet sounds, made in the browser (no sound files). A soft tap on the main
+     buttons, a chime when a form is sent, a low note when a form has a problem, and a bloom with the intro.
+     "Sound: on/off" in the footer turns it off; the choice is kept in this browser only. Browsers allow sound
+     only after the visitor's first tap, so the intro plays its sound only where the browser already allows it.
+     Same block on index.html, loans.html and feedback.html. -->
+<script>
+var SND = (function(){
+  var KEY = 'mh_sound', on = true, ctx = null;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { on = localStorage.getItem(KEY) !== 'off'; } catch (e) {}
+  function ac(){
+    if (!ctx) { var A = window.AudioContext || window.webkitAudioContext; if (!A) return null; try { ctx = new A(); } catch (e) { return null; } }
+    if (ctx.state === 'suspended') { try { ctx.resume().catch(function(){}); } catch (e) {} }
+    return ctx;
+  }
+  // One soft note: f Hz (sliding to f2), starting t seconds from now, fading out over dur.
+  function note(c, f, t, dur, vol, type, f2, att){
+    var o = c.createOscillator(), g = c.createGain(), s = c.currentTime + t;
+    o.type = type || 'sine';
+    o.frequency.setValueAtTime(f, s);
+    if (f2) o.frequency.exponentialRampToValueAtTime(f2, s + dur);
+    g.gain.setValueAtTime(0.0001, s);
+    g.gain.exponentialRampToValueAtTime(vol, s + (att || 0.008));
+    g.gain.exponentialRampToValueAtTime(0.0001, s + dur);
+    o.connect(g); g.connect(c.destination);
+    o.start(s); o.stop(s + dur + 0.05);
+  }
+  var SOUNDS = {
+    tap: function(c){ note(c, 740, 0, 0.09, 0.06, 'sine', 520); },
+    ok:  function(c){ [659.25, 830.61, 987.77].forEach(function(f, i){ note(c, f, i * 0.09, 0.6, 0.05); note(c, f * 2, i * 0.09, 0.3, 0.012); }); },
+    err: function(c){ note(c, 311.13, 0, 0.16, 0.05, 'triangle'); note(c, 233.08, 0.14, 0.22, 0.05, 'triangle'); },
+    // hit = seconds until the intro's gold flash: a rising breath up to it, then the bloom on it
+    intro: function(c, hit){
+      if (hit > 0.15) note(c, 260, 0, hit, 0.018, 'sine', 520, hit * 0.8);
+      [523.25, 659.25, 783.99, 1046.5].forEach(function(f, i){ note(c, f, hit + i * 0.015, 1.6, 0.03); });
+    }
+  };
+  function play(name){
+    if (!on || !SOUNDS[name]) return;
+    var c = ac(); if (!c) return;
+    try { SOUNDS[name](c); } catch (e) {}
+  }
+  // index.html's intro script calls this. No sound unless the browser already lets the page play it.
+  function intro(splash){
+    if (!on || reduce || !splash) return;
+    try { if (navigator.getAutoplayPolicy && navigator.getAutoplayPolicy('audiocontext') !== 'allowed') return; } catch (e) {}
+    var c = ac(); if (!c) return;
+    function go(){
+      var hit = 0.46;     // the flash's delay in the INTRO styles
+      try { var a = splash.querySelector('.is-flash').getAnimations()[0]; if (a && a.currentTime != null) hit = 0.46 - a.currentTime / 1000; } catch (e) {}
+      if (hit < -0.3 || !splash.isConnected) return;     // too late to land on the flash
+      try { SOUNDS.intro(c, Math.max(0, hit)); } catch (e) {}
+    }
+    if (c.state === 'running') return go();
+    // a blocked context only wakes on the first tap: by then the intro is over, so give it a moment, no more
+    var wait = setTimeout(function(){ wait = 0; }, 300);
+    c.resume().then(function(){ if (wait && c.state === 'running') { clearTimeout(wait); go(); } }).catch(function(){});
+  }
+  function sync(){
+    var b = document.getElementById('sndBtn'); if (!b) return;
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var s = b.querySelectorAll('span'); if (s.length === 2) { s[0].hidden = !on; s[1].hidden = on; }
+  }
+  function toggle(){
+    on = !on;
+    try { localStorage.setItem(KEY, on ? 'on' : 'off'); } catch (e) {}
+    sync(); play('tap');
+  }
+  // The main buttons tap. Send buttons don't: they answer with the chime or the low note.
+  document.addEventListener('click', function(e){
+    if (e.target.closest && e.target.closest('.btn-primary, .nav-cta, .cc-cta')) play('tap');
+  }, true);
+  document.addEventListener('DOMContentLoaded', sync);
+  return { play: play, intro: intro, toggle: toggle };
+})();
 </script>
 </head>
 <body>
@@ -2353,8 +2430,10 @@ document.addEventListener('DOMContentLoaded', function(){
     <button class="link-btn" onclick="openPrivacy()" data-i18n="privLink">Privacy Policy</button>
     <span style="opacity:.3;margin:0 6px;">|</span>
     <button class="link-btn" onclick="openContact()" data-i18n="cfLink">Contact</button>
+    <br/>
+    <button type="button" id="sndBtn" class="link-btn" onclick="SND.toggle()" aria-pressed="true"><span data-i18n="sndOn">Sound: on</span><span data-i18n="sndOff" hidden>Sound: off</span></button>
     <br/><br/>
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.06a</span><br/><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.06b</span><br/><br/>
     <span data-i18n="ftCopy">&copy; 2026 &middot; Authorised DSA Partner</span><br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
@@ -2385,7 +2464,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <li>If you use our contact form, how to reply to you and your message</li>
       <li>If you fill in our feedback form, your rating and comments, and whether we may show your first name and comment on this site</li>
     </ul>
-    <p>We never ask for your PAN, Aadhaar, bank account details or passwords on this site. We do not use cookies to track you, and we do not run analytics or advertising trackers on this site. If we ever add visitor analytics, we will say so here first.</p>
+    <p>We never ask for your PAN, Aadhaar, bank account details or passwords on this site. We do not use cookies to track you, and we do not run analytics or advertising trackers on this site. If you turn the site's sounds off, that choice is saved in your own browser and never sent to us. If we ever add visitor analytics, we will say so here first.</p>
 
     <h3>2. Why we collect it</h3>
     <p>To recommend credit cards or loans that suit your profile, to contact you about your enquiry, and, if you decide to apply, to help with your application. Income and employment type are needed because banks set minimum eligibility rules, and recommending something you cannot qualify for wastes your time and can leave a rejection on your credit record.</p>
@@ -2694,6 +2773,7 @@ function showSubmitted(){
   const d = T[CUR] || T.en;
   const wrap = document.querySelector('.form-wrap');
   if (!wrap) return;
+  if (window.SND) SND.play('ok');   // the chime (SOUND)
   wrap.innerHTML =
     '<div class="sent-ok">' +
       '<div class="sent-tick" aria-hidden="true">' +
@@ -2717,7 +2797,7 @@ function showSubmitted(){
 </script>
 
 <script>
-console.log("%cMahodaya Credit Solutions, build v2026.11.06a", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, build v2026.11.06b", "color:#C9A84C;font-weight:bold");
 const T = {
 en:{
 langNote:"Tap any language above to switch the whole page",
@@ -3083,6 +3163,16 @@ const T_WATCH = {
   hi:{noWatch:'हम इस बैंक की वेबसाइट रोज़ नहीं जाँच पाते, इसलिए बदलाव यहाँ देर से दिख सकते हैं। आवेदन करने से पहले बैंक की अपनी वेबसाइट पर ताज़ा जानकारी पक्की कर लें।'}
 };
 Object.keys(T_WATCH).forEach(l => { T[l] = Object.assign(T[l]||{}, T_WATCH[l]); });
+// "Sound: on/off" in the footer (SOUND block). Only one of the two shows.
+const T_SND = {
+  en:{sndOn:'Sound: on', sndOff:'Sound: off'},
+  ml:{sndOn:'ശബ്ദം: ഓൺ', sndOff:'ശബ്ദം: ഓഫ്'},
+  ta:{sndOn:'ஒலி: ஆன்', sndOff:'ஒலி: ஆஃப்'},
+  te:{sndOn:'శబ్దం: ఆన్', sndOff:'శబ్దం: ఆఫ్'},
+  kn:{sndOn:'ಧ್ವನಿ: ಆನ್', sndOff:'ಧ್ವನಿ: ಆಫ್'},
+  hi:{sndOn:'आवाज़: चालू', sndOff:'आवाज़: बंद'}
+};
+Object.keys(T_SND).forEach(l => { T[l] = Object.assign(T[l]||{}, T_SND[l]); });
 
 
 let CUR = 'en';
@@ -3444,11 +3534,13 @@ function sendContact(e){
     .then(r=>{
       if(!r.ok) throw new Error('bad');
       st.className='cf-status ok'; st.textContent=L.cfOk||'Message sent. We will reply soon.';
+      if (window.SND) SND.play('ok');
       f.reset(); btn.disabled=false;
       track('contact_form_submit',{language:CUR});
       setTimeout(closeContact,2200);
     })
     .catch(()=>{
+      if (window.SND) SND.play('err');
       st.className='cf-status err'; st.textContent=L.cfErr||'Could not send. Please try WhatsApp instead.';
       btn.disabled=false;
     });
@@ -3718,6 +3810,7 @@ if (document.readyState === 'loading') {
 (function(){
   var el = document.getElementById('introSplash');
   if(!el) return;
+  if (window.SND) SND.intro(el);   // the intro's sound, only where the browser allows it (SOUND)
   var gone = false;
   function dismiss(){
     if(gone) return; gone = true;
