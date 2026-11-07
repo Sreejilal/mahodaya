@@ -9,10 +9,10 @@
 // node tools/bank-watch.js <state.json> <out folder>
 'use strict';
 const fs = require('fs'), path = require('path'), vm = require('vm');
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(__dirname, '..', 'site');   // the pages you edit
 const STATE = process.argv[2] || '.bank-watch/state.json';
 const OUT = process.argv[3] || '.bank-watch-out';
-const OWNER = '@Sreejilal';
+const OWNER = '@dhyan-gesus';
 
 // The site's own lists: const B in index.html, LOANS and BANKS in loans.html.
 function literal(file, start) {
@@ -49,7 +49,7 @@ async function fetchPage(url) {
   const res = await fetch(url, {
     redirect: 'follow', signal: AbortSignal.timeout(30000),
     headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 MahodayaBankWatch/1.0 (+https://mahodaya.netlify.app)',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 MahodayaBankWatch/1.0 (+https://mahodayacredit.com)',
       'Accept': 'text/html,application/xhtml+xml', 'Accept-Language': 'en-IN,en;q=0.9'
     }
   });

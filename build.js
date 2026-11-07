@@ -1,6 +1,7 @@
 // Mahodaya Credit Solutions - Build Script
 // Usage: node build.js
-// Reads .env, injects config into index.html and loans.html, writes both to dist/
+// Reads .env, fills the settings into every page in site/, writes them to dist/.
+// dist/ is what goes live: Cloudflare publishes it from GitHub after a push.
 
 const fs   = require('fs');
 const path = require('path');
@@ -26,17 +27,18 @@ function loadEnv() {
 
 const env = loadEnv();
 // Every page of the site. Each one goes to dist/ with the same settings filled in.
+const SRC   = path.join(__dirname, 'site');
 const PAGES = ['index.html', 'loans.html', 'feedback.html'];
 
 PAGES.forEach(page => {
-  if (!fs.existsSync(path.join(__dirname, page))) {
-    console.error('ERROR: ' + page + ' not found in this folder.');
+  if (!fs.existsSync(path.join(SRC, page))) {
+    console.error('ERROR: site/' + page + ' not found.');
     process.exit(1);
   }
 });
 
 function build(page) {
-  let html = fs.readFileSync(path.join(__dirname, page), 'utf8');
+  let html = fs.readFileSync(path.join(SRC, page), 'utf8');
   console.log('\n' + page);
 
   // DSA link (4 occurrences in index.html)
@@ -87,5 +89,4 @@ if (!fs.existsSync(distDir)) fs.mkdirSync(distDir);
 PAGES.forEach(page => fs.writeFileSync(path.join(distDir, page), build(page), 'utf8'));
 
 console.log('\nBuilt: ' + PAGES.map(p => 'dist/' + p).join(', '));
-console.log('Next:  drag the whole dist FOLDER onto Netlify Drop (not this project folder).');
-console.log('       Every deploy replaces the whole site, so a single file would delete the other page.');
+console.log('Next:  commit and push. Cloudflare publishes dist/ by itself in about a minute.');

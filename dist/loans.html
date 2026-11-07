@@ -6,12 +6,12 @@
 <title>Compare Loan Rates from 13 Banks | Mahodaya Credit Solutions</title>
 <meta name="description" content="Personal, home, car and business loan rates and processing fees from 13 Indian banks, side by side, taken from each bank's own website, with an EMI calculator. Free guidance from Mahodaya Credit Solutions (Mahodaya Finance) in Malayalam, Tamil, Telugu, Kannada, Hindi and English."/>
 <meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://mahodaya.netlify.app/loans.html"/>
+<link rel="canonical" href="https://mahodayacredit.com/loans"/>
 <meta property="og:title" content="Compare loan rates | Mahodaya Credit Solutions"/>
 <meta property="og:description" content="Lowest published loan rates and fees from 13 banks, in one place, with an EMI calculator. Free guidance in 6 languages."/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://mahodaya.netlify.app/loans.html"/>
-<meta property="og:image" content="https://mahodaya.netlify.app/og-image.png"/>
+<meta property="og:url" content="https://mahodayacredit.com/loans"/>
+<meta property="og:image" content="https://mahodayacredit.com/og-image.png"/>
 <meta property="og:site_name" content="Mahodaya Credit Solutions"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A1628'/%3E%3Ctext x='16' y='23' font-size='19' font-family='serif' font-weight='700' fill='%23C9A84C' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -931,14 +931,14 @@ var SND = (function(){
     <button type="button" id="sndBtn" class="snd-btn" onclick="SND.toggle()" aria-pressed="true"><span data-i18n="sndOn">Sound: on</span><span data-i18n="sndOff" hidden>Sound: off</span></button>
   </div>
   <div class="footer-bottom">
-    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.06b</span><br/>
+    <span style="font-size:10px;opacity:0.45;letter-spacing:1px;">BUILD v2026.11.07a</span><br/>
     &copy; 2026 Mahodaya Credit Solutions<br/>
     <span style="font-size:11px;opacity:0.6;" data-i18n="ftIp">This is an independent financial advisory service. All bank logos and trademarks are the property of their respective owners.</span>
   </div>
 </footer>
 
 <script>
-console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.06b", "color:#C9A84C;font-weight:bold");
+console.log("%cMahodaya Credit Solutions, loans page, build v2026.11.07a", "color:#C9A84C;font-weight:bold");
 
 // ===================================================================
 //  Leads go to the same two places as the card form on index.html.
@@ -1323,9 +1323,9 @@ function handleLoanSubmit(){
     return;
   }
 
-  // Same fields as the card form, so loan leads land in the same Netlify form
-  // ("lead", defined in index.html) and the same Sheet columns. The loan and
-  // amount go in "spend", which is the "Spends on" column in the Sheet.
+  // Same fields as the card form, so loan leads land in the same Sheet
+  // columns. The loan and amount go in "spend", which is the "Spends on"
+  // column in the Sheet.
   const lead = {
     name: val('name'),
     mobile: mob,             // plain 10 digits: a leading + shows as #ERROR! in Sheets
@@ -1338,14 +1338,6 @@ function handleLoanSubmit(){
     bank: val('bank'),
     page_language: CUR
   };
-  try {
-    fetch('/', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: new URLSearchParams(Object.assign({'form-name': 'lead'}, lead)).toString()
-    }).catch(function(){});
-  } catch(e) {}
-
   window.__sheetState = 'not configured';
   if (CONTACT.sheetUrl) {
     window.__sheetState = 'sending';

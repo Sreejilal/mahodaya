@@ -1,18 +1,20 @@
 # Private - never publish these
 .env
 # The leads script holds his email address and the form secret
-google-sheet-script.gs
+google/leads-script.gs
 CLAUDE.md
 
-# dist/ IS committed on purpose: Netlify publishes it straight from GitHub
-# (see netlify.toml). Run node build.js before every commit.
+# dist/ IS committed on purpose: Cloudflare publishes it straight from GitHub.
+# Run node build.js before every commit.
 
-# Old copy and local editor settings
-index (20).html
-.claude/settings.local.json
+# Local editor settings
+.claude/
 
 # System
 .DS_Store
 Thumbs.db
 .bank-watch/
 .bank-watch-out/
+
+# Test browser logs
+.playwright-mcp/
