@@ -1,0 +1,12 @@
+# This old repo only keeps the retired address alive. mahodaya.netlify.app
+# sends every visitor to mahodayacredit.com, same page and same ?lang=,
+# since the site moved to Cloudflare on 7 Nov 2026. The real code lives in
+# the private repo dhyan-gesus/Mahodaya.
+[build]
+  publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "https://mahodayacredit.com/:splat"
+  status = 301
+  force = true
